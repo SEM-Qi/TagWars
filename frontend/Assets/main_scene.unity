@@ -770,7 +770,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .400000006, g: .400000006, b: .400000006, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1190,7 +1190,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 640.200012, y: 280.059998}
+  m_AnchoredPosition: {x: 640.200012, y: 229.320007}
   m_SizeDelta: {x: 1264, y: 570}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &681998267
@@ -2066,7 +2066,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1952510003}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a9386c8cde2191542a6353bbfb01f499, type: 2}
   m_CullingMode: 0
@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mat: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 80839a3b70254474ca1f8443a75900f3, type: 3}
     m_FontSize: 74
@@ -2257,7 +2257,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 640.200012, y: 161.839996}
+  m_AnchoredPosition: {x: 640.200012, y: -78.1900024}
   m_SizeDelta: {x: 1280.40002, y: 698.200012}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2093821572
