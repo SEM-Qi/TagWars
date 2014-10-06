@@ -1657,6 +1657,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1280, y: 1024}
   m_Pivot: {x: .5, y: .5}
+--- !u!1 &637872501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 637872503}
+  - 114: {fileID: 637872502}
+  m_Layer: 0
+  m_Name: NameLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &637872502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 637872501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dab92dcb7ad29d4fa2566fe062a2638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pName: {fileID: 1093126427}
+  oName: {fileID: 2139999932}
+  playerName: Aure
+  opponentName: Evil Aure
+--- !u!4 &637872503
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 637872501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -958.070007, y: 280.380005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &674863199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,7 +2312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mat: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .200000003, g: .58431375, b: .847058833, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 81920bc21ecb74c45a0b7a9191918389, type: 3}
     m_FontSize: 58
@@ -2282,7 +2325,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Player Name
+  m_Text: 
 --- !u!222 &1093126430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2642,6 +2685,7 @@ GameObject:
   - 224: {fileID: 1169591342}
   - 222: {fileID: 1169591344}
   - 114: {fileID: 1169591343}
+  - 114: {fileID: 1169591345}
   m_Layer: 5
   m_Name: Player_A_Name
   m_TagString: Untagged
@@ -2678,7 +2722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mat: {fileID: 0}
-  m_Color: {r: .996078432, g: .996078432, b: .996078432, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 81920bc21ecb74c45a0b7a9191918389, type: 3}
     m_FontSize: 58
@@ -2691,13 +2735,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Player Name
+  m_Text: 
 --- !u!222 &1169591344
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1169591341}
+--- !u!114 &1169591345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169591341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dab92dcb7ad29d4fa2566fe062a2638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pName: {fileID: 1784720571}
+  oName: {fileID: 1169591341}
+  playerName: 
+  opponentName: 
 --- !u!1 &1181856667
 GameObject:
   m_ObjectHideFlags: 0
@@ -4700,7 +4759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mat: {fileID: 0}
-  m_Color: {r: .996078432, g: .996078432, b: .996078432, a: 1}
+  m_Color: {r: .191176474, g: .191176474, b: .191176474, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 81920bc21ecb74c45a0b7a9191918389, type: 3}
     m_FontSize: 58
@@ -4713,7 +4772,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Player Name
+  m_Text: 
 --- !u!222 &1784720574
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5339,7 +5398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mat: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .898039222, g: .298039228, b: .235294119, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 81920bc21ecb74c45a0b7a9191918389, type: 3}
     m_FontSize: 58
@@ -5352,7 +5411,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Player Name
+  m_Text: 
 --- !u!222 &2139999935
 CanvasRenderer:
   m_ObjectHideFlags: 0
