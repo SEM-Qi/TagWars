@@ -85,7 +85,7 @@ GameObject:
   - 222: {fileID: 9595091}
   - 114: {fileID: 9595090}
   m_Layer: 5
-  m_Name: Tag_B_01_Bck
+  m_Name: Tag_B_Bck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,7 +871,7 @@ GameObject:
   - 222: {fileID: 205329165}
   - 114: {fileID: 205329164}
   m_Layer: 5
-  m_Name: Tag_B_06_Bck
+  m_Name: Tag_B_Bck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -998,7 +998,7 @@ GameObject:
   - 222: {fileID: 301644137}
   - 114: {fileID: 301644136}
   m_Layer: 5
-  m_Name: Tag_B_01_Text
+  m_Name: Tag_B_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1407,7 +1407,7 @@ GameObject:
   - 222: {fileID: 411587007}
   - 114: {fileID: 411587006}
   m_Layer: 5
-  m_Name: Tag_B_04_Bck
+  m_Name: Tag_B_Bck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2171,6 +2171,7 @@ GameObject:
   - 222: {fileID: 1010219277}
   - 114: {fileID: 1010219276}
   - 114: {fileID: 1010219275}
+  - 95: {fileID: 1010219278}
   m_Layer: 5
   m_Name: Tag_B_01
   m_TagString: Untagged
@@ -2265,6 +2266,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1010219273}
+--- !u!95 &1010219278
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1010219273}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0b5ec9edbaeeb64a88d86dd7578d0cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1093126427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,6 +2950,7 @@ GameObject:
   - 222: {fileID: 1231000760}
   - 114: {fileID: 1231000759}
   - 114: {fileID: 1231000758}
+  - 95: {fileID: 1231000761}
   m_Layer: 5
   m_Name: Tag_B_02
   m_TagString: Untagged
@@ -3028,6 +3045,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1231000756}
+--- !u!95 &1231000761
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1231000756}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 795b0e02463d3134bb456daed142cd9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1232445937
 GameObject:
   m_ObjectHideFlags: 0
@@ -3915,7 +3947,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: .501960814, g: .501960814, b: .501960814, a: .501960814}
     m_HighlightedColor: {r: .501960814, g: .501960814, b: .501960814, a: .698039234}
@@ -4090,7 +4122,7 @@ GameObject:
   - 222: {fileID: 1628227960}
   - 114: {fileID: 1628227959}
   m_Layer: 5
-  m_Name: Tag_B_05_Bck
+  m_Name: Tag_B_Bck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4151,7 +4183,7 @@ GameObject:
   - 222: {fileID: 1643287299}
   - 114: {fileID: 1643287298}
   m_Layer: 5
-  m_Name: Tag_B_02_Bck
+  m_Name: Tag_B_Bck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4379,7 +4411,7 @@ GameObject:
   - 222: {fileID: 1692746445}
   - 114: {fileID: 1692746444}
   m_Layer: 5
-  m_Name: Tag_B_03_Bck
+  m_Name: Tag_B_Bck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
