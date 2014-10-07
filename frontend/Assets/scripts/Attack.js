@@ -1,12 +1,17 @@
 ﻿#pragma strict
-var strenght = 0;
+
+var anim:Animator;
+var ui:GameObject;
+
+function Start () {
+	anim = ui.GetComponent("Animator");
+}
 
 function Update () {
-	if(Input.GetKey("return")){
-		strenght++;
+	if(Input.GetKeyDown("return")){
+		anim.SetBool("enter_pressed",true);
 	}
-	if (Input.GetKeyUp("return")){ 
-		print("attack!! " + strenght);
-		strenght = 0;
+	if (Input.GetKeyUp("return")){
+		anim.SetBool("enter_pressed",false);
 	}
 }

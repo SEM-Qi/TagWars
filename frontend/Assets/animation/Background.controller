@@ -7,7 +7,13 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: Background
   serializedVersion: 2
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: enter_pressed
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -33,9 +39,29 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: enter_pressed
     m_EventTreshold: 0
     m_ExitTime: .923076928
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110106880
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110255709}
+  m_DstState: {fileID: 110200000}
+  m_TransitionDuration: .428571433
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: enter_pressed
+    m_EventTreshold: 0
+    m_ExitTime: .571428537
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -52,30 +78,10 @@ Transition:
   m_TransitionDuration: .200000003
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
+  - m_ConditionMode: 1
+    m_ConditionEvent: enter_pressed
     m_EventTreshold: 0
     m_ExitTime: .800000012
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1101 &110137854
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110255709}
-  m_DstState: {fileID: 110200000}
-  m_TransitionDuration: .428571433
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
-    m_EventTreshold: 0
-    m_ExitTime: .571428537
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -113,9 +119,9 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: enter_pressed
     m_EventTreshold: 0
-    m_ExitTime: .75
+    m_ExitTime: .800000012
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -140,7 +146,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: new_inputfield 1
+  m_Name: new_inputfield
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -225,11 +231,11 @@ StateMachine:
     data:
       first: {fileID: 110255709}
       second:
-      - {fileID: 110137854}
+      - {fileID: 110106880}
     data:
       first: {fileID: 110217802}
       second:
       - {fileID: 110107383}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 240, y: -96, z: 0}
+  m_AnyStatePosition: {x: 324, y: -168, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
