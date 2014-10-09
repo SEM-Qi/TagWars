@@ -1,9 +1,10 @@
 ﻿#pragma strict
 
+// The GAME object is responsible for the game states and the animation triggers
+// all the other objects read the state and act acordingly
+
 var game_ui:GameObject;
-var input_field:GameObject;
-var anim:Animator;
-var charged:boolean;
+private var anim:Animator;
 
 static var state:String; // flags the current game state
 
@@ -11,29 +12,7 @@ function Start () {
 	anim = game_ui.GetComponent(Animator);
 }
 
-function Update () {
-	if(state == "can_attack"){
-		// charges attack
-		if(Input.GetKeyDown("return")){
-			anim.SetTrigger("charging");
-			charged = true;	
-		}
-		
-		// launches attack
-		if (Input.GetKeyUp("return") && charged){
-			charged = false;
-			anim.SetTrigger("release");
-			input_field.GetComponent(UI.InputField).interactable = false;
-			state = "can_not_attack";
-			Attack();
-			Ready();
-		}
-	}else{
-		if(Input.GetKeyDown("return")){
-			GetComponent(AudioSource).Play();
-		}	
-	}	
-}
+// STATES =========================================================
 
 //FUTURE FUNCTIONALITY
 // --------------------
@@ -59,30 +38,31 @@ function Begin(){
 	state = "start";
 	anim.SetTrigger("start");
 	Health.Start();
-	
-		yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);	// waits until the start animation is over
-		yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-		Ready();
-}
-
-function Attack(){
-				yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-			Health.playerA_health += 0.1;
+	// waits until the start animation is over
+	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);	
+	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+	Ready();
 }
 
 function Ready(){
 	state = "ready";
 	anim.SetTrigger("ready");
-		yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-		state = "can_attack";
-		input_field.GetComponent(UI.InputField).value = "";
-		input_field.GetComponent(UI.InputField).interactable = false;
-		
-		//TRYING TO FOCUS ON THE INPUTFIELD
-		//EventSystem.current.SetSelectedGameObject(input_field, null);
-		//input_field.OnPointerClick(new PointerEventData(EventSystems.current));
+	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+	state = "can_attack";
 }
 
+function Charging(){
+	state = "charging";
+	anim.SetTrigger("charging");
+}
+
+function Attack(){
+	state = "can_not_attack";
+	anim.SetTrigger("release");
+	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+	Health.playerA_health += 0.1;	// code smell
+	Ready();
+}
 
 //function Concede(){
 //	state = "game_over";

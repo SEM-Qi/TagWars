@@ -1,9 +1,11 @@
 ﻿#pragma strict
 
+// the DebugPanel Object serves as a provisory main menu and hub for test elements
+
 var debug_panel:GameObject;
 var start_button:GameObject;
 var exit_button:GameObject;
-var toggled:boolean = false;
+private var toggled:boolean = false;
 
 function Start(){
 	var Game = GetComponent(Game);

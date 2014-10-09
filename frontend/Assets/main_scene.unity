@@ -2134,7 +2134,9 @@ GameObject:
   - 114: {fileID: 762233790}
   - 114: {fileID: 762233791}
   - 114: {fileID: 762233792}
+  - 114: {fileID: 762233793}
   - 82: {fileID: 762233786}
+  - 114: {fileID: 762233794}
   m_Layer: 5
   m_Name: Scripts
   m_TagString: Untagged
@@ -2309,9 +2311,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game_ui: {fileID: 1722204771}
-  input_field: {fileID: 1510794343}
   anim: {fileID: 0}
   charged: 0
+--- !u!114 &762233793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762233784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c4f7e4a8d487747aff25d81a69ac46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input_field: {fileID: 1510794343}
+--- !u!114 &762233794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762233784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cfa53532c1a5dd439ffc69541b64be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: test_message.json
 --- !u!1 &778493067
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,7 +4067,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_TargetGraphic: {fileID: 1510794346}
-  m_Interactable: 1
+  m_Interactable: 0
   m_TextComponent: {fileID: 593549994}
   inputType: 0
   keyboardType: 0

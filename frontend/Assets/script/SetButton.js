@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+// CODE SMELL
+
 var tag01:GameObject;
 var tag02:GameObject;
 var tag03:GameObject;

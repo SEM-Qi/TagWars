@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{ACA33B9C-046B-2A50-B8C3-C54CC0380DE8}") = "frontend", "Assembly-CSharp-firstpass-vs.csproj", "{4565E936-8E43-10EA-9748-72CE06098FC2}"
+EndProject
 Project("{ACA33B9C-046B-2A50-B8C3-C54CC0380DE8}") = "frontend", "Assembly-CSharp-vs.csproj", "{43C0EEFD-4839-F783-705C-84FE6914F44C}"
 EndProject
 Project("{ACA33B9C-046B-2A50-B8C3-C54CC0380DE8}") = "frontend", "Assembly-CSharp-Editor-vs.csproj", "{F7E870A4-77E9-DBFF-B8CA-9EAB4F222277}"
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4565E936-8E43-10EA-9748-72CE06098FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4565E936-8E43-10EA-9748-72CE06098FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4565E936-8E43-10EA-9748-72CE06098FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4565E936-8E43-10EA-9748-72CE06098FC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43C0EEFD-4839-F783-705C-84FE6914F44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43C0EEFD-4839-F783-705C-84FE6914F44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43C0EEFD-4839-F783-705C-84FE6914F44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,7 +29,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																														GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																												GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
