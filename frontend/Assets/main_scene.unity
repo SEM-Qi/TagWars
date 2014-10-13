@@ -2477,6 +2477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play_button: {fileID: 1351586781}
   option_button: {fileID: 1050846430}
+  title_bar: {fileID: 1743079557}
 --- !u!1 &778493067
 GameObject:
   m_ObjectHideFlags: 0
@@ -5232,7 +5233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1743079558
 RectTransform:
   m_ObjectHideFlags: 0

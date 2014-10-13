@@ -5,7 +5,7 @@
 var input_field:GameObject;
 private var G:Game;
 private var input = new Array("");
-private var forbiden_chars:char[] = ['#'[0],'!'[0],'$'[0],'%'[0],'^'[0],'&'[0],'*'[0],'+'[0],'.'[0]];
+private var forbiden_chars:char[] = [' '[0],'#'[0],'!'[0],'$'[0],'%'[0],'^'[0],'&'[0],'*'[0],'+'[0],'.'[0]];
 
 function Start(){
 	G = GetComponent(Game);										// imports the GAME object
