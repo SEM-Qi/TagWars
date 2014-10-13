@@ -35,6 +35,7 @@ function Begin(){
 	// waits until the start animation is over
 	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);	
 	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 	Ready();
 }
 
