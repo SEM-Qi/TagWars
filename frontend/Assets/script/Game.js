@@ -14,29 +14,23 @@ function Start () {
 
 // STATES =========================================================
 
-//FUTURE FUNCTIONALITY
-// --------------------
-//function MainMenu(){
-//	state = "main_menu";
-//	print(state);
-//	anim.SetTrigger("intro");
-//	if(true){
-//		Connecting();
-//	}
-//}
-//
-//function Connecting(){
-//	state = "connecting";
-//	anim.SetTrigger("connecting");
-//	if(true){
-//		Begin();
-//	}
-//}
-//------------------------
+function MainMenu(){
+	state = "main_menu";
+	anim.SetTrigger("intro");
+}
+
+function Connect(){
+	state = "connecting";
+	anim.SetTrigger("connecting");
+	// CODE FOR FINDING SERVER HERE
+	
+	// if server is found ->
+	Begin();
+}
 
 function Begin(){
-	state = "start";
-	anim.SetTrigger("start");
+	state = "play";
+	anim.SetTrigger("play");
 	Health.Start();
 	// waits until the start animation is over
 	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);	

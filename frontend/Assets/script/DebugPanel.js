@@ -10,7 +10,7 @@ private var toggled:boolean = false;
 function Start(){
 	var Game = GetComponent(Game);
 	debug_panel.SetActive(true);
-	start_button.GetComponent(UI.Button).onClick.AddListener(function(){Game.Begin();debug_panel.SetActive(false);});
+	start_button.GetComponent(UI.Button).onClick.AddListener(function(){Game.MainMenu();debug_panel.SetActive(false);});
 	exit_button.GetComponent(UI.Button).onClick.AddListener(Game.Exit);
 }
 
