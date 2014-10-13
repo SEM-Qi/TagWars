@@ -17,7 +17,7 @@ function Update () {
 	if(Game.state == "can_attack"){
 		if(input.length <= 0) input.Push("#");
 		for(var c:char in Input.inputString){
-			if(ArrayUtility.IndexOf(forbiden_chars,c) == -1){ 	// if the char is not forbidden
+			if(!InArray(forbiden_chars,c)){ 	// if the char is not forbidden
 				if(c == "\b"[0]){								// backspace
 					input.Pop();								
 				}else if(input.length < 10){
@@ -50,4 +50,15 @@ function Update () {
 			GetComponent(AudioSource).Play();
 		}	
 	}	
+}
+
+// HELPER FUNCTION ArrayUtility.indexof WOULD BE BETTER BUT IT ISN'T AVAILABLE 
+function InArray(arr:char[],element:char){
+	var inArray:boolean = false;
+	for(var c:char in arr){
+		if (c == element){
+			inArray = true;
+		}
+	}
+	return inArray;
 }
