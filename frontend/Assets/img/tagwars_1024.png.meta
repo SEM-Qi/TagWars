@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 93eb30c27dc02aa48a51693e0b845378
+guid: cf21abbe155bf8244b79a7388e819a83
 TextureImporter:
   fileIDToRecycleName:
-    21300000: input_field
+    21300000: tagwars_1024
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
