@@ -75,6 +75,10 @@ function Attack(){
 //	}
 //}
 
+function EnemyAttack(){
+	anim.SetTrigger("enemy_attack");
+}
+
 function Exit(){
 	Application.Quit();
 }

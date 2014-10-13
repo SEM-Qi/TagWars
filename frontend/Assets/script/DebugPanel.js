@@ -5,6 +5,8 @@
 var debug_panel:GameObject;
 var start_button:GameObject;
 var exit_button:GameObject;
+var launch_enemy_attack:GameObject;
+
 private var toggled:boolean = false;
 
 function Start(){
@@ -12,6 +14,7 @@ function Start(){
 	debug_panel.SetActive(true);
 	start_button.GetComponent(UI.Button).onClick.AddListener(function(){Game.MainMenu();debug_panel.SetActive(false);});
 	exit_button.GetComponent(UI.Button).onClick.AddListener(Game.Exit);
+	launch_enemy_attack.GetComponent(UI.Button).onClick.AddListener(Game.EnemyAttack);
 }
 
 function Update () {
