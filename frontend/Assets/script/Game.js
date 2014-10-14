@@ -4,12 +4,15 @@
 // all the other objects read the state and act acordingly
 
 var game_ui:GameObject;
+var enemy_field:GameObject;
 private var anim:Animator;
+private var anim_enemy:Animator;
 
 static var state:String; // flags the current game state
 
 function Start () {
 	anim = game_ui.GetComponent(Animator);
+	anim_enemy = enemy_field.GetComponent(Animator);
 }
 
 // STATES =========================================================
@@ -76,7 +79,7 @@ function Attack(){
 //}
 
 function EnemyAttack(){
-	anim.SetTrigger("enemy_attack");
+	anim_enemy.SetTrigger("enemy_attack");
 }
 
 function Exit(){
