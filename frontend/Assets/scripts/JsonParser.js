@@ -13,7 +13,7 @@ function Start() {
 }
 
 function Read(){
-	var sr:StreamReader = new StreamReader(Application.dataPath + "/script/" + fileName);
+	var sr:StreamReader = new StreamReader(Application.dataPath + "/scripts/" + fileName);
 	var content:String = sr.ReadToEnd();
 	sr.Close();
 	return content;	

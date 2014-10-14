@@ -18,9 +18,10 @@ function Update () {
 		if(input.length <= 0) input.Push("#");
 		for(var c:char in Input.inputString){
 			if(!InArray(forbiden_chars,c)){ 	// if the char is not forbidden
-				if(c == "\b"[0]){								// backspace
+				if(c == "\b"[0]){				// backspace
 					input.Pop();								
-				}else if(input.length < 10){
+				}else if(c == "\n"[0] || c=="\r"[0]){			// if player inputs enter (do nothing)
+				}else if(input.length < 15){	// limit to 15 char
 					input.Push(c);
 				}
 				input_field.GetComponent(UI.InputField).value = input.Join("");
@@ -28,7 +29,7 @@ function Update () {
 		}
 		
 		// charges attack
-		if(Input.GetKeyDown("return")){
+		if(Input.GetKeyDown("return") && input.length > 2){
 			G.Charging();	
 		}
 		
