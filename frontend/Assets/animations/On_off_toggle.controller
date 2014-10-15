@@ -81,13 +81,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110244951}
   m_DstState: {fileID: 110200000}
-  m_TransitionDuration: .25
-  m_TransitionOffset: 0
+  m_TransitionDuration: .000299998646
+  m_TransitionOffset: .134453684
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: enemy_attack
     m_EventTreshold: 0
-    m_ExitTime: .75
+    m_ExitTime: .980492234
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -153,17 +153,17 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110244951}
+      first: {fileID: 110200000}
       second:
-      - {fileID: 110137039}
+      - {fileID: 110100000}
     data:
       first: {fileID: 110293584}
       second:
       - {fileID: 110103613}
     data:
-      first: {fileID: 110200000}
+      first: {fileID: 110244951}
       second:
-      - {fileID: 110100000}
+      - {fileID: 110137039}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 120, y: -48, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
