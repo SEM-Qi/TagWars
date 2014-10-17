@@ -2493,16 +2493,16 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 762233787}
+  - 114: {fileID: 762233792}
+  - 114: {fileID: 762233794}
   - 114: {fileID: 762233785}
   - 114: {fileID: 762233788}
   - 114: {fileID: 762233789}
   - 114: {fileID: 762233790}
   - 114: {fileID: 762233791}
-  - 114: {fileID: 762233792}
   - 114: {fileID: 762233793}
-  - 82: {fileID: 762233786}
-  - 114: {fileID: 762233794}
   - 114: {fileID: 762233795}
+  - 82: {fileID: 762233786}
   m_Layer: 5
   m_Name: Scripts
   m_TagString: Untagged
@@ -2636,8 +2636,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pName: {fileID: 1093126427}
   oName: {fileID: 2139999932}
-  playerName: Aure
-  opponentName: Evil Aure
 --- !u!114 &762233790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2702,7 +2700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cfa53532c1a5dd439ffc69541b64be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: test_message.json
 --- !u!114 &762233795
 MonoBehaviour:
   m_ObjectHideFlags: 0

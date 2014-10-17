@@ -13,7 +13,6 @@ private var correct_input:boolean = false;
 
 function Start(){
 	G = GetComponent(Game);										// imports the GAME object
-	input_field.color = Color.blue;
 }
 
 function Update () {
