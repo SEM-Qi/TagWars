@@ -2502,6 +2502,10 @@ GameObject:
   - 114: {fileID: 762233791}
   - 114: {fileID: 762233793}
   - 114: {fileID: 762233795}
+  - 114: {fileID: 762233799}
+  - 114: {fileID: 762233798}
+  - 114: {fileID: 762233797}
+  - 114: {fileID: 762233796}
   - 82: {fileID: 762233786}
   m_Layer: 5
   m_Name: Scripts
@@ -2661,8 +2665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbdfaf4ba9069f4497faa4ccf36a613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerA_healthbar: {fileID: 816707611}
-  playerB_healthbar: {fileID: 276555597}
+  player_healthbar: {fileID: 276555597}
+  opponent_healthbar: {fileID: 816707611}
 --- !u!114 &762233792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2674,8 +2678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949cf24edca6dfb4da4498ec40b6ddcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_ui: {fileID: 1722204771}
-  enemy_field: {fileID: 2147387107}
 --- !u!114 &762233793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2714,6 +2716,52 @@ MonoBehaviour:
   play_button: {fileID: 1351586781}
   option_button: {fileID: 1050846430}
   title_bar: {fileID: 1743079557}
+--- !u!114 &762233796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762233784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfef38d967b35a3408eb3729ad4f3b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game_ui: {fileID: 1722204771}
+  enemy_field: {fileID: 2147387107}
+--- !u!114 &762233797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762233784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583538f4c96ff8341ac4807036c264ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &762233798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762233784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebefc020f10834a4fb1947a88c608523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &762233799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762233784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17339b77d8c09b74c9ec69aa15bf3646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &778493067
 GameObject:
   m_ObjectHideFlags: 0
@@ -5537,6 +5585,7 @@ GameObject:
   - 114: {fileID: 1722204773}
   - 114: {fileID: 1722204775}
   - 95: {fileID: 1722204776}
+  - 114: {fileID: 1722204777}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -5635,6 +5684,17 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1722204777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1722204771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8fc0ae813de0c498cf61f5a347911a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1743079557
 GameObject:
   m_ObjectHideFlags: 0

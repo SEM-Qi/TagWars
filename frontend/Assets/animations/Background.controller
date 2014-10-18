@@ -8,18 +8,6 @@ AnimatorController:
   m_Name: Background
   serializedVersion: 2
   m_AnimatorParameters:
-  - m_Name: start
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: ready
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: charging
     m_Type: 9
     m_DefaultFloat: 0
@@ -32,19 +20,19 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: play
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: intro
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: connecting
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: menu
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: begin
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -75,7 +63,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: start
+    m_ConditionEvent: charging
     m_EventTreshold: 0
     m_ExitTime: .75
   m_Atomic: 1
@@ -95,7 +83,7 @@ Transition:
   m_TransitionOffset: .000136554328
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: intro
+    m_ConditionEvent: menu
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1
@@ -155,7 +143,7 @@ Transition:
   m_TransitionOffset: .434452325
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: start
+    m_ConditionEvent: charging
     m_EventTreshold: 0
     m_ExitTime: .997816265
   m_Atomic: 1
@@ -175,7 +163,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: intro
+    m_ConditionEvent: menu
     m_EventTreshold: 0
     m_ExitTime: .75
   m_Atomic: 1
@@ -215,7 +203,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: start
+    m_ConditionEvent: charging
     m_EventTreshold: 0
     m_ExitTime: .927536249
   m_Atomic: 1
@@ -295,7 +283,7 @@ Transition:
   m_TransitionOffset: .000895712059
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: play
+    m_ConditionEvent: begin
     m_EventTreshold: 0
     m_ExitTime: .910000026
   m_Atomic: 1
@@ -335,7 +323,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: play
+    m_ConditionEvent: charging
     m_EventTreshold: 0
     m_ExitTime: .875
   m_Atomic: 1
@@ -354,8 +342,8 @@ Transition:
   m_TransitionDuration: .200953066
   m_TransitionOffset: .00314738788
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: ready
+  - m_ConditionMode: 5
+    m_ConditionEvent: charging
     m_EventTreshold: 0
     m_ExitTime: .800000012
   m_Atomic: 1

@@ -1,21 +1,18 @@
 ﻿#pragma strict
 
-static var playerA_health:float;
-static var playerB_health:float;
-var playerA_healthbar:GameObject;
-var playerB_healthbar:GameObject;
+var player_healthbar:GameObject;
+var opponent_healthbar:GameObject;
+
+static var player_health:float;
+static var opponent_health:float;
 
 static function Start () {
-	playerA_health = 0;
-	playerB_health = 0;
+	player_health = 0;
+	opponent_health = 0;
 }
 
 function Update () {
-	UpdateImage();
-}
-
-function UpdateImage(){
-	playerA_healthbar.GetComponent("RectTransform").transform.localScale = Vector3(1,playerA_health,1);
-	playerB_healthbar.GetComponent("RectTransform").transform.localScale = Vector3(1,playerB_health,1);
+	player_healthbar.GetComponent("RectTransform").transform.localScale = Vector3(1,player_health,1);
+	opponent_healthbar.GetComponent("RectTransform").transform.localScale = Vector3(1,opponent_health,1);
 }
 
