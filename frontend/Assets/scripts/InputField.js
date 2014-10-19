@@ -50,8 +50,7 @@ function Update () {
 		}
 
 		if(Input.GetKeyDown("return") && correct_input){
-			input_field_back.text = input.Join("");								// transfer text to animated component
-			print(input.Join(""));
+			input_field_back.text = input.Join("");		
 			correct_input = false;
 			attack.Charge();													// charges attack
 		}

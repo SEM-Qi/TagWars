@@ -5,14 +5,17 @@ var debug_panel:GameObject;
 var start_button:GameObject;
 var exit_button:GameObject;
 var launch_enemy_attack:GameObject;
+var game_over_button:GameObject;
 
 private var main_menu:MainMenu;
 private var enemy_attack:EnemyAttack; 
 private var toggled:boolean = false;
+private var game_over:GameOver;
 
 function Start(){
 	main_menu = GetComponent(MainMenu); 
 	enemy_attack = GetComponent(EnemyAttack);
+	game_over = GetComponent(GameOver);
 	
 	debug_panel.SetActive(true);
 	
@@ -20,6 +23,7 @@ function Start(){
 	start_button.GetComponent(UI.Button).onClick.AddListener(function(){main_menu.Init();debug_panel.SetActive(false);});
 	exit_button.GetComponent(UI.Button).onClick.AddListener(Game.Exit);
 	launch_enemy_attack.GetComponent(UI.Button).onClick.AddListener(enemy_attack.Init); 
+	game_over_button.GetComponent(UI.Button).onClick.AddListener(game_over.Init);
 }
 
 function Update () {
