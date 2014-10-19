@@ -5,22 +5,24 @@ import System.IO;
 
 private var player_name:String;
 private var opponent_name:String;
-private var available_tags = new Array();
+private var available_tags:String[];
+private var test_message:JSONNode;
 
 function Start() {	
-	available_tags = nodeToArray(JSON.Parse(Read("/fake_data/available_tags.json"))["available"]);
+
+	// TODO replace with backend connection
+	available_tags = nodeToStringArray(JSON.Parse(Read("/fake_data/available_tags.json"))["available"]);
 	
-	var test_message = JSON.Parse(Read("/fake_data/test_message.json"));
+	 test_message = JSON.Parse(Read("/fake_data/test_message.json"));
 	
 	var player = JSON.Parse(Read("/fake_data/player02_data.json"));
 	player_name = player["name"].Value;
-	print(available_tags);
 	
 	var opponent = JSON.Parse(Read("/fake_data/player01_data.json"));
 	opponent_name = opponent["name"].Value;
 	
-//	print(json["distribution"][2]["ammount"].Value);
-//	print(json["distribution"][2]["content"][0].Value);
+	//	print(json["distribution"][2]["ammount"].Value);
+	//	print(json["distribution"][2]["content"][0].Value);
 }
 
 function nodeToArray(node:JSONNode){
@@ -29,6 +31,22 @@ function nodeToArray(node:JSONNode){
 		arr.Push(node[i]);
 	}
 	return arr;
+}
+
+function nodeToStringArray(node:JSONNode):String[]{
+	var arr:String[] = new String[node.Count];
+	for(var i:int = 0; i < node.Count; i++){
+		arr[i] = node[i].Value;
+	}
+	return arr; 
+}
+
+function getAmount(sec:int):int{
+	return int.Parse(test_message["distribution"][sec]["ammount"].Value);
+}
+
+function getDistributionLength(){
+	return test_message["distribution"].Count;
 }
 
 function Parse(path:String){
@@ -48,4 +66,7 @@ function getPlayerName():String{
 
 function getOpponentName():String{
 	return opponent_name;
+}
+function getAvailableTags():String[]{
+	return available_tags;
 }

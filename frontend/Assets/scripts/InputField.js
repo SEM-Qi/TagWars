@@ -6,6 +6,7 @@ var input_field:UI.Text;
 var input_field_back:UI.Text;
 
 private var attack:Attack;
+private var js:JsonParser;
 
 private var input = new Array("");
 private var forbiden_chars:char[] = [' '[0],'#'[0],'!'[0],'?'[0],'$'[0],'%'[0],'^'[0],'&'[0],'*'[0],'+'[0],'.'[0]];
@@ -13,6 +14,8 @@ private var correct_input:boolean = false;
 
 function Start(){
 	attack = GetComponent(Attack);
+	js = GetComponent(JsonParser);
+	
 	// TODO move this to SetReady class
 	input_field.text = "#";
 	input = [];
@@ -36,7 +39,7 @@ function Update () {
 				// check if the input is valid
 				var word:String = input.Join("");
 				input_field.text = word;
-				if(word == "#word"){											// TODO JSON parser connection
+				if(Helper.InArray(js.getAvailableTags(),word)){											// TODO JSON parser connection
 					input_field.color = Color(0.09,0.62,0.51);					// TODO save Color presets in the Helper class
 					correct_input = true;
 				}else if(word == "#"){
