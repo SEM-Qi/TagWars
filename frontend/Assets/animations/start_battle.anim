@@ -698,15 +698,15 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: 1.89999998
+      - time: 2.29999995
         value: 0
-        inSlope: 5.99999714
-        outSlope: 5.99999714
+        inSlope: 5.99998856
+        outSlope: 5.99998856
         tangentMode: 10
-      - time: 1.98333335
+      - time: 2.38333344
         value: 1
-        inSlope: 11.9999943
-        outSlope: 11.9999943
+        inSlope: 11.9999771
+        outSlope: 11.9999771
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -1740,15 +1740,15 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: 1.89999998
+      - time: 2.29999995
         value: 0
-        inSlope: 5.99999714
-        outSlope: 5.99999714
+        inSlope: 5.99998856
+        outSlope: 5.99998856
         tangentMode: 10
-      - time: 1.98333335
+      - time: 2.38333344
         value: 1
-        inSlope: 11.9999943
-        outSlope: 11.9999943
+        inSlope: 11.9999771
+        outSlope: 11.9999771
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -1857,4 +1857,11 @@ AnimationClip:
     classID: 114
     script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_EulerEditorCurves: []
-  m_Events: []
+  m_Events:
+  - time: 2.33333325
+    functionName: StartTimer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
