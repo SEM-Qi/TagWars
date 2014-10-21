@@ -7,6 +7,7 @@ var input_field_back:UI.Text;
 
 private var attack:Attack;
 private var js:JsonParser;
+private var enemy_attack:EnemyAttack;
 
 private var input = new Array("");
 private var forbiden_chars:char[] = [' '[0],'#'[0],'!'[0],'?'[0],'$'[0],'%'[0],'^'[0],'&'[0],'*'[0],'+'[0],'.'[0]];
@@ -15,6 +16,7 @@ private var correct_input:boolean = false;
 function Start(){
 	attack = GetComponent(Attack);
 	js = GetComponent(JsonParser);
+	enemy_attack = GetComponent(EnemyAttack);
 	
 	// TODO move this to SetReady class
 	input_field.text = "#";
@@ -55,7 +57,12 @@ function Update () {
 		if(Input.GetKeyDown("return") && correct_input){
 			input_field_back.text = input.Join("");		
 			correct_input = false;
-			attack.Charge();													// charges attack
+			if(input.Join("") == enemy_attack.getEnemyInput()){
+				attack.Cancel(); // if both attacks are the same, cancel them
+				print("cancel");
+			}else{
+				attack.Charge(); // charges attack
+			}													
 		}
 		
 // STATE : charging =====================================================================		
@@ -68,7 +75,13 @@ function Update () {
 			input_field.text = "#";	//TODO BUG: should happen only once animation is done								
 			input = [];				
 		}
-
+// STATE : cancel ========================================================================		
+	}else if(Game.state == "cancel"){
+	// TODO add cancel animation
+		input_field.color = Color.black;
+		input_field.text = "#";	//TODO BUG: should happen only once animation is done								
+		input = [];	
+	
 // STATE : other ========================================================================		
 	}else{
 		if(Input.GetKeyDown("return")){

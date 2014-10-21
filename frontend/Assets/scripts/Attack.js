@@ -30,6 +30,13 @@ function Release(){
 	damage = 0; 									// resets the damage
 }
 
+function Cancel(){
+	Game.SetState("cancel");
+	Anim.trigger("charging");
+	yield WaitForSeconds(1);
+	Anim.trigger("cancel");
+}
+
 function CalculateDamage(){
 	if(charge_time < js.getDistributionLength()){
 		damage += js.getAmount(charge_time);		// gets the damage from the Json file

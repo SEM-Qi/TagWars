@@ -4,7 +4,7 @@
 all the other objects read the state and act acordingly */
 
 static var state:String; 
-static var states:String[] = ["menu","connecting","begin","ready","attack","charging","release","game_over"];
+static var states:String[] = ["menu","connecting","begin","ready","attack","charging","cancel","release","game_over"];
 
 static function SetState(state:String){
 	if(Helper.InArray(states,state)){ 
