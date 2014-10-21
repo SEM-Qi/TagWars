@@ -1,47 +1,46 @@
 ﻿#pragma strict
 
+/* The Anim class is a wrapper for the Unity.Animator object 
+it stores all Animators in our project */
+
 // Objects with Animator components
 var game_ui:GameObject;
 var enemy_field:GameObject;
 
-static var ui_anim:Animator;
-static var enemy_anim:Animator;
+static var animators = {};
 
 function Start () {
-	ui_anim = game_ui.GetComponent(Animator);
-	enemy_anim = enemy_field.GetComponent(Animator);
+	// TODO fix downcast
+	animators["ui_anim"] = game_ui.GetComponent(Animator);
+	animators["enemy_anim"] = enemy_field.GetComponent(Animator);
 }
 
-// Animation Triggers Wrapper
-static function trigger(trigger:String){
-//	switch(trigger) {
-//       	case "enemy_attack":
-//       		enemy_anim.SetTrigger(trigger);
-//       		break;
-//    	default:
-//    		ui_anim.SetTrigger(trigger);	
-//	}
-	if(trigger == "enemy_attack" || trigger=="enemy_cancel" || trigger=="enemy_release"){
-
-		enemy_anim.SetTrigger(trigger);
-
+// Animation Triggers/Bools Wrapper
+static function SetTrigger(animator:String, trigger:String){
+	var anim:Animator = animators[animator];
+	if(anim != null){
+		anim.SetTrigger(trigger);
 	}else{
-
-		ui_anim.SetTrigger(trigger);
-
+		throw new System.Exception("Unknown Animator");
 	}
-
-
 }
 
-static function Boolean(bool:String, bool2:boolean){
-
-	enemy_anim.SetBool(bool,bool2);
-
+static function SetBool(animator:String, bool:String, val:boolean){
+	var anim:Animator = animators[animator];
+	if(anim != null){
+		anim.SetBool(bool,val);
+	}else{
+		throw new System.Exception("Unknown Animator");
+	}
 }
 
 // Animation Length Wrapper
-function AnimationLength():int{
-	return ui_anim.GetCurrentAnimatorStateInfo(0).length;
+static function AnimationLength(animator:String):int{
+	var anim:Animator = animators[animator];
+	if(anim != null){
+		return anim.GetCurrentAnimatorStateInfo(0).length;
+	}else{
+		throw new System.Exception("Unknown Animator");
+	}
 }
 

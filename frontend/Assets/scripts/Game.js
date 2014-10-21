@@ -20,7 +20,7 @@ the following classes will not stay static*/
 
 static function Connect(){
 	SetState("connecting");
-	Anim.trigger("connecting");
+	Anim.SetTrigger("ui_anim","connecting");
 	
 	//TODO logic for the Connection
 	Init(); // if(connected)
@@ -30,7 +30,7 @@ static function Connect(){
 // inits a battle
 static function Init(){
 	SetState("begin");
-	Anim.trigger("begin");
+	Anim.SetTrigger("ui_anim","begin");
 	Health.Start(); 		//resets the health
 }
 

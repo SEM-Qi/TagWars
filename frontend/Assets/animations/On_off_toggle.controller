@@ -73,7 +73,27 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: enemy_launch
     m_EventTreshold: 0
-    m_ExitTime: 3
+    m_ExitTime: 5
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110124559
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110244951}
+  m_DstState: {fileID: 110293584}
+  m_TransitionDuration: .428571433
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: enemy_cancel
+    m_EventTreshold: 0
+    m_ExitTime: .571428537
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -203,14 +223,15 @@ StateMachine:
       second:
       - {fileID: 110100000}
     data:
-      first: {fileID: 110244951}
-      second:
-      - {fileID: 110137039}
-    data:
       first: {fileID: 110293584}
       second:
       - {fileID: 110103613}
       - {fileID: 110128323}
+    data:
+      first: {fileID: 110244951}
+      second:
+      - {fileID: 110137039}
+      - {fileID: 110124559}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 120, y: -48, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

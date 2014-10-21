@@ -11,6 +11,6 @@ function Start () {
 
 function Init(){
 	Game.SetState("menu");
-	Anim.trigger("menu");
+	Anim.SetTrigger("ui_anim","menu");
 }
 

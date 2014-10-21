@@ -19,7 +19,7 @@ function Start(){
 function Charge(){
 	charge_time = 0;
 	Game.SetState("charging");
-	Anim.trigger("charging");
+	Anim.SetTrigger("ui_anim","charging");
 	InvokeRepeating("CalculateDamage",1,1);
 }
 
@@ -27,17 +27,17 @@ function Release(){
 	// TODO code for dealing damage
 	CancelInvoke();  								// stop the damage increase
 	Game.SetState("release");
-	Anim.trigger("release");
-	yield WaitForSeconds(anim.AnimationLength()); 	// TODO USE ANIMATION EVENT INSTEAD
+	Anim.SetTrigger("ui_anim","release");
+	yield WaitForSeconds(Anim.AnimationLength("ui_anim")); 	// TODO USE ANIMATION EVENT INSTEAD
 	Health.opponent_health += 0.1;
 	damage = 0; 									// resets the damage
 }
 
 function Cancel(){
 	Game.SetState("cancel");
-	Anim.trigger("charging");
+	Anim.SetTrigger("ui_anim","charging");
 	yield WaitForSeconds(1);
-	Anim.trigger("cancel");
+	Anim.SetTrigger("ui_anim","cancel");
 	enemy_attack.Cancel();
 }
 
