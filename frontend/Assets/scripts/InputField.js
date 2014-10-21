@@ -37,12 +37,12 @@ function Update () {
 				}
 				
 				// check if the input is valid
-				var word:String = input.Join("");
-				input_field.text = word;
-				if(Helper.InArray(js.getAvailableTags(),word)){											// TODO JSON parser connection
+				var tag:String = input.Join("");
+				input_field.text = tag;
+				if(Helper.InArray(js.getAvailableTags(),tag)){					// TODO JSON parser connection
 					input_field.color = Color(0.09,0.62,0.51);					// TODO save Color presets in the Helper class
 					correct_input = true;
-				}else if(word == "#"){
+				}else if(tag == "#"){
 					input_field.color = Color.black;
 					correct_input = false;
 				}else{
@@ -76,3 +76,4 @@ function Update () {
 		}	
 	}	
 }
+
