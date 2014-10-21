@@ -1,6 +1,7 @@
 #pragma strict
 
 var input_field:GameObject;
+private var enemy_attack:EnemyAttack;
 
 private var anim:Anim; 
 private var damage:int;
@@ -11,6 +12,8 @@ private var charge_time:int;
 function Start(){
 	js = GetComponent(JsonParser);
 	anim = GetComponent(Anim);
+	enemy_attack = GetComponent(EnemyAttack);
+
 }
 
 function Charge(){
@@ -35,6 +38,7 @@ function Cancel(){
 	Anim.trigger("charging");
 	yield WaitForSeconds(1);
 	Anim.trigger("cancel");
+	enemy_attack.Cancel();
 }
 
 function CalculateDamage(){

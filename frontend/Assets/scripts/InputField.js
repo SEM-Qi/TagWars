@@ -60,7 +60,7 @@ function Update () {
 			correct_input = false;
 			if(input.Join("") == enemy_attack.GetEnemyInput()){
 				attack.Cancel(); // if both attacks are the same, cancel them
-				print("cancel");
+
 			}else{
 				attack.Charge(); // charges attack
 			}													
@@ -82,7 +82,7 @@ function Update () {
 		input_field.color = Color.black;
 		input_field.text = "#";	//TODO BUG: should happen only once animation is done								
 		input = [];	
-		enemy_attack.Cancel();
+		
 	
 // STATE : other ========================================================================		
 	}else{
