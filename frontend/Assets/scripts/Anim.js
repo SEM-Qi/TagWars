@@ -14,13 +14,30 @@ function Start () {
 
 // Animation Triggers Wrapper
 static function trigger(trigger:String){
-	switch(trigger) {
-       	case "enemy_attack":
-       		enemy_anim.SetTrigger(trigger);
-       		break;
-    	default:
-    		ui_anim.SetTrigger(trigger);	
-	} 
+//	switch(trigger) {
+//       	case "enemy_attack":
+//       		enemy_anim.SetTrigger(trigger);
+//       		break;
+//    	default:
+//    		ui_anim.SetTrigger(trigger);	
+//	}
+	if(trigger == "enemy_attack" || trigger=="enemy_cancel" || trigger=="enemy_release"){
+
+		enemy_anim.SetTrigger(trigger);
+
+	}else{
+
+		ui_anim.SetTrigger(trigger);
+
+	}
+
+
+}
+
+static function Boolean(bool:String, bool2:boolean){
+
+	enemy_anim.SetBool(bool,bool2);
+
 }
 
 // Animation Length Wrapper

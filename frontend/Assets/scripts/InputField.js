@@ -9,6 +9,7 @@ private var attack:Attack;
 private var js:JsonParser;
 private var enemy_attack:EnemyAttack;
 
+
 private var input = new Array("");
 private var forbiden_chars:char[] = [' '[0],'#'[0],'!'[0],'?'[0],'$'[0],'%'[0],'^'[0],'&'[0],'*'[0],'+'[0],'.'[0]];
 private var correct_input:boolean = false;
@@ -57,7 +58,7 @@ function Update () {
 		if(Input.GetKeyDown("return") && correct_input){
 			input_field_back.text = input.Join("");		
 			correct_input = false;
-			if(input.Join("") == enemy_attack.getEnemyInput()){
+			if(input.Join("") == enemy_attack.GetEnemyInput()){
 				attack.Cancel(); // if both attacks are the same, cancel them
 				print("cancel");
 			}else{
@@ -81,6 +82,7 @@ function Update () {
 		input_field.color = Color.black;
 		input_field.text = "#";	//TODO BUG: should happen only once animation is done								
 		input = [];	
+		enemy_attack.Cancel();
 	
 // STATE : other ========================================================================		
 	}else{
