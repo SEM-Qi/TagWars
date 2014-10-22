@@ -2824,7 +2824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main_menu_button: {fileID: 1463925190}
   game_over: {fileID: 1208399306}
-  timer: 0
 --- !u!114 &762233791
 MonoBehaviour:
   m_ObjectHideFlags: 0

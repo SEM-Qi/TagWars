@@ -1,21 +1,21 @@
 ﻿#pragma strict
 
-/* The Anim class is a wrapper for the Unity.Animator object 
+/* The ANIM class is a wrapper for the Unity.Animator object
 it stores all Animators in our project */
 
-// Objects with Animator components
+// game objects with animators
 var game_ui:GameObject;
 var enemy_field:GameObject;
 
-static var animators = {};
+private static var animators = {};
 
-function Start () {
-	// TODO fix downcast
+function Awake () {
+	// TODO fix downcast warning
 	animators["ui_anim"] = game_ui.GetComponent(Animator);
 	animators["enemy_anim"] = enemy_field.GetComponent(Animator);
 }
 
-// Animation Triggers/Bools Wrapper
+// Getters & Setters --------------------------
 static function SetTrigger(animator:String, trigger:String){
 	var anim:Animator = animators[animator];
 	if(anim != null){
@@ -34,8 +34,7 @@ static function SetBool(animator:String, bool:String, val:boolean){
 	}
 }
 
-// Animation Length Wrapper
-static function AnimationLength(animator:String):int{
+static function GetAnimationLength(animator:String):int{
 	var anim:Animator = animators[animator];
 	if(anim != null){
 		return anim.GetCurrentAnimatorStateInfo(0).length;
@@ -43,4 +42,4 @@ static function AnimationLength(animator:String):int{
 		throw new System.Exception("Unknown Animator");
 	}
 }
-
+// ----------------------------------------------------

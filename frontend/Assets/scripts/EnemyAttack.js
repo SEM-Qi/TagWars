@@ -8,21 +8,23 @@ function Start(){
 	enemy_input = "#cat";
 }
 
+// Getters & Setters --------------------------
+function GetEnemyInput():String{
+	return enemy_input;
+}
+//---------------------------------------------
+
 function Init(){
 	Anim.SetBool("enemy_anim","enemy_cancel", false);
 	Anim.SetTrigger("enemy_anim","enemy_attack");
 	enemy_input_field.text = enemy_input;
 }
 
-function GetEnemyInput():String{
-	return enemy_input;
-}
 function Cancel(){
 	Anim.SetBool("enemy_anim","enemy_cancel", true);
 }	
 
-//function ChangePlayerHealth(damage:int){
-//	var currentHealth = Health.GetPlayerHealth() - damage;
-//	Health.SetPlayerHealth(currentHealth);
-//	print(Health.GetPlayerHealth());
-//}
+function ChangePlayerHealth(damage:int){
+	Health.SetPlayerHealth(Health.GetPlayerHealth() - damage);
+	print(Health.GetPlayerHealth());
+}

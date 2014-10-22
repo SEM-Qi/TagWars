@@ -6,6 +6,7 @@ all the other objects read the state and act acordingly */
 static var state:String; 
 static var states:String[] = ["menu","connecting","begin","ready","attack","charging","cancel","release","game_over"];
 
+// Getters & Setters --------------------------
 static function SetState(state:String){
 	if(Helper.InArray(states,state)){ 
 		Game.state = state;
@@ -13,11 +14,17 @@ static function SetState(state:String){
 		print("ERROR: state not recognized");
 	}
 } 
+//---------------------------------------------
+
+// inits a battle
+static function Init(){
+	SetState("begin");
+	Anim.SetTrigger("ui_anim","begin");
+	Health.Init(); //resets the health
+}
 
 //=========================================
-/*TODO move Connect() to a Connector Object
-the following classes will not stay static*/
-
+//TODO move Connect() to a Connector Object
 static function Connect(){
 	SetState("connecting");
 	Anim.SetTrigger("ui_anim","connecting");
@@ -27,74 +34,6 @@ static function Connect(){
 }
 //=========================================
 
-// inits a battle
-static function Init(){
-	SetState("begin");
-	Anim.SetTrigger("ui_anim","begin");
-	Health.Start(); 		//resets the health
-}
-
 static function Exit(){
 	Application.Quit();
 }
-
-//function Connect(){
-//	state = "connecting";
-//	anim.SetTrigger("connecting");
-//	// CODE FOR FINDING SERVER HERE
-//	
-//	// if server is found ->
-//	Begin();
-//}
-
-//function Begin(){
-//	state = "play";
-//	anim.SetTrigger("play");
-//	Health.Start();
-//	// waits until the start animation is over
-//	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);	
-//	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-//	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-//	Ready();
-//}
-
-//function Ready(){
-//	state = "ready";
-//	anim.SetTrigger("ready");
-//	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-//	state = "can_attack";
-//}
-
-//function Charging(){
-//	state = "charging";
-//	anim.SetTrigger("charging");
-//}
-
-//function Attack(){
-//	state = "can_not_attack";
-//	anim.SetTrigger("release");
-//	yield WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-//	Health.playerA_health += 0.1;	// code smell
-//	Ready();
-//}
-
-//function Concede(){
-//	state = "game_over";
-//	anim.SetTrigger("A_wins");
-//}
-//
-//function GameOver(){
-//	if(Health.playerA_health == 1){
-//		state = "game_over";
-//		anim.SetTrigger("B_wins");
-//	}
-//	if(Health.playerB_health == 1){
-//		state = "game_over";
-//		anim.SetTrigger("A_wins");
-//	}
-//}
-
-//function EnemyAttack(){
-//	anim_enemy.SetTrigger("enemy_attack");
-//}
-

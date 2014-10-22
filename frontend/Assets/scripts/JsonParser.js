@@ -9,7 +9,6 @@ private var available_tags:String[];
 private var test_message:JSONNode;
 
 function Start() {	
-
 	// TODO replace with backend connection
 	available_tags = nodeToStringArray(JSON.Parse(Read("/fake_data/available_tags.json"))["available"]);
 	
@@ -20,10 +19,29 @@ function Start() {
 	
 	var opponent = JSON.Parse(Read("/fake_data/player01_data.json"));
 	opponent_name = opponent["name"].Value;
-	
-	//	print(json["distribution"][2]["ammount"].Value);
-	//	print(json["distribution"][2]["content"][0].Value);
 }
+
+// Getters & Setters --------------------------
+function getPlayerName():String{
+	return player_name;
+}
+
+function getOpponentName():String{
+	return opponent_name;
+}
+
+function getAvailableTags():String[]{
+	return available_tags;
+}
+
+function getAmount(sec:int):int{
+	return int.Parse(test_message["distribution"][sec]["ammount"].Value);
+}
+
+function getDistributionLength(){
+	return test_message["distribution"].Count;
+}
+// ----------------------------------------------
 
 function nodeToArray(node:JSONNode){
 	var arr = new Array();
@@ -41,14 +59,6 @@ function nodeToStringArray(node:JSONNode):String[]{
 	return arr; 
 }
 
-function getAmount(sec:int):int{
-	return int.Parse(test_message["distribution"][sec]["ammount"].Value);
-}
-
-function getDistributionLength(){
-	return test_message["distribution"].Count;
-}
-
 function Parse(path:String){
 	return JSON.Parse(Read(path));
 }
@@ -60,13 +70,4 @@ function Read(path:String){
 	return content;	
 }
 
-function getPlayerName():String{
-	return player_name;
-}
 
-function getOpponentName():String{
-	return opponent_name;
-}
-function getAvailableTags():String[]{
-	return available_tags;
-}

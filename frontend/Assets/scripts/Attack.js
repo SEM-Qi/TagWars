@@ -1,19 +1,16 @@
 #pragma strict
 
 var input_field:GameObject;
-private var enemy_attack:EnemyAttack;
 
-private var anim:Anim; 
-private var damage:int;
-private var js:JsonParser;
+private var enemy_attack:EnemyAttack;
+private var jp:JsonParser;
 
 private var charge_time:int;
+private var damage:int;
 
 function Start(){
-	js = GetComponent(JsonParser);
-	anim = GetComponent(Anim);
+	jp = GetComponent(JsonParser);
 	enemy_attack = GetComponent(EnemyAttack);
-
 }
 
 function Charge(){
@@ -23,14 +20,27 @@ function Charge(){
 	InvokeRepeating("CalculateDamage",0.35,1);
 }
 
+function CalculateDamage(){
+	if(charge_time < jp.getDistributionLength()){
+		damage += jp.getAmount(charge_time);					// gets the damage from the Json file
+		charge_time++;
+		ResizeAttack(damage);
+	}else{
+		CancelInvoke();
+	}
+}
+
 function Release(){
-	// TODO code for dealing damage
-	CancelInvoke();  								// stop the damage increase
+	CancelInvoke();  											// stop the damage increase
 	Game.SetState("release");
 	Anim.SetTrigger("ui_anim","release");
-	yield WaitForSeconds(Anim.AnimationLength("ui_anim")); 	// TODO USE ANIMATION EVENT INSTEAD		
-	ChangeOpponentHealth(damage);							// changes opponents health according to damage value
+	yield WaitForSeconds(Anim.GetAnimationLength("ui_anim")); 	// TODO USE ANIMATION EVENT INSTEAD		
+	ChangeOpponentHealth(damage);								// changes opponents health according to damage value
 	damage = 0;
+}
+
+function ChangeOpponentHealth(damage:int){
+	Health.SetOpponentHealth(Health.GetOpponentHealth() - damage);
 }
 
 function Cancel(){
@@ -41,17 +51,6 @@ function Cancel(){
 	enemy_attack.Cancel();
 }
 
-function CalculateDamage(){
-	if(charge_time < js.getDistributionLength()){
-		damage += js.getAmount(charge_time);		// gets the damage from the Json file
-		print("damage: " + damage);
-		charge_time++;
-		ResizeAttack(damage);
-	}else{
-		CancelInvoke();
-	}
-}
-
 function ResizeAttack(val:float){
 	val = val*2/100;
 	//input_field.GetComponent(RectTransform).sizeDelta = new Vector2(100,100);
@@ -60,8 +59,4 @@ function ResizeAttack(val:float){
 //	print("val: " + val);
 }
 
-function ChangeOpponentHealth(damage:int){
-	var currentHealth = Health.GetOpponentHealth() - damage;
-	Health.SetOpponentHealth(currentHealth);
-	print(Health.GetOpponentHealth());
-}
+

@@ -76,14 +76,14 @@ function Update () {
 			input_field.text = "#";	//TODO BUG: should happen only once animation is done								
 			input = [];				
 		}
+		
 // STATE : cancel ========================================================================		
 	}else if(Game.state == "cancel"){
-	// TODO add cancel animation
+		// TODO add cancel animation
 		input_field.color = Color.black;
 		input_field.text = "#";	//TODO BUG: should happen only once animation is done								
 		input = [];	
 		
-	
 // STATE : other ========================================================================		
 	}else{
 		if(Input.GetKeyDown("return")){
