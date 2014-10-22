@@ -20,7 +20,7 @@ function Charge(){
 	charge_time = 0;
 	Game.SetState("charging");
 	Anim.SetTrigger("ui_anim","charging");
-	InvokeRepeating("CalculateDamage",1,1);
+	InvokeRepeating("CalculateDamage",0.35,1);
 }
 
 function Release(){
@@ -28,9 +28,9 @@ function Release(){
 	CancelInvoke();  								// stop the damage increase
 	Game.SetState("release");
 	Anim.SetTrigger("ui_anim","release");
-	yield WaitForSeconds(Anim.AnimationLength("ui_anim")); 	// TODO USE ANIMATION EVENT INSTEAD
-	Health.opponent_health += 0.1;
-	damage = 0; 									// resets the damage
+	yield WaitForSeconds(Anim.AnimationLength("ui_anim")); 	// TODO USE ANIMATION EVENT INSTEAD		
+	ChangeOpponentHealth(damage);							// changes opponents health according to damage value
+	damage = 0;
 }
 
 function Cancel(){
@@ -56,7 +56,12 @@ function ResizeAttack(val:float){
 	val = val*2/100;
 	//input_field.GetComponent(RectTransform).sizeDelta = new Vector2(100,100);
 	input_field.GetComponent(RectTransform).sizeDelta = new Vector2(280+280*val,150+150*val);
-	print("sizedelta: " + input_field.GetComponent(RectTransform).rect.height); //= new Vector2(280*val,150*val);
-	print("val: " + val);
+//	print("sizedelta: " + input_field.GetComponent(RectTransform).rect.height); //= new Vector2(280*val,150*val);
+//	print("val: " + val);
 }
 
+function ChangeOpponentHealth(damage:int){
+	var currentHealth = Health.GetOpponentHealth() - damage;
+	Health.SetOpponentHealth(currentHealth);
+	print(Health.GetOpponentHealth());
+}

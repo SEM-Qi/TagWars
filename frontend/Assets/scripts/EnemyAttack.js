@@ -20,3 +20,9 @@ function GetEnemyInput():String{
 function Cancel(){
 	Anim.SetBool("enemy_anim","enemy_cancel", true);
 }	
+
+//function ChangePlayerHealth(damage:int){
+//	var currentHealth = Health.GetPlayerHealth() - damage;
+//	Health.SetPlayerHealth(currentHealth);
+//	print(Health.GetPlayerHealth());
+//}
