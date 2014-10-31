@@ -1,7 +1,6 @@
 #pragma strict
 // Helper functions
 
-//ArrayUtility.indexof WOULD BE BETTER BUT IT ISN'T AVAILABLE 
 static function InArray(arr:char[],element:char){
 	var inArray:boolean = false;
 	for(var c:char in arr){
@@ -20,6 +19,15 @@ static function InArray(arr:String[],element:String){
 		}
 	}
 	return inArray;
+}
+
+static function InArray(arr:Array,element:String){
+  	for (var i=0; i < arr.length; i++){
+  		if (arr[i] == element){
+  			return true;
+  		}
+  	}
+  	return false;
 }
 
 static function Toggle(element:GameObject){

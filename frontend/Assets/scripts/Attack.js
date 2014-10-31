@@ -8,6 +8,10 @@ private var jp:JsonParser;
 private var charge_time:int;
 private var damage:int;
 
+function GetDamage(){
+	return damage;
+}
+
 function Start(){
 	jp = GetComponent(JsonParser);
 	enemy_attack = GetComponent(EnemyAttack);

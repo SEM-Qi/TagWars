@@ -8,7 +8,7 @@ private static var opponent_health:int;
 
 function Start () {
 	player_health = 100;
-	opponent_health = 10;
+	opponent_health = 100;
 }
 
 function Update () {
@@ -44,7 +44,7 @@ static function SetOpponentHealth(health:int){
 
 static function Init () {
 	player_health = 100;
-	opponent_health = 10;
+	opponent_health = 100;
 }
 
 function Map(map_health:int):float{

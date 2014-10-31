@@ -8,7 +8,9 @@ var input_field_back:UI.Text;
 private var attack:Attack;
 private var js:JsonParser;
 private var enemy_attack:EnemyAttack;
+private var cooldown:CoolDownManager;
 
+private var available_tags:String[];
 
 private var input = new Array("");
 private var forbiden_chars:char[] = [' '[0],'#'[0],'!'[0],'?'[0],'$'[0],'%'[0],'^'[0],'&'[0],'*'[0],'+'[0],'.'[0]];
@@ -18,10 +20,13 @@ function Start(){
 	attack = GetComponent(Attack);
 	js = GetComponent(JsonParser);
 	enemy_attack = GetComponent(EnemyAttack);
+	cooldown = GetComponent(CoolDownManager);
 	
 	// TODO move this to SetReady class
 	input_field.text = "#";
 	input = [];
+	//----------------------------------
+	available_tags = js.getAvailableTags(); // TODO JSON parser connection
 }
 
 function Update () {
@@ -42,7 +47,7 @@ function Update () {
 				// check if the input is valid
 				var tag:String = input.Join("");
 				input_field.text = tag;
-				if(Helper.InArray(js.getAvailableTags(),tag)){					// TODO JSON parser connection
+				if(Helper.InArray(available_tags,tag) && !Helper.InArray(cooldown.GetUsedTags(),tag)){					
 					input_field.color = Color(0.09,0.62,0.51);					// TODO save Color presets in the Helper class
 					correct_input = true;
 				}else if(tag == "#"){
@@ -56,11 +61,10 @@ function Update () {
 		}
 
 		if(Input.GetKeyDown("return") && correct_input){
-			input_field_back.text = input.Join("");		
+			input_field_back.text = input.Join("");	
 			correct_input = false;
 			if(input.Join("") == enemy_attack.GetEnemyInput()){
 				attack.Cancel(); // if both attacks are the same, cancel them
-
 			}else{
 				attack.Charge(); // charges attack
 			}													
@@ -70,6 +74,8 @@ function Update () {
 	}else if(Game.state == "charging"){ 						
 		if (Input.GetKeyUp("return")){
 			attack.Release(); 													// launches attack
+			cooldown.AddCooldown(input.Join(""), attack.GetDamage());			// adds the cooldown
+			print(cooldown.GetUsedTags());
 			
 			// TODO move this to SetReady class (reset values)
 			input_field.color = Color.black;
@@ -84,7 +90,7 @@ function Update () {
 		input_field.text = "#";	//TODO BUG: should happen only once animation is done								
 		input = [];	
 		
-// STATE : other ========================================================================		
+// STATE : other =========================================================================		
 	}else{
 		if(Input.GetKeyDown("return")){
 			GetComponent(AudioSource).Play();									// plays denying sound
