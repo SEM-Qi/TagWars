@@ -8,11 +8,11 @@ public class MainMenu : MonoBehaviour {
     public Button startButton;
     public Button exitButton;
 
-    public Controller controller;
+    // public Controller controller;
 
 	void Start () {
-        controller = GetComponent<Controller>();
-        startButton.onClick.AddListener(() => { Debug.Log("START"); Application.LoadLevel("Battle"); controller.StartMultiplayer(); });
+        // controller = GetComponent<Controller>();
+        startButton.onClick.AddListener(() => { Debug.Log("START"); Application.LoadLevel("Battle"); /*controller.StartMultiplayer();*/ });
         exitButton.onClick.AddListener(() => { Debug.Log("EXIT"); Application.Quit(); });
 	}
 }
