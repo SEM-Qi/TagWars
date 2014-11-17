@@ -1,4 +1,3 @@
-\#tagwars
-========
-
-Software Engineering &amp; Management Term 3 Project - #tagwars, a online PVP game
+\#tagwars | frontend
+--------
+**\#tagwars** is built using the **Unity Game Engine**. All files of the project related to the Game Engine are stored here.
