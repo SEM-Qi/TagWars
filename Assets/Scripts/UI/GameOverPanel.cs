@@ -3,18 +3,28 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GameOverPanel : MonoBehaviour {
-    public GameObject gameOverPanel;
+    
     public Button mainMenu;
-    public Text gameOverLabel;
+    public GameObject panel;
+    public Text panelLabel;
 
-	public void Init () {
-        gameOverPanel.SetActive(true);
-        gameOverLabel.text = "#Victory";
+	public void Init (string condition) {
+        panel.SetActive(true);
+
+        if (condition == "victory")
+        {
+            panelLabel.text = "#Victory!";
+        }
+        else if(condition == "defeat")
+        {
+            panelLabel.text = "#Defeat!";
+        }
+
         mainMenu.onClick.AddListener(() => { Debug.Log("MAIN_MENU"); Exit(); Application.LoadLevel("MainMenu"); });
 	}
 
-    public void Exit()
+    private void Exit()
     {
-        gameOverPanel.SetActive(false);
+        panel.SetActive(false);
     }
 }

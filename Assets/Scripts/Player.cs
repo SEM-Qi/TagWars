@@ -3,13 +3,12 @@ using UnityEngine;
 
 /* The PLAYER class contains all values regarding a player */
 
-public class Player : MonoBehaviour
+public class Player
 {
     private int health = 100;
     private string name = "none";
-    // private int id = 0;
 
-    public void Init(string name, int health)
+    public Player(string name, int health)
     {
         this.name = name;
         this.health = health;

@@ -10,8 +10,6 @@ public class NetworkManager : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Controller>();
-        PhotonNetwork.offlineMode = false;
-        PhotonNetwork.ConnectUsingSettings("0.1");
     }
 
     void Update()
@@ -20,6 +18,12 @@ public class NetworkManager : MonoBehaviour
         {
             // Code for Start Server
         }
+    }
+
+    public void Connect()
+    {
+        PhotonNetwork.offlineMode = false;
+        PhotonNetwork.ConnectUsingSettings("0.1");
     }
 
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -37,7 +41,7 @@ public class NetworkManager : MonoBehaviour
     void OnJoinedLobby()
     {
         Debug.Log("Joined Lobby");
-        JoinRandomRoom();
+        PhotonNetwork.JoinRandomRoom();
     }
 
     void OnPhotonJoinFailed()
@@ -62,9 +66,10 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("Create Room");
     }
 
-    private void JoinRandomRoom()
+    public void Disconnect()
     {
-        PhotonNetwork.JoinRandomRoom();
+        PhotonNetwork.Disconnect();
+        Debug.Log("Disconnected");
     }
 
     // USE JoinOrCreate for challenging a friend

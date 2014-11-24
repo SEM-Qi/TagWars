@@ -36,4 +36,5 @@ MonoBehaviour:
   - TaggedPlayer
   - DEBUG
   - DealDamage
+  - PlayEnemyGameOver
   DisableAutoOpenWizard: 0

@@ -39,11 +39,11 @@ public class UIManager : MonoBehaviour
         inputFieldPanel = inputFieldObject.GetComponent<InputFieldPanel>();
         enemyFieldPanel = enemyFieldObject.GetComponent<InputFieldPanel>();
 
-        // player names
+        // players names
         playerName = playerNameObject.GetComponent<PlayerName>();
         opponentName = opponentNameObject.GetComponent<PlayerName>();
 
-        // player health
+        // players health
         playerHealthBar = playerHealthBarObject.GetComponent<HealthBar>();
         opponentHealthBar = opponentHealthBarObject.GetComponent<HealthBar>();
     }
@@ -58,10 +58,10 @@ public class UIManager : MonoBehaviour
     // Healthbars ===========================
     public void UpdatePlayerHealthBar(int health) { playerHealthBar.UpdateHealthBar(health); }
 
-    public void UpdateOpponentHealthBar(int health) { opponentHealthBar.UpdateOpponentHealthBar(health); }
+    public void UpdateOpponentHealthBar(int health) { opponentHealthBar.UpdateHealthBar(health); }
 
     // Game Over ============================
-    public void DisplayGameOver() { gameOverPanel.Init(); }
+    public void DisplayGameOver(string victory) { gameOverPanel.Init(victory); }
 
     // InputField ===========================
     public void NewInputField() { inputFieldPanel.NewInputField(); }

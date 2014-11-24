@@ -13,6 +13,6 @@ public class WaitForAnimation : MonoBehaviour {
 
     public void OnAnimationEnd()
     {
-        game.OnAnimationEnd();
+        game.AfterRelease();
     }
 }

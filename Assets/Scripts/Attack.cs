@@ -5,28 +5,18 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    private Player player;
-
-    private string tag;
     private int chargeTime;
     private int damage;
     private int[] distribution;
 
-    void Start()
-    {
-        player = GetComponent<Player>();
-    }
-
     public void Init(int[] distribution)
     {
         for (int i = 0; i < distribution.Length; i++)
-        {
-            // Damage multiplier
+        {   // Damage multiplier
             distribution[i] = distribution[i] * 5;
         }
         this.distribution = distribution;
-        // resets the Damage when the Attack is initialized
-        damage = 0;
+        damage = 0; // resets the Damage when the Attack is initialized
     }
 
     // Damage Update ------------------
@@ -53,7 +43,7 @@ public class Attack : MonoBehaviour
     public void CancelDamageUpdate() { CancelInvoke(); }
 
     // Damage Dealing --------------------
-    public void DealDamage(int damage)
+    public void DealDamage(Player player, int damage)
     {
         player.SetHealth(player.GetHealth() - damage);
     }
