@@ -71,6 +71,7 @@ public class NetworkManager : MonoBehaviour
     {
         Debug.Log("Joined Room");
 		myRoom = PhotonNetwork.room;
+		myRoomPlayers = myRoom.playerCount;
 
     }
 	void OnPhotonPlayerConnected(){
