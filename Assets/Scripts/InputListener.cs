@@ -9,11 +9,10 @@ public class InputListener : MonoBehaviour
 {
     private UIManager uiManager;
     private QueryManager queryManager;
+    private CoolDown coolDown;
 
     // private List<string> tags = new List<string>();
     private List<char> input = new List<char>();
-
-    private List<string> usedTags = new List<string>();
 
     private char[] forbidenChars = { ' ', '#', '!', '?', '$', '%', '^', '&', '*', '+', '.' };
     private string inputText;           // curent input
@@ -24,6 +23,7 @@ public class InputListener : MonoBehaviour
     {
         uiManager = GetComponent<UIManager>();
         queryManager = GetComponent<QueryManager>();
+        coolDown = GetComponent<CoolDown>();
     }
 
     // Input Loop -----------------------------
@@ -45,13 +45,13 @@ public class InputListener : MonoBehaviour
                     {   // if the players input is shorter then 20 and he doesn't inputs 'enter' or 'space'
                         input.Add(c);
                     }
-
-                    // builds the string & updates the inputfield
-                    inputText = MakeString(input);
-                    IsValid(inputText);
-                    uiManager.UpdateInputField(inputText);
                 }
             }
+
+            // builds the string & updates the inputfield
+            inputText = MakeString(input);
+            IsValid(inputText);
+            uiManager.UpdateInputField(inputText);
         }
     }
 
@@ -62,10 +62,9 @@ public class InputListener : MonoBehaviour
         if (input.Length > 1)
         {
             if (queryManager.GetValidTags().Contains(input.Substring(1))
-                && !usedTags.Contains(input))
+                && !coolDown.GetUsedTags().Contains(input))
             {   // valid 
                 uiManager.SetInputColorValid();
-                usedTags.Add(input);
                 isValid = true;
             }
             else
@@ -85,8 +84,6 @@ public class InputListener : MonoBehaviour
     {
         input.Clear();
         inputText = "";
-        uiManager.ResetInputColor();
-        uiManager.UpdateInputField("#");
     }
 
     //  -----------------------------

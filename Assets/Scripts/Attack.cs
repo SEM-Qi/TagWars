@@ -57,4 +57,18 @@ public class Attack : MonoBehaviour
     public void SetDamage(int damage) { this.damage = damage; }
 
     public int GetDamage() { return damage; }
+
+    public int GetStrength()
+    {
+        int strength = 1;
+
+        for (int i = 0; i < distribution.Length; i++)
+        {
+            strength = strength + (distribution[i]/5);
+        }
+
+        if (strength < 3) strength = 3;
+
+        return strength;
+    }
 }

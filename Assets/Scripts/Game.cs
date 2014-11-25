@@ -11,6 +11,7 @@ public class Game : MonoBehaviour
     private Attack attack;
     private Controller controller;
     private PhotonView photonView;
+    private CoolDown coolDown;
     
     // no MonoBehaviour
     private Player player;
@@ -29,6 +30,7 @@ public class Game : MonoBehaviour
         attack = GetComponent<Attack>();
         controller = GetComponent<Controller>();
         photonView = GetComponent<PhotonView>();
+        coolDown = GetComponent<CoolDown>();
 
         // init players
         player = new Player("Aure", 100);
@@ -63,6 +65,8 @@ public class Game : MonoBehaviour
                     else if (Input.GetKeyUp("return") && attackLaunched)
                     {
                         ReleaseAttack();
+                        Debug.Log(attack.GetStrength());
+                        coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
                     }
                 }
             }
@@ -90,8 +94,8 @@ public class Game : MonoBehaviour
     private void NewInputField()
     {
         uiManager.NewInputField();
-        inputListener.SetInputReady(true);
         inputListener.ResetInput();
+        inputListener.SetInputReady(true);
     }
 
     private void NewAttack()

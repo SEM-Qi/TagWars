@@ -23,6 +23,7 @@ public class InputFieldPanel : MonoBehaviour
     void Start()
     {
         inputFieldAnim = GetComponent<Animator>();
+        //inputFieldLabel.text = "#";
     }
 
     // player inputfield -----------------------------------------------
@@ -35,7 +36,18 @@ public class InputFieldPanel : MonoBehaviour
 
     public void RemoveInputField() { inputField.SetActive(false); }
 
-    public void UpdateInput(string input) { inputFieldLabel.text = input; }
+    public void UpdateInput(string input) 
+    {
+        if (input == "")
+        {
+            inputFieldLabel.text = "#";
+            ResetInputColor();
+        }
+        else
+        {
+            inputFieldLabel.text = input;
+        }
+    }
 
     // player attack ----------------------------------------------------
     public void NewAttack()
