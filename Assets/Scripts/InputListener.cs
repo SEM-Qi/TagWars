@@ -13,6 +13,8 @@ public class InputListener : MonoBehaviour
     // private List<string> tags = new List<string>();
     private List<char> input = new List<char>();
 
+    private List<string> usedTags = new List<string>();
+
     private char[] forbidenChars = { ' ', '#', '!', '?', '$', '%', '^', '&', '*', '+', '.' };
     private string inputText;           // curent input
     private bool inputReady = false;    // is it ready to listen for input
@@ -30,6 +32,7 @@ public class InputListener : MonoBehaviour
         if (inputReady)
         {
             if (input.Count == 0) input.Add('#');
+
             foreach (char c in Input.inputString)
             {   // if the char is valid
                 if (Array.IndexOf(forbidenChars, c) < 0)
@@ -37,8 +40,8 @@ public class InputListener : MonoBehaviour
                     if (c == "\b"[0] && input.Count > 1)
                     {   // backspace  
                         input.RemoveAt(input.Count - 1);
-                    }   
-                    else if (input.Count < 20 && c != "\n"[0] && c != "\r"[0] && c != "\b"[0])
+                    }
+                    else if (input.Count < 20 && c != "\b"[0] && c != "\n"[0] && c != "\r"[0])
                     {   // if the players input is shorter then 20 and he doesn't inputs 'enter' or 'space'
                         input.Add(c);
                     }
@@ -58,19 +61,21 @@ public class InputListener : MonoBehaviour
     {
         if (input.Length > 1)
         {
-            if (queryManager.GetValidTags().Contains(input.Substring(1)))
-            {
+            if (queryManager.GetValidTags().Contains(input.Substring(1))
+                && !usedTags.Contains(input))
+            {   // valid 
                 uiManager.SetInputColorValid();
+                usedTags.Add(input);
                 isValid = true;
             }
             else
-            {
+            {   // not valid
                 uiManager.SetInputColorFail();
                 isValid = false;
             }
         }
         else
-        {
+        {   // just '#'
             uiManager.ResetInputColor();
             isValid = false;
         }
@@ -80,8 +85,8 @@ public class InputListener : MonoBehaviour
     {
         input.Clear();
         inputText = "";
-        uiManager.UpdateInputField("#");
         uiManager.ResetInputColor();
+        uiManager.UpdateInputField("#");
     }
 
     //  -----------------------------

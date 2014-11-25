@@ -607,6 +607,10 @@ Prefab:
       propertyPath: scripts
       value: 
       objectReference: {fileID: 1850651898}
+    - target: {fileID: 11400006, guid: 4738a33afc2a956438346df1655a096e, type: 2}
+      propertyPath: m_Text
+      value: '#TagWars'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4738a33afc2a956438346df1655a096e, type: 2}
   m_RootGameObject: {fileID: 883314441}
@@ -3372,7 +3376,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '#tagwars'
+  m_Text: '#TagWars'
 --- !u!222 &1929740463
 CanvasRenderer:
   m_ObjectHideFlags: 0

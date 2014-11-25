@@ -75,14 +75,11 @@ public class Game : MonoBehaviour
         {
             gameOver = true;
             uiManager.DisplayGameOver("defeat");
-            // photonView.RPC("PlayEnemyGameOver", PhotonTargets.Others, "victory");
-            
         }
         else if (opponent.GetHealth() <= 0)
         {
             gameOver = true;
             uiManager.DisplayGameOver("victory");
-           // photonView.RPC("PlayEnemyGameOver", PhotonTargets.Others, "defeat");
         }
         else
         {
@@ -90,13 +87,10 @@ public class Game : MonoBehaviour
         }
     }
 
-    //[RPC]
-    //public void PlayEnemyGameOver(string input) { uiManager.DisplayGameOver(input); }
-
     private void NewInputField()
     {
-        inputListener.SetInputReady(true);
         uiManager.NewInputField();
+        inputListener.SetInputReady(true);
         inputListener.ResetInput();
     }
 
