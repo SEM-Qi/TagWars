@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour {
 	void Start () {
         controller = scripts.GetComponent<Controller>();
 		startButtonText = startButton.GetComponentInChildren<Text> ();
-		startButton.onClick.AddListener(() => { Debug.Log("Start"); controller.Connect(); 
+		startButton.onClick.AddListener(() => { Debug.Log("Start"); controller.Connect(true); 
 			startButton.interactable = false; startButtonText.text = "Connecting"; });
 		//James
 

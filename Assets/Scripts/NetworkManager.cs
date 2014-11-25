@@ -35,6 +35,7 @@ public class NetworkManager : MonoBehaviour
     {
         PhotonNetwork.offlineMode = false;
         PhotonNetwork.ConnectUsingSettings("0.1");
+		controller.Connect(false);
     }
 
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -77,8 +78,7 @@ public class NetworkManager : MonoBehaviour
     {
 		//James
         PhotonNetwork.CreateRoom(name, roomOptions, null);
-		myRoom = PhotonNetwork.room;
-		myRoomPlayers = myRoom.playerCount;
+
 		//====
         Debug.Log("Create Room");
     }

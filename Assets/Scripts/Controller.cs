@@ -15,9 +15,9 @@ public class Controller : MonoBehaviour {
 	// NetworkStatus ------------------------
 
 	//James
-	public void Connect()
+	public void Connect(bool connect)
 	{
-		connecting = true;
+		connecting = connect;
 	}
 	public bool IsConnecting()
 	{
