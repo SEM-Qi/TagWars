@@ -21,10 +21,13 @@ public class NetworkManager : MonoBehaviour
 
     void Update()
     {
+		if(controller.IsConnecting()){
+			myRoomPlayers = myRoom.playerCount;
+		}
         if (controller.MultiplayerStarted())
         {
             // Code for Start Server
-        }
+        } 
 		if (myRoomMaxPlayers == myRoomPlayers)
 		{
 			controller.Connected();
@@ -71,7 +74,7 @@ public class NetworkManager : MonoBehaviour
     {
         Debug.Log("Joined Room");
 		myRoom = PhotonNetwork.room;
-		myRoomPlayers = myRoom.playerCount;
+
     }
 
     private void NewRoom(string name)
