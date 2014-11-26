@@ -28,10 +28,13 @@ public class UIManager : MonoBehaviour
 
     public GameObject opponentHealthBarObject;
     private HealthBar opponentHealthBar;
+
+    public GameObject coolDownObject;
+    private CoolDownManager coolDownManager;
     // -------------------------------
 
     void Start()
-    {   // Binds the Scripts
+    {
         // game over panel
         gameOverPanel = gameOverPanelObject.GetComponent<GameOverPanel>();
 
@@ -46,6 +49,9 @@ public class UIManager : MonoBehaviour
         // players health
         playerHealthBar = playerHealthBarObject.GetComponent<HealthBar>();
         opponentHealthBar = opponentHealthBarObject.GetComponent<HealthBar>();
+
+        // cooldown system
+        coolDownManager = coolDownObject.GetComponent<CoolDownManager>();
     }
 
     // Player Names =========================
@@ -87,5 +93,8 @@ public class UIManager : MonoBehaviour
 
     public void ReleaseEnemyAttackAnim() { enemyFieldPanel.ReleaseEnemyAttack(); }
     // -----------------------------------------
+
+    // coolDown System
+    public void AddCoolDownBar(string tag, int strength) { coolDownManager.AddCoolDownBar(tag,strength); }
 }
 

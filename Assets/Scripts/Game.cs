@@ -65,8 +65,10 @@ public class Game : MonoBehaviour
                     else if (Input.GetKeyUp("return") && attackLaunched)
                     {
                         ReleaseAttack();
-                        Debug.Log(attack.GetStrength());
+
+                        // we should make sure we got a responce first:
                         coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
+                        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
                     }
                 }
             }

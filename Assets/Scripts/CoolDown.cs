@@ -30,7 +30,6 @@ public class CoolDown : MonoBehaviour
             foreach (string key in keys)
             {
                 usedTags[key] = usedTags[key] - 1;
-                Debug.Log(key + " " + usedTags[key]);
             }
 
             RemoveWhenZero(usedTags);
