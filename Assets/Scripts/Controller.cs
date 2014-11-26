@@ -7,14 +7,14 @@ public class Controller : MonoBehaviour {
     private bool startNewGame = false;
     private bool startMultiplayer = false;
 
-	//James
+//========================= added code
 	private bool connecting = false;
 	private bool connected = false;
 
 
 	// NetworkStatus ------------------------
 
-	//James
+
 	public void Connect(bool connect)
 	{
 		connecting = connect;
@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour {
 		return connected;
 	}
 
-//===========================================
+//==========================================/
     // Timer --------------------------------
     public bool TimerOver()
     {

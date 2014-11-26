@@ -10,28 +10,27 @@ public class MainMenu : MonoBehaviour {
     public Button exitButton;
     public GameObject scripts;
     private Controller controller;
-	//James
+//======================= added code
 	public Text startButtonText;
-	//====
+//======================= /
 
 	void Start () {
         controller = scripts.GetComponent<Controller>();
+//======================= added code
 		startButtonText = startButton.GetComponentInChildren<Text> ();
 		startButton.onClick.AddListener(() => { Debug.Log("Start"); controller.Connect(true); 
 			startButton.interactable = false; startButtonText.text = "Connecting"; });
-		//James
-
-		//=====
+//======================= /
 
 		exitButton.onClick.AddListener(() => { Debug.Log("EXIT"); Application.Quit(); });
 	}
-	//James
+//======================= added code
 	void Update (){
 		if(controller.IsConnected()){
 			controller.StartMultiplayer();
 		}
 	
 	}
-	//====
+//===========================/
 
 }

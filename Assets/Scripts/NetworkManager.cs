@@ -6,16 +6,17 @@ using System.Collections;
 public class NetworkManager : MonoBehaviour
 {
     Controller controller;
-	//James
+//======================= added code
 	private RoomOptions roomOptions;
 	private Room myRoom;
 	private int myRoomPlayers = 0;
 	private int myRoomMaxPlayers = 2;
+//===============================/
 
     void Start()
     {
         controller = GetComponent<Controller>();
-		//James
+//======================= added code
 		roomOptions = new RoomOptions() { maxPlayers = myRoomMaxPlayers };
     }
 
@@ -30,6 +31,7 @@ public class NetworkManager : MonoBehaviour
 			controller.Connected();
 		}
     }
+//================================ /
 
     public void Connect()
     {
@@ -70,9 +72,10 @@ public class NetworkManager : MonoBehaviour
     void OnJoinedRoom()
     {
         Debug.Log("Joined Room");
+//======================= added code
 		myRoom = PhotonNetwork.room;
 		myRoomPlayers = myRoom.playerCount;
-
+//=================================/
     }
 	void OnPhotonPlayerConnected(){
 		myRoomPlayers = myRoom.playerCount;
@@ -81,10 +84,10 @@ public class NetworkManager : MonoBehaviour
 
     private void NewRoom(string name)
     {
-		//James
+//======================= added code
         PhotonNetwork.CreateRoom(name, roomOptions, null);
 
-		//====
+//==========================/
         Debug.Log("Create Room");
     }
 

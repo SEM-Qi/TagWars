@@ -20,6 +20,7 @@ public class TagWars : MonoBehaviour
 
     void Update()
     {   // if start game button is pressed
+//======================= changed code
 		if(controller.IsConnecting()){
 			networkManager.Connect();
 		}
@@ -28,5 +29,6 @@ public class TagWars : MonoBehaviour
             // TODO ADD CONNECTION CODE HERE
             Application.LoadLevel("Battle");
         }
-}
+//=======================/
+	}
 }
