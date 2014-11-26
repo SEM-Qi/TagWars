@@ -28,7 +28,7 @@ GameObject:
   - 114: {fileID: 11400006}
   m_Layer: 5
   m_Name: CoolDownBarObject
-  m_TagString: Untagged
+  m_TagString: CoolDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,8 +248,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -320}
+  m_AnchoredPosition: {x: 0, y: .000190734863}
+  m_SizeDelta: {x: 0, y: -200}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000
 Prefab:

@@ -1,29 +1,59 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class CoolDownManager : MonoBehaviour {
+public class CoolDownManager : MonoBehaviour
+{
 
     public GameObject coolDownBarPrefab;
-    public GameObject coolDownPanel;
 
-	// Use this for initialization
+    private int numOfCoolDowns = 0;
+    private int removedID = 100;
+
     public void AddCoolDownBar(string tag, int strength)
     {
         GameObject coolDownBar = Instantiate(coolDownBarPrefab) as GameObject;
         CoolDownBar coolDownBarScript = coolDownBar.GetComponent<CoolDownBar>();
 
-        coolDownBar.transform.SetParent(coolDownPanel.transform, false);
-        // set the prefab position
+        coolDownBar.transform.SetParent(transform, false);
 
-        // display the start animation
+        // set the prefab position
+        coolDownBar.GetComponent<RectTransform>().offsetMax = new Vector2(0, 150 * numOfCoolDowns - 400);
 
         // init the prefab
-        coolDownBarScript.Init(tag, strength);
-        //Debug.Log("Cooldown added: " + tag + "," + strength);
+        coolDownBarScript.Init(numOfCoolDowns, tag, strength);
+        numOfCoolDowns++;
     }
 
-    public void RemoveCoolDownBar()
+    void Update()
     {
+        if (transform.childCount > 0)
+        {   // get rid of expired Cooldowns (probably expensive)
+            List<GameObject> children = new List<GameObject>();
+            foreach (Transform child in transform)
+            {
+                CoolDownBar tempCoolDownBar = child.GetComponent<CoolDownBar>();
+                if (tempCoolDownBar.IsDone())
+                {
+                    removedID = tempCoolDownBar.GetID();
+                    children.Add(child.gameObject);
+                    Debug.Log("this is pretty sweet!");
+                }
 
+                if (tempCoolDownBar.GetID() > removedID)
+                {
+                    // move DOWN all cooldowns that are above the one removed 
+                    child.GetComponent<RectTransform>().offsetMax = new Vector2(0, child.GetComponent<RectTransform>().offsetMax.y - 150);
+                }
+            }
+
+            removedID = 100; // reset ID
+
+            children.ForEach(child =>
+            {
+                Destroy(child);
+                numOfCoolDowns--;
+            });
+        }
     }
 }

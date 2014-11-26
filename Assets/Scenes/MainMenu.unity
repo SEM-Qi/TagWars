@@ -2857,40 +2857,40 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: exitButton
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: startButton
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: enemyAttackButton
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: gameOverButton
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: joinServerButton
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: newServerButton
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: launchAttack
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - target: {fileID: 0}
       propertyPath: debugPanel
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 11400002, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
+    - {fileID: 0}
     - {fileID: 11400006, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
     - {fileID: 11400004, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}
     - {fileID: 11400008, guid: 8cea39ac78ff72b41a5ffdde218182d3, type: 2}

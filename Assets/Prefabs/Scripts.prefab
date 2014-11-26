@@ -13,7 +13,6 @@ GameObject:
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400002}
   m_Layer: 5
   m_Name: Scripts
   m_TagString: Untagged
@@ -32,20 +31,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432a9408e57352d468b0e6a820e8a1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e57aec3c47c5f8940b1057a91303fadf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  containerAnimObject: {fileID: 0}
-  inputFieldObject: {fileID: 0}
-  mainMenuObject: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,9 +53,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3174afb1271024b8252c3614dbe13b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugPanelObject: {fileID: 0}
   gameOverPanelObject: {fileID: 0}
   inputFieldObject: {fileID: 0}
+  enemyFieldObject: {fileID: 0}
+  playerNameObject: {fileID: 0}
+  opponentNameObject: {fileID: 0}
+  playerHealthBarObject: {fileID: 0}
+  opponentHealthBarObject: {fileID: 0}
+  coolDownObject: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1

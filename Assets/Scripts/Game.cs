@@ -65,10 +65,6 @@ public class Game : MonoBehaviour
                     else if (Input.GetKeyUp("return") && attackLaunched)
                     {
                         ReleaseAttack();
-
-                        // we should make sure we got a responce first:
-                        coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-                        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
                     }
                 }
             }
@@ -142,6 +138,10 @@ public class Game : MonoBehaviour
 
         // ui update
         uiManager.UpdateOpponentHealthBar(opponent.GetHealth());
+
+        // we should make sure we got a responce first:
+        coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
+        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
     // Synchronization =================================================================

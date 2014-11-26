@@ -2,12 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class CoolDownBar : MonoBehaviour {
-
-    //private float Normalize(int strength)
-    //{
-    //    return strength / 100;
-    //}
+public class CoolDownBar : MonoBehaviour
+{
 
     public GameObject bar;  // just the color
     public GameObject barContainer;
@@ -17,28 +13,37 @@ public class CoolDownBar : MonoBehaviour {
     private bool done = false;
     private float normalizedPercentage;
 
-    public void Init(string tag, int strength)
+    private int coolDownID;
+
+    public void Init(int id, string tag, int strength)
     {
-        normalizedPercentage = NormalizedPercentage(strength);
-        Debug.Log("From the cooldownbar: " + strength + " " + normalizedPercentage);
+        coolDownID = id;
         label.text = tag;
-        InvokeRepeating("UpdateWidth", 0, 1);
+        normalizedPercentage = NormalizedPercentage(strength);
+        
+        InvokeRepeating("UpdateWidth", 0, 0.0125F); // 80X per sec
     }
 
-	private void UpdateWidth () {
+    private void UpdateWidth()
+    {
         if (width > 0F)
         {
             bar.GetComponent("RectTransform").transform.localScale = new Vector3(width, 1, 1);
-            width = width - normalizedPercentage;/* NormalizedPercentage(strength) 0.01F; */
+            width = width - normalizedPercentage;
         }
         else
         {
-            barContainer.SetActive(false);
+            done = true;
         }
-	}
+    }
 
     private float NormalizedPercentage(int val)
     {
-        return (1/val);
+        float normPercentage = (1.0F / (val * 82F));
+        return normPercentage;
     }
+
+    // Getters & Setters
+    public bool IsDone() { return done; }
+    public int GetID() { return coolDownID; }
 }
