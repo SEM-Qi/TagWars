@@ -619,6 +619,10 @@ Prefab:
       propertyPath: m_Text
       value: '#TagWars'
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 4738a33afc2a956438346df1655a096e, type: 2}
+      propertyPath: startButtonText
+      value: 
+      objectReference: {fileID: 915041684}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4738a33afc2a956438346df1655a096e, type: 2}
   m_RootGameObject: {fileID: 883314441}
@@ -1544,6 +1548,7 @@ MonoBehaviour:
   startButton: {fileID: 466670824}
   exitButton: {fileID: 1811524051}
   scripts: {fileID: 1850651898}
+  startButtonText: {fileID: 915041684}
 --- !u!1 &915041682
 GameObject:
   m_ObjectHideFlags: 0

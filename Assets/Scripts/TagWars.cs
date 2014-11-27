@@ -20,10 +20,13 @@ public class TagWars : MonoBehaviour
 
     void Update()
     {   // if start game button is pressed
+        if (controller.IsConnecting())
+        {
+            networkManager.Connect();
+        }
         if (controller.MultiplayerStarted())
         {
             // TODO ADD CONNECTION CODE HERE
-            networkManager.Connect();
             Application.LoadLevel("Battle");
         }
     }

@@ -5,11 +5,17 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour
 {
-    Controller controller;
+    private Controller controller;
+
+    private RoomOptions roomOptions;
+    private Room myRoom;
+    private int myRoomPlayers = 0;
+    private int myRoomMaxPlayers = 2;
 
     void Start()
     {
         controller = GetComponent<Controller>();
+        roomOptions = new RoomOptions() { maxPlayers = myRoomMaxPlayers };
     }
 
     void Update()
@@ -18,35 +24,23 @@ public class NetworkManager : MonoBehaviour
         {
             // Code for Start Server
         }
+        if (myRoomMaxPlayers == myRoomPlayers)
+        {
+            controller.Connected();
+        }
     }
 
     public void Connect()
     {
         PhotonNetwork.offlineMode = false;
         PhotonNetwork.ConnectUsingSettings("0.1");
+        controller.Connect(false);
     }
-
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.isWriting)
-    //    {
-    //        stream.SendNext(Health);
-    //    }
-    //    else
-    //    {
-    //        Health = (float)stream.ReceiveNext();
-    //    }
-    //}
 
     void OnJoinedLobby()
     {
         Debug.Log("Joined Lobby");
         PhotonNetwork.JoinRandomRoom();
-    }
-
-    void OnPhotonJoinFailed()
-    {
-
     }
 
     void OnPhotonRandomJoinFailed()
@@ -58,19 +52,19 @@ public class NetworkManager : MonoBehaviour
     void OnJoinedRoom()
     {
         Debug.Log("Joined Room");
+        myRoom = PhotonNetwork.room;
+        myRoomPlayers = myRoom.playerCount;
     }
 
     private void NewRoom(string name)
     {
-        PhotonNetwork.CreateRoom(name);
         Debug.Log("Create Room");
+        PhotonNetwork.CreateRoom(name, roomOptions, null);
     }
 
     public void Disconnect()
     {
-        PhotonNetwork.Disconnect();
         Debug.Log("Disconnected");
+        PhotonNetwork.Disconnect();
     }
-
-    // USE JoinOrCreate for challenging a friend
 }

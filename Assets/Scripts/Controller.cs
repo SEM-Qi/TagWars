@@ -3,11 +3,30 @@ using System.Collections;
 
 public class Controller : MonoBehaviour {
 
-    private bool timerOver = false;
-    private bool startNewGame = false;
-    private bool startMultiplayer = false;
+    // NetworkStatus ------------------------
+    private bool connecting = false;
+    private bool connected = false;
+
+    public void Connect(bool connect)
+    {
+        connecting = connect;
+    }
+    public bool IsConnecting()
+    {
+        return connecting;
+    }
+    public void Connected()
+    {
+        connected = true;
+    }
+    public bool IsConnected()
+    {
+        return connected;
+    }
 
     // Timer --------------------------------
+    private bool timerOver = false;
+
     public bool TimerOver()
     {
         return timerOver;
@@ -19,6 +38,9 @@ public class Controller : MonoBehaviour {
     }
 
     // NewGame -------------------------------
+    private bool startNewGame = false;
+    private bool startMultiplayer = false;
+
     public bool StartNewGame()
     {
         return startNewGame;
