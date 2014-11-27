@@ -56,6 +56,11 @@ public class NetworkManager : MonoBehaviour
         myRoomPlayers = myRoom.playerCount;
     }
 
+    void OnPhotonPlayerConnected()
+    {
+        myRoomPlayers = myRoom.playerCount;
+    }
+
     private void NewRoom(string name)
     {
         Debug.Log("Create Room");
