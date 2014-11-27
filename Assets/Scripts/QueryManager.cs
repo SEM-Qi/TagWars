@@ -11,10 +11,12 @@ using System;
 
 public class QueryManager : MonoBehaviour
 {
-    private JSONParser jp = new JSONParser();
+    private JSONParser jsonParser = new JSONParser();
 
     private int[] currentDistribution;
     private List<string> validTags = new List<string>();
+
+    private string userID;
 
     // URL for Http requests
     private string validTagUrl = "http://picard.skip.chalmers.se/updatelist";
@@ -22,6 +24,9 @@ public class QueryManager : MonoBehaviour
 
     // URL for Auth
     private string authUrl = "http://picard.skip.chalmers.se/authorize";
+
+    // URL for UserInfo
+    private string userInfoUrl = "http://picard.skip.chalmers.se/getuserinfo";
 
     void Start()
     {   // on start the valid tags are queried
@@ -33,7 +38,7 @@ public class QueryManager : MonoBehaviour
     {
         WWW www = new WWW(validTagUrl);
         yield return www;
-        validTags = jp.GetAvailableTags(www.text);
+        validTags = jsonParser.GetAvailableTags(www.text);
         Debug.Log(www.text);
     }
 
@@ -41,7 +46,16 @@ public class QueryManager : MonoBehaviour
     {
         WWW www = new WWW(damageDistributionUrl + value);
         yield return www;
-        currentDistribution = jp.GetDistribution(www.text);
+        currentDistribution = jsonParser.GetDistribution(www.text);
+        Debug.Log(www.text);
+        OnResponce();
+    }
+
+    public IEnumerator QueryUserInfo(Action OnResponce)
+    {
+        WWW www = new WWW(userInfoUrl + userID);
+        yield return www;
+        currentDistribution = jsonParser.GetDistribution(www.text);
         Debug.Log(www.text);
         OnResponce();
     }
@@ -51,6 +65,7 @@ public class QueryManager : MonoBehaviour
     {
         Debug.LogError("OAuth Method Called");
         WWWForm form = new WWWForm();
+        userID = OAuth[0];
         form.AddField("user_id", OAuth[0]);
         form.AddField("auth_key", OAuth[1]);
 
