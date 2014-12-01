@@ -6,7 +6,9 @@ using UnityEngine;
 public class Player
 {
     private int health = 100;
-    private string name = "none";
+    private string name = "";
+
+    private string attack = "";
 
     public Player(string name, int health)
     {
@@ -22,4 +24,8 @@ public class Player
     public int GetHealth() { return health; }
 
     public void SetHealth(int health) { this.health = health; }
+
+    public string GetAttack() { return attack; }
+
+    public void SetAttack(string attack) { this.attack = attack; }
 }

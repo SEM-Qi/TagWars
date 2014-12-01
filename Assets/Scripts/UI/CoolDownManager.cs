@@ -37,7 +37,6 @@ public class CoolDownManager : MonoBehaviour
                 {
                     removedID = tempCoolDownBar.GetID();
                     children.Add(child.gameObject);
-                    Debug.Log("this is pretty sweet!");
                 }
 
                 if (tempCoolDownBar.GetID() > removedID)

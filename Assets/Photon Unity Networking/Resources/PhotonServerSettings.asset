@@ -37,4 +37,5 @@ MonoBehaviour:
   - DEBUG
   - DealDamage
   - PlayEnemyGameOver
+  - CancelEnemyAttack
   DisableAutoOpenWizard: 0
