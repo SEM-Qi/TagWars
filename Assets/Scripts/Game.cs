@@ -58,20 +58,19 @@ public class Game : MonoBehaviour
                     {
                         if (inputListener.IsValid())
                         {   // compare the current attacks
-                            if (player.GetAttack() != "" && player.GetAttack() == opponent.GetAttack())
-                            {
-                                CancelAttack();
-                            }
-                            else
-                            {
-                                NewAttack();
-                                attackLaunched = true;
-                            }
+                            NewAttack();
                         }
                     }
-                    else if (Input.GetKeyUp("return") && attackLaunched)
+                    else if (!Input.GetKey("return") && attackLaunched)
                     {
-                        ReleaseAttack();
+                        if (player.GetAttack() != "" && player.GetAttack() == opponent.GetAttack())
+                        {
+                            SynchronizeCancelAttack();
+                        }
+                        else
+                        {
+                            ReleaseAttack();
+                        }
                     }
                 }
             }
@@ -107,6 +106,7 @@ public class Game : MonoBehaviour
     {
         inputListener.SetInputReady(false);
         SynchronizeNewAttackAnim();         // Synchronization
+        player.SetAttack(inputListener.GetInput());
         StartCoroutine(queryManager.QueryDamageDistribution(inputListener.GetInput().Substring(1), OnResponce));
         Debug.Log("LAUNCH ATTACK");
     }
@@ -117,14 +117,9 @@ public class Game : MonoBehaviour
     private void OnResponce()
     {
         attack.Init(queryManager.GetDistribution());
-        player.SetAttack(inputListener.GetInput());
         attack.UpdateDamage();
 
-        /* ensures that the CancelDamageUpdate()
-         * is called even if the enter key is 
-         * released before the responce happens */
-
-        if (!Input.GetKey("return")) { attack.CancelDamageUpdate(); }
+        attackLaunched = true;
 
         Debug.Log("CHARGE ATTACK");
     }
@@ -132,8 +127,9 @@ public class Game : MonoBehaviour
 
     private void ReleaseAttack()
     {
-        SynchronizeAttackReleaseAnim();     // Synchronization
         attack.CancelDamageUpdate();
+        SynchronizeAttackReleaseAnim();     // Synchronization
+        attackLaunched = false;
         Debug.Log("RELEASE ATTACK");
     }
 
@@ -142,7 +138,7 @@ public class Game : MonoBehaviour
     {
         SynchronizeDamage();                // Synchronization
         inputField = false;
-        attackLaunched = false;
+       
 
         // ui update
         uiManager.UpdateOpponentHealthBar(opponent.GetHealth());
@@ -152,11 +148,20 @@ public class Game : MonoBehaviour
         uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
+    [RPC]
     public void CancelAttack()
     {
+        // Add damage reflection code 
+        uiManager.CancelAttackAnim();
+        inputField = false;
+        attackLaunched = false;
         Debug.Log("CANCEL ATTACK");
+        attack.CancelDamageUpdate();
         player.SetAttack("");
         opponent.SetAttack("");
+
+        coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
+        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
     // Synchronization =================================================================
@@ -179,9 +184,9 @@ public class Game : MonoBehaviour
         photonView.RPC("DealDamage", PhotonTargets.Others, damage);
     }
 
-    public void SynchronizeCancelAnim()
+    public void SynchronizeCancelAttack()
     {
-        photonView.RPC("CancelEnemyAttack", PhotonTargets.Others);
+        photonView.RPC("CancelAttack", PhotonTargets.All);
     }
 
     [RPC]
@@ -203,12 +208,6 @@ public class Game : MonoBehaviour
     {
         attack.DealDamage(player, damage);
         uiManager.UpdatePlayerHealthBar(player.GetHealth());
-    }
-
-    [RPC]
-    public void CancelEnemyAttack()
-    {
-        Debug.Log("ATTACK CANCELED");
     }
 
     // ==================================================================================

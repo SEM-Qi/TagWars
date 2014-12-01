@@ -13,7 +13,7 @@ public class Attack : MonoBehaviour
     {
         for (int i = 0; i < distribution.Length; i++)
         {   // Damage multiplier
-            distribution[i] = distribution[i] * 5;
+            distribution[i] = distribution[i] * 2;
         }
         this.distribution = distribution;
         damage = 0; // resets the Damage when the Attack is initialized
@@ -30,6 +30,7 @@ public class Attack : MonoBehaviour
     {
         if (chargeTime < distribution.Length)
         {
+            if (chargeTime == 1) { damage += GetStrength() / 5; }
             damage += distribution[chargeTime];
             chargeTime++;
             Debug.Log(damage);
@@ -64,7 +65,7 @@ public class Attack : MonoBehaviour
 
         for (int i = 0; i < distribution.Length; i++)
         {
-            strength = strength + (distribution[i]/5);
+            strength = strength + (distribution[i]*2);
         }
 
         if (strength < 3) strength = 3;

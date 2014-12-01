@@ -76,6 +76,12 @@ public class UIManager : MonoBehaviour
 
     public void UpdateInputField(string input) { inputFieldPanel.UpdateInput(input); }
 
+    public void CancelAttackAnim() 
+    { 
+        inputFieldPanel.CancelAttack();
+        enemyFieldPanel.CancelAttack();
+    }
+
     // color --------------------------------
     public void SetInputColorValid() { inputFieldPanel.SetInputColorValid(); }
 

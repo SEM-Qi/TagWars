@@ -49,11 +49,20 @@ public class InputFieldPanel : MonoBehaviour
         }
     }
 
+    // cancel attack ----------------------------------------------------
+    public void CancelAttack()
+    {
+        //inputFieldAnim.ResetTrigger("Release");
+        //inputFieldAnim.ResetTrigger("EnemyRelease");
+        inputFieldAnim.SetTrigger("Cancel");
+    }
+
     // player attack ----------------------------------------------------
     public void NewAttack()
     {
         animationLabel.text = inputFieldLabel.text;
         inputFieldAnim.ResetTrigger("Release");
+        inputFieldAnim.ResetTrigger("Cancel");
         inputFieldAnim.SetTrigger("Charge");
     }
 
@@ -65,6 +74,7 @@ public class InputFieldPanel : MonoBehaviour
         inputField.SetActive(true);
         animationLabel.text = input;
         inputFieldAnim.ResetTrigger("EnemyRelease");
+        inputFieldAnim.ResetTrigger("Cancel");
         inputFieldAnim.SetTrigger("EnemyCharge");
     }
 

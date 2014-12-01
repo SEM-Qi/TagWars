@@ -38,4 +38,5 @@ MonoBehaviour:
   - DealDamage
   - PlayEnemyGameOver
   - CancelEnemyAttack
+  - CancelAttack
   DisableAutoOpenWizard: 0
