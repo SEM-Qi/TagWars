@@ -7,17 +7,10 @@ using System.Collections;
 public class CountDown : MonoBehaviour
 {
     public Text timerLabel;
-    public GameObject scripts;
 
-    private Controller con;
-
+    private bool timerOver = false;
     private string timerText;
     private int countdown;
-
-    void Start()
-    {
-        con = scripts.GetComponent<Controller>();
-    }
 
     public void StartCountDown()
     {
@@ -36,7 +29,7 @@ public class CountDown : MonoBehaviour
         else if (countdown < 0)
         {
             timerText = "";
-            con.SetTimerOver(true);
+            timerOver = true;
             CancelInvoke();
         }
         else
@@ -46,4 +39,6 @@ public class CountDown : MonoBehaviour
         }
         timerLabel.text = timerText;
     }
+
+    public bool TimerOver() { return timerOver; }
 }

@@ -37,7 +37,7 @@ public class Game : MonoBehaviour
         opponent = new Player("Evil Aure", 100);
 
         // Updates the player name on UI
-        uiManager.InitPlayerNames(player.GetName(), opponent.GetName());
+        // uiManager.InitPlayerNames(player.GetName(), opponent.GetName());
     }
 
     void Update()

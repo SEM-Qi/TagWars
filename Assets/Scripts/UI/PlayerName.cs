@@ -2,8 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerName : MonoBehaviour
-{
+public class PlayerName : MonoBehaviour {
 
     public Text nameLabel;
 

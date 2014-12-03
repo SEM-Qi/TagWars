@@ -5,28 +5,23 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour
 {
-    private Controller controller;
-
     private RoomOptions roomOptions;
     private Room myRoom;
     private int myRoomPlayers = 0;
     private int myRoomMaxPlayers = 2;
 
+    private bool multiplayerStarted = false;
+
     void Start()
     {
-        controller = GetComponent<Controller>();
         roomOptions = new RoomOptions() { maxPlayers = myRoomMaxPlayers };
     }
 
     void Update()
     {
-        if (controller.MultiplayerStarted())
-        {
-            // Code for Start Server
-        }
         if (myRoomMaxPlayers == myRoomPlayers)
         {
-            controller.Connected();
+            multiplayerStarted = true;
         }
     }
 
@@ -34,8 +29,9 @@ public class NetworkManager : MonoBehaviour
     {
         PhotonNetwork.offlineMode = false;
         PhotonNetwork.ConnectUsingSettings("0.1");
-        controller.Connect(false);
     }
+
+    public bool MultiplayerStarted() { return multiplayerStarted; }
 
     void OnJoinedLobby()
     {

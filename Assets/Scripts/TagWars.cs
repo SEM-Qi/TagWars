@@ -5,29 +5,32 @@ using System.Collections;
 
 public class TagWars : MonoBehaviour
 {
-    private Controller controller;
+    public GameObject mainMenuObject;
+    private MainMenu mainMenu;
     private NetworkManager networkManager;
 
     void Start()
     {
         // Initializing UI
-        controller = GetComponent<Controller>();
+        mainMenu = mainMenuObject.GetComponent<MainMenu>();
         networkManager = GetComponent<NetworkManager>();
-        networkManager.Disconnect();
-
-        //TODO: load player info
+        if (networkManager.MultiplayerStarted())
+        {
+            networkManager.Disconnect();
+            
+        }
     }
 
     void Update()
     {   // if start game button is pressed
-        if (controller.IsConnecting())
-        {
+        if (mainMenu.StartGame()) 
+        { 
             networkManager.Connect();
+            mainMenu.SetStartGame(false);
         }
-        if (controller.MultiplayerStarted())
-        {
-            // TODO ADD CONNECTION CODE HERE
-            Application.LoadLevel("Battle");
-        }
+
+        if (networkManager.MultiplayerStarted()) { Application.LoadLevel("Battle"); }
+
+        if (mainMenu.QuitGame()) { Application.Quit(); }
     }
 }
