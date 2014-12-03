@@ -139,7 +139,6 @@ public class Game : MonoBehaviour
         SynchronizeDamage();                // Synchronization
         inputField = false;
        
-
         // ui update
         uiManager.UpdateOpponentHealthBar(opponent.GetHealth());
 

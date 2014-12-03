@@ -33,6 +33,11 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 5
+      - time: 2.08333325
+        value: -7.62939999e-06
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_AnchoredPosition.x
@@ -58,7 +63,7 @@ AnimationClip:
         outSlope: 133.533051
         tangentMode: 5
       - time: 2.08333325
-        value: -420
+        value: -378.600006
         inSlope: 43.5118523
         outSlope: -435.000031
         tangentMode: 1
@@ -87,7 +92,7 @@ AnimationClip:
         outSlope: 55.349575
         tangentMode: 5
       - time: 2.08333325
-        value: 420
+        value: 379.700012
         inSlope: 26.0293045
         outSlope: 438.000031
         tangentMode: 1
@@ -115,6 +120,11 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 5
+      - time: 2.08333325
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_AnchoredPosition.x
@@ -395,6 +405,11 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 5
+      - time: 2.08333325
+        value: -7.62939999e-06
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_AnchoredPosition.x
@@ -420,7 +435,7 @@ AnimationClip:
         outSlope: 133.533051
         tangentMode: 5
       - time: 2.08333325
-        value: -420
+        value: -378.600006
         inSlope: 43.5118523
         outSlope: -435.000031
         tangentMode: 1
@@ -449,7 +464,7 @@ AnimationClip:
         outSlope: 55.349575
         tangentMode: 5
       - time: 2.08333325
-        value: 420
+        value: 379.700012
         inSlope: 26.0293045
         outSlope: 438.000031
         tangentMode: 1
@@ -477,6 +492,11 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 5
+      - time: 2.08333325
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_AnchoredPosition.x

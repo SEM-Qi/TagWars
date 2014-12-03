@@ -30,7 +30,7 @@ public class Attack : MonoBehaviour
     {
         if (chargeTime < distribution.Length)
         {
-            if (chargeTime == 1) { damage += GetStrength() / 5; }
+            if (chargeTime == 1) { damage += GetStrength() / 10; }
             damage += distribution[chargeTime];
             chargeTime++;
             Debug.Log(damage);
