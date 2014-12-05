@@ -7,37 +7,31 @@ using System;
 
 public class InputListener : MonoBehaviour
 {
-    private UIManager uiManager;
-    private QueryManager queryManager;
-    private CoolDown coolDown;
+    // private QueryManager queryManager;
+    public GameObject cardHolderObject;
+    private CardHolder cardHolder;
 
     // private List<string> tags = new List<string>();
     private List<char> input = new List<char>();
 
     private char[] forbidenChars = { ' ', '#', '!', '?', '$', '%', '^', '&', '*', '+', '.' };
-    private string inputText;           // curent input
-    private bool inputReady = false;    // is it ready to listen for input
-    private bool isValid = false;       // is the current input valid
+    private string inputText = "";      // curent input
 
     void Start()
     {
-        uiManager = GetComponent<UIManager>();
-        queryManager = GetComponent<QueryManager>();
-        coolDown = GetComponent<CoolDown>();
+        cardHolder = cardHolderObject.GetComponent<CardHolder>();
     }
 
     // Input Loop -----------------------------
     void Update()
     {
-        if (inputReady)
+        if (cardHolder.IsInputReady())
         {
-            if (input.Count == 0) input.Add('#');
-
             foreach (char c in Input.inputString)
             {   // if the char is valid
                 if (Array.IndexOf(forbidenChars, c) < 0)
                 {                     
-                    if (c == "\b"[0] && input.Count > 1)
+                    if (c == "\b"[0] && input.Count > 0)
                     {   // backspace  
                         input.RemoveAt(input.Count - 1);
                     }
@@ -50,35 +44,34 @@ public class InputListener : MonoBehaviour
 
             // builds the string & updates the inputfield
             inputText = MakeString(input);
-            IsValid(inputText);
-            uiManager.UpdateInputField(inputText);
+            cardHolder.UpdateCard(inputText);
         }
     }
 
     // Helper Methods ----------------------------
     // checks validity & update the input field Text & color
-    public void IsValid(string input)
-    {
-        if (input.Length > 1)
-        {
-            if (queryManager.GetValidTags().Contains(input.Substring(1))
-                && !coolDown.GetUsedTags().Contains(input))
-            {   // valid 
-                uiManager.SetInputColorValid();
-                isValid = true;
-            }
-            else
-            {   // not valid
-                uiManager.SetInputColorFail();
-                isValid = false;
-            }
-        }
-        else
-        {   // just '#'
-            uiManager.ResetInputColor();
-            isValid = false;
-        }
-    }
+    //public void IsValid(string input)
+    //{
+    //    if (input.Length > 1)
+    //    {
+    //        if (queryManager.GetValidTags().Contains(input.Substring(1))
+    //            && !coolDown.GetUsedTags().Contains(input))
+    //        {   // valid 
+    //            uiManager.SetInputColorValid();
+    //            isValid = true;
+    //        }
+    //        else
+    //        {   // not valid
+    //            uiManager.SetInputColorFail();
+    //            isValid = false;
+    //        }
+    //    }
+    //    else
+    //    {   // just '#'
+    //        uiManager.ResetInputColor();
+    //        isValid = false;
+    //    }
+    //}
 
     public void ResetInput()
     {
@@ -112,9 +105,5 @@ public class InputListener : MonoBehaviour
     // Getters & Setters ----------------------------
     public string GetInput() { return inputText; }
 
-    public bool GetInputReady() { return inputReady; }
-
-    public void SetInputReady(bool inputState) { this.inputReady = inputState; }
-
-    public bool IsValid() { return isValid; }
+   // public bool IsValid() { return isValid; }
 }

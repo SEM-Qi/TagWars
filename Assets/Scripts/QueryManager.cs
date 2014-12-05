@@ -75,5 +75,13 @@ public class QueryManager : MonoBehaviour
     // Getters & Setters =============================
     public List<string> GetValidTags() { return validTags; }
 
+    public bool IsValid(string text) 
+    { 
+        if(validTags.Contains(text)) 
+            return true;
+        else 
+            return false;
+    }
+
     public int[] GetDistribution() { return currentDistribution; }
 }

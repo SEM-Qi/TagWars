@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    private UIManager uiManager;
-    private InputListener inputListener;
+    public GameObject queryManagerObject;
     private QueryManager queryManager;
+
+    public GameObject coolDownManagerObject;
+    private CoolDown coolDown;
+
+    private InputListener inputListener;
+    
     private Attack attack;
     private Controller controller;
     private PhotonView photonView;
-    private CoolDown coolDown;
+    private NewuiManager newuiManager;
 
     // no MonoBehaviour
     private Player player;
@@ -24,39 +29,39 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        uiManager = GetComponent<UIManager>();
+        newuiManager = GetComponent<NewuiManager>();
         inputListener = GetComponent<InputListener>();
-        queryManager = GetComponent<QueryManager>();
+        queryManager = queryManagerObject.GetComponent<QueryManager>();
         attack = GetComponent<Attack>();
         controller = GetComponent<Controller>();
         photonView = GetComponent<PhotonView>();
-        coolDown = GetComponent<CoolDown>();
+        coolDown = coolDownManagerObject.GetComponent<CoolDown>();
 
         // init players
-        player = new Player("Aure", 100);
-        opponent = new Player("Evil Aure", 100);
+        player = new Player("@Aure", 100);
+        opponent = new Player("@Evil Aure", 100);
 
         // Updates the player name on UI
-        // uiManager.InitPlayerNames(player.GetName(), opponent.GetName());
+        newuiManager.InitPlayerNames(player.GetName(), opponent.GetName());
     }
 
     void Update()
     {
         if (!gameOver)
         {
-            if (controller.TimerOver())
+            if (newuiManager.TimerOver())
             {   // if the timer is done
                 CheckGameOver();
                 if (!inputField)
                 {   // if there is no inputfield
-                    NewInputField();
+                    newuiManager.NewCardHolder();
                     inputField = true;
                 }
                 else
                 {
                     if (Input.GetKeyDown("return") && !attackLaunched)
                     {
-                        if (inputListener.IsValid())
+                        if (newuiManager.IsReleaseReady())
                         {   // compare the current attacks
                             NewAttack();
                         }
@@ -70,6 +75,7 @@ public class Game : MonoBehaviour
                         else
                         {
                             ReleaseAttack();
+                            Debug.Log("boom!");
                         }
                     }
                 }
@@ -82,12 +88,12 @@ public class Game : MonoBehaviour
         if (player.GetHealth() <= 0)
         {
             gameOver = true;
-            uiManager.DisplayGameOver("defeat");
+            newuiManager.DisplayGameOver("defeat");
         }
         else if (opponent.GetHealth() <= 0)
         {
             gameOver = true;
-            uiManager.DisplayGameOver("victory");
+            newuiManager.DisplayGameOver("victory");
         }
         else
         {
@@ -95,19 +101,12 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void NewInputField()
-    {
-        uiManager.NewInputField();
-        inputListener.ResetInput();
-        inputListener.SetInputReady(true);
-    }
-
     private void NewAttack()
     {
-        inputListener.SetInputReady(false);
+        newuiManager.LaunchAttack();
         SynchronizeNewAttackAnim();         // Synchronization
         player.SetAttack(inputListener.GetInput());
-        StartCoroutine(queryManager.QueryDamageDistribution(inputListener.GetInput().Substring(1), OnResponce));
+        StartCoroutine(queryManager.QueryDamageDistribution(inputListener.GetInput(), OnResponce));
         Debug.Log("LAUNCH ATTACK");
     }
 
@@ -118,9 +117,7 @@ public class Game : MonoBehaviour
     {
         attack.Init(queryManager.GetDistribution());
         attack.UpdateDamage();
-
         attackLaunched = true;
-
         Debug.Log("CHARGE ATTACK");
     }
     // ================================================================================
@@ -140,18 +137,18 @@ public class Game : MonoBehaviour
         inputField = false;
        
         // ui update
-        uiManager.UpdateOpponentHealthBar(opponent.GetHealth());
+        newuiManager.UpdateOpponentHealthBar(opponent.GetHealth());
 
         // we should make sure we got a responce first:
         coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
+        newuiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
     [RPC]
     public void CancelAttack()
     {
         // Add damage reflection code 
-        uiManager.CancelAttackAnim();
+        // newuiManager.CancelAttackAnim();
         inputField = false;
         attackLaunched = false;
         Debug.Log("CANCEL ATTACK");
@@ -160,20 +157,19 @@ public class Game : MonoBehaviour
         opponent.SetAttack("");
 
         coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
+        // uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
     // Synchronization =================================================================
     public void SynchronizeNewAttackAnim()
     {
-        uiManager.NewAttackAnim();
         photonView.RPC("PlayEnemyAttack", PhotonTargets.Others, inputListener.GetInput());
     }
 
     public void SynchronizeAttackReleaseAnim()
     {
-        uiManager.ReleaseAttackAnim();
-        photonView.RPC("ReleaseEnemyAttack", PhotonTargets.Others);
+        newuiManager.ReleaseAttack();
+        // photonView.RPC("ReleaseEnemyAttack", PhotonTargets.Others);
     }
 
     public void SynchronizeDamage()
@@ -191,14 +187,14 @@ public class Game : MonoBehaviour
     [RPC]
     public void PlayEnemyAttack(string input)
     {
-        uiManager.PlayEnemyAttackAnim(input);
+        //uiManager.PlayEnemyAttackAnim(input);
         opponent.SetAttack(input); // Cancel Attack functionality
     }
 
     [RPC]
     public void ReleaseEnemyAttack()
     {
-        uiManager.ReleaseEnemyAttackAnim();
+        //uiManager.ReleaseEnemyAttackAnim();
         opponent.SetAttack("");
     }
 
@@ -206,7 +202,7 @@ public class Game : MonoBehaviour
     public void DealDamage(int damage)
     {
         attack.DealDamage(player, damage);
-        uiManager.UpdatePlayerHealthBar(player.GetHealth());
+        newuiManager.UpdatePlayerHealthBar(player.GetHealth());
     }
 
     // ==================================================================================

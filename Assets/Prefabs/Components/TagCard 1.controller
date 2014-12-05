@@ -5,16 +5,16 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: InputFieldObject
+  m_Name: TagCard 1
   serializedVersion: 2
   m_AnimatorParameters:
-  - m_Name: newCardHolder
+  - m_Name: launch
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: removeCardHolder
+  - m_Name: release
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -39,60 +39,20 @@ Transition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110288921}
+  m_SrcState: {fileID: 110281061}
   m_DstState: {fileID: 110200000}
-  m_TransitionDuration: .100000001
+  m_TransitionDuration: .25
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: newCardHolder
+    m_ConditionEvent: launch
     m_EventTreshold: 0
-    m_ExitTime: .899999976
+    m_ExitTime: .75
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110101871
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110256363}
-  m_DstState: {fileID: 110288921}
-  m_TransitionDuration: .100671142
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
-    m_EventTreshold: 0
-    m_ExitTime: .899328828
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1101 &110110687
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110224021}
-  m_DstState: {fileID: 110288921}
-  m_TransitionDuration: .375
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
-    m_EventTreshold: 0
-    m_ExitTime: .625
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1101 &110117747
+--- !u!1101 &110197306
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
@@ -100,14 +60,14 @@ Transition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_SrcState: {fileID: 110200000}
-  m_DstState: {fileID: 110224021}
-  m_TransitionDuration: .75
+  m_DstState: {fileID: 110202311}
+  m_TransitionDuration: .517241418
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: removeCardHolder
+    m_ConditionEvent: release
     m_EventTreshold: 0
-    m_ExitTime: .25
+    m_ExitTime: .482758582
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -117,58 +77,43 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: InputfieldLaunch
+  m_Name: CardLaunch
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 9401cfb5c10324b4b9f519b39249683a, type: 2}
+  - {fileID: 7400000, guid: 7340896cd1d970644bc36114e1db23b4, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 0, y: 168, z: 0}
+  m_Position: {x: -48, y: 156, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110224021
+--- !u!1102 &110202311
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ReleaseAttack
+  m_Name: CardRelease
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 8a42512a6b3b18741be6600f862edaa0, type: 2}
+  - {fileID: 7400000, guid: 8b4c68fed07646f4db500e88230c2f92, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 288, y: 168, z: 0}
+  m_Position: {x: 204, y: 156, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110256363
+--- !u!1102 &110281061
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Start
+  m_Name: CardIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 3c9b9ae2d104f2949bb8b10bbe16bc0b, type: 2}
+  - {fileID: 7400000, guid: 0abcc55f22072454b89ecc952e860030, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 144, y: -48, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
---- !u!1102 &110288921
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: New State
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 0}
-  m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 144, y: 60, z: 0}
+  m_Position: {x: 60, y: 48, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -179,37 +124,28 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110256363}
+  m_DefaultState: {fileID: 110281061}
   m_States:
-  - {fileID: 110288921}
   - {fileID: 110200000}
-  - {fileID: 110224021}
-  - {fileID: 110256363}
+  - {fileID: 110281061}
+  - {fileID: 110202311}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110256363}
-      second:
-      - {fileID: 110101871}
-    data:
-      first: {fileID: 0}
+      first: {fileID: 110202311}
       second: []
     data:
-      first: {fileID: 110288921}
+      first: {fileID: 110281061}
       second:
       - {fileID: 110100000}
     data:
       first: {fileID: 110200000}
       second:
-      - {fileID: 110117747}
-    data:
-      first: {fileID: 110224021}
-      second:
-      - {fileID: 110110687}
+      - {fileID: 110197306}
     data:
       first: {fileID: 0}
       second: []
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 156, y: -132, z: 0}
+  m_AnyStatePosition: {x: 72, y: -48, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

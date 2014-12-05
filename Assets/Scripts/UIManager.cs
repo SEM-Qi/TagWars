@@ -31,6 +31,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject coolDownObject;
     private CoolDownManager coolDownManager;
+
+    public GameObject countDownObject;
+    private CountDown countDown;
     // -------------------------------
 
     void Start()
@@ -52,6 +55,9 @@ public class UIManager : MonoBehaviour
 
         // cooldown system
         coolDownManager = coolDownObject.GetComponent<CoolDownManager>();
+
+        //
+        countDown = countDownObject.GetComponent<CountDown>();
     }
 
     // Player Names =========================
@@ -99,6 +105,8 @@ public class UIManager : MonoBehaviour
 
     public void ReleaseEnemyAttackAnim() { enemyFieldPanel.ReleaseEnemyAttack(); }
     // -----------------------------------------
+
+    public bool TimerOver() { return countDown.TimerOver(); }
 
     // coolDown System
     public void AddCoolDownBar(string tag, int strength) { coolDownManager.AddCoolDownBar(tag,strength); }

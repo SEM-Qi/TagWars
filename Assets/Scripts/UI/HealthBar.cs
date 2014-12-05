@@ -7,13 +7,13 @@ public class HealthBar : MonoBehaviour {
 
 	public void UpdateHealthBar (int health) 
     {
-        healthbar.GetComponent("RectTransform").transform.localScale = new Vector3(1, Normalize(health), 1);
+        healthbar.GetComponent<RectTransform>().transform.localScale = new Vector3(Normalize(health), 1, 1);
 	}
 
     private float Normalize(int health)
     {
         float mappedHeath = health;
-        mappedHeath = (((mappedHeath / 100) - 1) * -1);
+        mappedHeath = (((mappedHeath / 100) * -1));
         return mappedHeath;
     }
 }
