@@ -36,8 +36,8 @@ public class Game : MonoBehaviour
         coolDown = coolDownManagerObject.GetComponent<CoolDown>();
 
         // init players
-        player = new Player("@Aure", 100);
-        opponent = new Player("@Evil Aure", 100);
+        player = new Player("@aure", 100);
+        opponent = new Player("@evil_aure", 100);
 
         // Updates the player name on UI
         newuiManager.InitPlayerNames(player.GetName(), opponent.GetName());

@@ -48,7 +48,7 @@ public class InputListener : MonoBehaviour
             }
 
             // builds the string & updates the inputfield
-            inputText = MakeString(input);
+            inputText = MakeString(input).ToLower();
             cardHolder.UpdateCard(inputText);
         }
     }
