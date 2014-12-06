@@ -17,9 +17,9 @@ public class CoolDown : MonoBehaviour
         usedTags.Add(tag, strength);
     }
 
-    public List<string> GetUsedTags()
+    public bool ContainsTag(string tag)
     {
-        return new List<string>(usedTags.Keys);
+        return new List<string>(usedTags.Keys).Contains(tag);
     }
 
     private void Timer()

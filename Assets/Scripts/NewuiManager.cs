@@ -25,6 +25,10 @@ public class NewuiManager : MonoBehaviour {
     // CoolDown ========================================================
     public GameObject coolDownObject;
     private CoolDownManager coolDownManager;
+
+    // EnemyCard =======================================================
+    public GameObject enemyCardObject;
+    private EnemyCard enemyCard;
     // =================================================================
 
 	void Start () {
@@ -37,6 +41,10 @@ public class NewuiManager : MonoBehaviour {
         opponentHealthBar = opponentHealthBarObject.GetComponent<HealthBar>();
 
         coolDownManager = coolDownObject.GetComponent<CoolDownManager>();
+
+        gameOverPanel = gameOverPanelObject.GetComponent<GameOverPanel>();
+
+        enemyCard = enemyCardObject.GetComponent<EnemyCard>();
 	}
 
     // CountDown =======================================================
@@ -76,5 +84,11 @@ public class NewuiManager : MonoBehaviour {
         opponentNameLabel.text = opponentName;
         opponentNameWhiteLabel.text = opponentName;
     }
+    // =================================================================
+
+    // Enemy Attack ====================================================
+    public void PlayEnemyAttackAnim(string input) { enemyCard.Launch(input); }
+    public void ReleaseEnemyAttackAnim() { enemyCard.Release(); }
+    public void InitOpponentCard() { enemyCard.Init(); }
     // =================================================================
 }

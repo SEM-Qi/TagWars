@@ -25,6 +25,11 @@ public class InputListener : MonoBehaviour
     // Input Loop -----------------------------
     void Update()
     {
+        if (cardHolder.IsResetReady())
+        {
+            input.Clear();
+            inputText = "";
+        }
         if (cardHolder.IsInputReady())
         {
             foreach (char c in Input.inputString)

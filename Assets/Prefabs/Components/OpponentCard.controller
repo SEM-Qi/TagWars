@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TagCard 1
+  m_Name: OpponentCard
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: launch
@@ -15,6 +15,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: release
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: init
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -39,48 +45,68 @@ Transition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110281061}
-  m_DstState: {fileID: 110200000}
-  m_TransitionDuration: .25
+  m_SrcState: {fileID: 110200000}
+  m_DstState: {fileID: 110204191}
+  m_TransitionDuration: 2.14285707
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: launch
     m_EventTreshold: 0
-    m_ExitTime: .75
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110117735
+--- !u!1101 &110108045
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110202311}
-  m_DstState: {fileID: 110281061}
+  m_SrcState: {fileID: 110237840}
+  m_DstState: {fileID: 110200000}
   m_TransitionDuration: 0
-  m_TransitionOffset: .00255831867
+  m_TransitionOffset: .0168741457
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: init
     m_EventTreshold: 0
-    m_ExitTime: .986079812
+    m_ExitTime: .984286427
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110197306
+--- !u!1101 &110177484
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110200000}
-  m_DstState: {fileID: 110202311}
+  m_SrcState: {fileID: 110258308}
+  m_DstState: {fileID: 110200000}
+  m_TransitionDuration: 0
+  m_TransitionOffset: .105212636
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: init
+    m_EventTreshold: 0
+    m_ExitTime: .999116659
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110183369
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110204191}
+  m_DstState: {fileID: 110237840}
   m_TransitionDuration: .517241418
   m_TransitionOffset: 0
   m_Conditions:
@@ -97,43 +123,58 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CardLaunch
+  m_Name: OpponentCardIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 7340896cd1d970644bc36114e1db23b4, type: 2}
+  - {fileID: 7400000, guid: 095fa2aa0fc94184ebb08a7909eec7f2, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -48, y: 156, z: 0}
+  m_Position: {x: -84, y: 120, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110202311
+--- !u!1102 &110204191
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CardRelease
+  m_Name: OpponentCardLaunch
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 8b4c68fed07646f4db500e88230c2f92, type: 2}
+  - {fileID: 7400000, guid: 575c58b9f7698f442a08d3d461c1ecfc, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 180, y: 156, z: 0}
+  m_Position: {x: 72, y: 204, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110281061
+--- !u!1102 &110237840
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CardIdle
+  m_Name: OpponentCardRelease
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 0abcc55f22072454b89ecc952e860030, type: 2}
+  - {fileID: 7400000, guid: bb8a53490a20b994099b59172ed59f5e, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 60, y: 48, z: 0}
+  m_Position: {x: 204, y: 120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110258308
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: OpponentStart
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: c24f452694a8b8f4f8b8cfa3985edc11, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -84, y: 36, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -144,29 +185,31 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110281061}
+  m_DefaultState: {fileID: 110258308}
   m_States:
+  - {fileID: 110204191}
   - {fileID: 110200000}
-  - {fileID: 110281061}
-  - {fileID: 110202311}
+  - {fileID: 110237840}
+  - {fileID: 110258308}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 110281061}
+      first: {fileID: 110258308}
       second:
-      - {fileID: 110100000}
+      - {fileID: 110177484}
+    data:
+      first: {fileID: 110204191}
+      second:
+      - {fileID: 110183369}
     data:
       first: {fileID: 110200000}
       second:
-      - {fileID: 110197306}
+      - {fileID: 110100000}
     data:
-      first: {fileID: 110202311}
+      first: {fileID: 110237840}
       second:
-      - {fileID: 110117735}
+      - {fileID: 110108045}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 72, y: -48, z: 0}
+  m_AnyStatePosition: {x: 144, y: -60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

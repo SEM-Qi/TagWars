@@ -16,14 +16,20 @@ public class Card : MonoBehaviour
     private Color validColor = new Color(0.09F, 0.62F, 0.51F);
     private Color failColor = new Color(0.75F, 0.22F, 0.17F);
 
+    public GameObject scripts;
+    private Game game;
+
+    private bool resetReady;
+
     void Start()
     {
+        game = scripts.GetComponent<Game>(); // Gotta fix that!
         cardAnim = GetComponent<Animator>();
     }
 
     public void Init()
     {
-
+        resetReady = false;
     }
 
     public void Launch()
@@ -35,6 +41,12 @@ public class Card : MonoBehaviour
     public void Release()
     {
         cardAnim.SetTrigger("release");
+    }
+
+    public void AfterRelease()
+    {
+        resetReady = true;
+        game.AfterRelease();
     }
 
     public void UpdateText(string input, bool valid)
@@ -58,5 +70,10 @@ public class Card : MonoBehaviour
         {
             image.color = Color.black;
         }
+    }
+
+    public bool IsResetReady()
+    {
+        return resetReady;
     }
 }

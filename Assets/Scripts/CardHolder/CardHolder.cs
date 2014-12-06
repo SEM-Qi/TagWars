@@ -10,6 +10,9 @@ public class CardHolder : MonoBehaviour {
     public GameObject queryManagerObject;
     private QueryManager queryManager;
 
+    public GameObject coolDownObject;
+    private CoolDown coolDown;
+
     public GameObject cardHolder;
     private Animator cardHolderAnim;
 
@@ -21,12 +24,14 @@ public class CardHolder : MonoBehaviour {
         cardHolderAnim = GetComponent<Animator>();
         card = cardObject.GetComponent<Card>();
         queryManager = queryManagerObject.GetComponent<QueryManager>();
+        coolDown = coolDownObject.GetComponent<CoolDown>();
     }
 
     public void NewCardHolder()
     {
         cardHolder.SetActive(true);
         cardHolderAnim.SetTrigger("newCardHolder");
+        NewCard();
         inputReady = true;  // should wait for end of animation
     }
 
@@ -39,13 +44,13 @@ public class CardHolder : MonoBehaviour {
 
     public void NewCard()
     {
-        // TODO: spawn card programatically
+        card.Init();
     }
 
     public void UpdateCard(string text)
     {
         // todo add code to check the current card
-        releaseReady = queryManager.IsValid(text);
+        releaseReady = queryManager.IsValid(text) && !coolDown.ContainsTag(text);
         card.UpdateText(text, releaseReady);
     }
 
@@ -67,5 +72,10 @@ public class CardHolder : MonoBehaviour {
     public bool IsReleaseReady() 
     { 
         return releaseReady; 
+    }
+
+    public bool IsResetReady()
+    {
+        return card.IsResetReady();
     }
 }

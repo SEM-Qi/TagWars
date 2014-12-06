@@ -54,6 +54,7 @@ public class Game : MonoBehaviour
                 CheckGameOver();
                 if (!inputField)
                 {   // if there is no inputfield
+                    newuiManager.InitOpponentCard();
                     newuiManager.NewCardHolder();
                     inputField = true;
                 }
@@ -75,7 +76,6 @@ public class Game : MonoBehaviour
                         else
                         {
                             ReleaseAttack();
-                            Debug.Log("boom!");
                         }
                     }
                 }
@@ -157,7 +157,7 @@ public class Game : MonoBehaviour
         opponent.SetAttack("");
 
         coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-        // uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
+        newuiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
     // Synchronization =================================================================
@@ -169,7 +169,7 @@ public class Game : MonoBehaviour
     public void SynchronizeAttackReleaseAnim()
     {
         newuiManager.ReleaseAttack();
-        // photonView.RPC("ReleaseEnemyAttack", PhotonTargets.Others);
+        photonView.RPC("ReleaseEnemyAttack", PhotonTargets.Others);
     }
 
     public void SynchronizeDamage()
@@ -187,14 +187,14 @@ public class Game : MonoBehaviour
     [RPC]
     public void PlayEnemyAttack(string input)
     {
-        //uiManager.PlayEnemyAttackAnim(input);
+        newuiManager.PlayEnemyAttackAnim(input);
         opponent.SetAttack(input); // Cancel Attack functionality
     }
 
     [RPC]
     public void ReleaseEnemyAttack()
     {
-        //uiManager.ReleaseEnemyAttackAnim();
+        newuiManager.ReleaseEnemyAttackAnim();
         opponent.SetAttack("");
     }
 
