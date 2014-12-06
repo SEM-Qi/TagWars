@@ -10,10 +10,12 @@ public class EnemyCard : MonoBehaviour {
     public Image image;
 
     private Animator cardAnim;
+    private Randomizer randomizer;
 
     void Start()
     {
         cardAnim = GetComponent<Animator>();
+        randomizer = GetComponent<Randomizer>();
     }
 
     public void Init()
@@ -23,12 +25,13 @@ public class EnemyCard : MonoBehaviour {
 
     public void Launch(string input)
     {
-        animationLabel.text = input;
+        randomizer.Randomize(input);
         cardAnim.SetTrigger("launch");
     }
 
     public void Release()
     {
+        randomizer.StopRandomize();
         cardAnim.SetTrigger("release");
     }
 

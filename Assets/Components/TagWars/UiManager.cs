@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class NewuiManager : MonoBehaviour {
+public class UiManager : MonoBehaviour {
 
     // CountDown =======================================================
     public GameObject countDownObject;

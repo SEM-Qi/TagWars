@@ -15,7 +15,7 @@ public class Game : MonoBehaviour
     
     private Attack attack;
     private PhotonView photonView;
-    private NewuiManager newuiManager;
+    private UiManager UiManager;
 
     // no MonoBehaviour
     private Player player;
@@ -28,7 +28,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        newuiManager = GetComponent<NewuiManager>();
+        UiManager = GetComponent<UiManager>();
         inputListener = GetComponent<InputListener>();
         queryManager = queryManagerObject.GetComponent<QueryManager>();
         attack = GetComponent<Attack>();
@@ -40,27 +40,27 @@ public class Game : MonoBehaviour
         opponent = new Player("@evil_aure", 100);
 
         // Updates the player name on UI
-        newuiManager.InitPlayerNames(player.GetName(), opponent.GetName());
+        UiManager.InitPlayerNames(player.GetName(), opponent.GetName());
     }
 
     void Update()
     {
         if (!gameOver)
         {
-            if (newuiManager.TimerOver())
+            if (UiManager.TimerOver())
             {   // if the timer is done
                 CheckGameOver();
                 if (!inputField)
                 {   // if there is no inputfield
-                    newuiManager.InitOpponentCard();
-                    newuiManager.NewCardHolder();
+                    UiManager.InitOpponentCard();
+                    UiManager.NewCardHolder();
                     inputField = true;
                 }
                 else
                 {
                     if (Input.GetKeyDown("return") && !attackLaunched)
                     {
-                        if (newuiManager.IsReleaseReady())
+                        if (UiManager.IsReleaseReady())
                         {   // compare the current attacks
                             NewAttack();
                         }
@@ -86,12 +86,12 @@ public class Game : MonoBehaviour
         if (player.GetHealth() <= 0)
         {
             gameOver = true;
-            newuiManager.DisplayGameOver("defeat");
+            UiManager.DisplayGameOver("defeat");
         }
         else if (opponent.GetHealth() <= 0)
         {
             gameOver = true;
-            newuiManager.DisplayGameOver("victory");
+            UiManager.DisplayGameOver("victory");
         }
         else
         {
@@ -101,7 +101,7 @@ public class Game : MonoBehaviour
 
     private void NewAttack()
     {
-        newuiManager.LaunchAttack();
+        UiManager.LaunchAttack();
         SynchronizeNewAttackAnim();         // Synchronization
         player.SetAttack(inputListener.GetInput());
         StartCoroutine(queryManager.QueryDamageDistribution(inputListener.GetInput(), OnResponce));
@@ -135,18 +135,18 @@ public class Game : MonoBehaviour
         inputField = false;
        
         // ui update
-        newuiManager.UpdateOpponentHealthBar(opponent.GetHealth());
+        UiManager.UpdateOpponentHealthBar(opponent.GetHealth());
 
         // we should make sure we got a responce first:
         coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-        newuiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
+        UiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
     [RPC]
     public void CancelAttack()
     {
         // Add damage reflection code 
-        newuiManager.CancelAttackAnim();
+        UiManager.CancelAttackAnim();
         inputField = false;
         attackLaunched = false;
         Debug.Log("CANCEL ATTACK");
@@ -155,7 +155,7 @@ public class Game : MonoBehaviour
         opponent.SetAttack("");
 
         coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-        newuiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
+        UiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
     }
 
     // Synchronization =================================================================
@@ -166,7 +166,7 @@ public class Game : MonoBehaviour
 
     public void SynchronizeAttackReleaseAnim()
     {
-        newuiManager.ReleaseAttack();
+        UiManager.ReleaseAttack();
         photonView.RPC("ReleaseEnemyAttack", PhotonTargets.Others);
     }
 
@@ -185,14 +185,14 @@ public class Game : MonoBehaviour
     [RPC]
     public void PlayEnemyAttack(string input)
     {
-        newuiManager.PlayEnemyAttackAnim(input);
+        UiManager.PlayEnemyAttackAnim(input);
         opponent.SetAttack(input); // Cancel Attack functionality
     }
 
     [RPC]
     public void ReleaseEnemyAttack()
     {
-        newuiManager.ReleaseEnemyAttackAnim();
+        UiManager.ReleaseEnemyAttackAnim();
         opponent.SetAttack("");
     }
 
@@ -200,7 +200,7 @@ public class Game : MonoBehaviour
     public void DealDamage(int damage)
     {
         attack.DealDamage(player, damage);
-        newuiManager.UpdatePlayerHealthBar(player.GetHealth());
+        UiManager.UpdatePlayerHealthBar(player.GetHealth());
     }
 
     // ==================================================================================
