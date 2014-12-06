@@ -13,8 +13,8 @@ public class Card : MonoBehaviour
 
     private Animator cardAnim;
 
-    private Color validColor = new Color(0.09F, 0.62F, 0.51F);
-    private Color failColor = new Color(0.75F, 0.22F, 0.17F);
+    private Color validColor = new Color(0.61F, 0.80F, 0.40F);
+    private Color failColor = new Color(0.90F, 0.29F, 0.10F);
 
     public GameObject scripts;
     private Game game;

@@ -29,6 +29,10 @@ public class UiManager : MonoBehaviour {
     // EnemyCard =======================================================
     public GameObject enemyCardObject;
     private EnemyCard enemyCard;
+
+    // TagCloud ========================================================
+    public GameObject tagCloudObject;
+    private TagCloud tagCloud;
     // =================================================================
 
 	void Start () {
@@ -45,6 +49,8 @@ public class UiManager : MonoBehaviour {
         gameOverPanel = gameOverPanelObject.GetComponent<GameOverPanel>();
 
         enemyCard = enemyCardObject.GetComponent<EnemyCard>();
+
+        tagCloud = tagCloudObject.GetComponent<TagCloud>();
 	}
 
     // CountDown =======================================================
@@ -98,5 +104,10 @@ public class UiManager : MonoBehaviour {
     public void PlayEnemyAttackAnim(string input) { enemyCard.Launch(input); }
     public void ReleaseEnemyAttackAnim() { enemyCard.Release(); }
     public void InitOpponentCard() { enemyCard.Init(); }
+    // =================================================================
+
+    // Tag Cloud =======================================================
+    public void NewTagCloud() { tagCloud.Init(); }
+    public void RemoveTagCloud() { tagCloud.Cancel(); }
     // =================================================================
 }
