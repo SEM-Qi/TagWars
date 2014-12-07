@@ -18,13 +18,19 @@ public class Card : MonoBehaviour
 
     public GameObject scripts;
     private Game game;
+    private Attack attack;
 
     private bool resetReady;
+
+    private Vector3 originalScale;
 
     void Start()
     {
         game = scripts.GetComponent<Game>(); // Gotta fix that!
+        attack = scripts.GetComponent<Attack>();
+
         cardAnim = GetComponent<Animator>();
+        originalScale = transform.localScale;
     }
 
     public void Init()
@@ -36,11 +42,26 @@ public class Card : MonoBehaviour
     {
         animationLabel.text = label.text;
         cardAnim.SetTrigger("launch");
+        InvokeRepeating("Resize", 1, 1);
+    }
+
+    private void Resize()
+    {
+        float dimension = (attack.GetDamage() / 150f) + 1;
+        Debug.Log(dimension);
+        transform.localScale = new Vector3(dimension, dimension, 0);
     }
 
     public void Release()
     {
+        CancelInvoke();
+        ResetSize();
         cardAnim.SetTrigger("release");
+    }
+
+    public void ResetSize()
+    {
+        transform.localScale = originalScale;
     }
 
     public void Cancel()

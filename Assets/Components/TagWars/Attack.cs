@@ -23,8 +23,7 @@ public class Attack : MonoBehaviour
     public void UpdateDamage()
     {
         chargeTime = 0;
-        CalculateDamage();
-        InvokeRepeating("CalculateDamage", 1F, 1F);
+        InvokeRepeating("CalculateDamage", 0, 1F);
     }
 
     private void CalculateDamage()
@@ -34,7 +33,7 @@ public class Attack : MonoBehaviour
             // balancing =======================
             if (chargeTime == 0 && distribution[chargeTime] == 0) 
             {
-                damage += (GetStrength() / 10) + 1;
+                damage += (GetStrength() / 20) + 1;
             }
             // ==================================
             damage += distribution[chargeTime];
