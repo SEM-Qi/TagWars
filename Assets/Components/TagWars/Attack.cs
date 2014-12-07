@@ -23,14 +23,20 @@ public class Attack : MonoBehaviour
     public void UpdateDamage()
     {
         chargeTime = 0;
+        CalculateDamage();
         InvokeRepeating("CalculateDamage", 1F, 1F);
     }
 
     private void CalculateDamage()
     {
         if (chargeTime < distribution.Length)
-        {
-            if (chargeTime == 1) { damage += GetStrength() / 10; }
+        {   // deal at least some damage
+            // balancing =======================
+            if (chargeTime == 0 && distribution[chargeTime] == 0) 
+            {
+                damage += (GetStrength() / 10) + 1;
+            }
+            // ==================================
             damage += distribution[chargeTime];
             chargeTime++;
             Debug.Log(damage);

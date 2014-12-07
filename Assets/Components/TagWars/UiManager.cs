@@ -79,16 +79,12 @@ public class UiManager : MonoBehaviour {
 
     // Player Names ====================================================
     public Text playerNameLabel;
-    public Text playerNameWhiteLabel;
     public Text opponentNameLabel;
-    public Text opponentNameWhiteLabel;
 
     public void InitPlayerNames(string playerName, string opponentName) 
     {
         playerNameLabel.text = playerName;
-        playerNameWhiteLabel.text = playerName;
         opponentNameLabel.text = opponentName;
-        opponentNameWhiteLabel.text = opponentName;
     }
     // =================================================================
 
