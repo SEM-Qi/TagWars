@@ -890,7 +890,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countDownObject: {fileID: 1924069228}
-  cardHolderObject: {fileID: 1010996048}
   playerHealthBarObject: {fileID: 144309875}
   opponentHealthBarObject: {fileID: 2120641306}
   gameOverPanelObject: {fileID: 428635119}
@@ -4641,7 +4640,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCardObject: {fileID: 1704910622}
-  scripts: {fileID: 310959033}
 --- !u!1 &2090376154
 GameObject:
   m_ObjectHideFlags: 0

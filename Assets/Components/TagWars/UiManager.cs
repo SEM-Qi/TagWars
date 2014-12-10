@@ -8,10 +8,6 @@ public class UiManager : MonoBehaviour {
     public GameObject countDownObject;
     private CountDown countDown;
 
-    // Cards ===========================================================
-    public GameObject cardHolderObject;
-    private CardHolder cardHolder;
-
     // HealthBars ======================================================
     public GameObject playerHealthBarObject;
     private HealthBar playerHealthBar;
@@ -39,8 +35,6 @@ public class UiManager : MonoBehaviour {
 
         countDown = countDownObject.GetComponent<CountDown>();
 
-        cardHolder = cardHolderObject.GetComponent<CardHolder>();
-
         playerHealthBar = playerHealthBarObject.GetComponent<HealthBar>();
         opponentHealthBar = opponentHealthBarObject.GetComponent<HealthBar>();
 
@@ -55,12 +49,6 @@ public class UiManager : MonoBehaviour {
 
     // CountDown =======================================================
     public bool CountDown() { return !countDown.TimerOver(); }
-    //==================================================================
-
-    // Cards ===========================================================
-    public bool IsReleaseReady() { return cardHolder.IsReleaseReady(); }
-    public void ReleaseAttack() { cardHolder.ReleaseCards(); }
-    public bool IsInputReady() { return cardHolder.IsInputReady(); }
     //==================================================================
 
     // HealthBars ======================================================
@@ -85,14 +73,6 @@ public class UiManager : MonoBehaviour {
     {
         playerNameLabel.text = playerName;
         opponentNameLabel.text = opponentName;
-    }
-    // =================================================================
-
-    // Cancel Attack ===================================================
-    public void CancelAttackAnim()
-    {
-        cardHolder.CancelAttack();
-        enemyCard.Cancel();
     }
     // =================================================================
 

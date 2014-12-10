@@ -7,14 +7,18 @@ public class CoolDown : MonoBehaviour
 
     private static Dictionary<string, int> usedTags = new Dictionary<string, int>();
 
+    private static CoolDownManager coolDownManager;
+
     void Start()
     {
+        coolDownManager = GetComponent<CoolDownManager>();
         InvokeRepeating("Timer", 0, 1);
     }
 
     public static void AddCoolDown(string tag, int strength)
     {
         usedTags.Add(tag, strength);
+        coolDownManager.AddCoolDownBar(tag, strength);
     }
 
     public static bool ContainsTag(string tag)
@@ -31,7 +35,6 @@ public class CoolDown : MonoBehaviour
             {
                 usedTags[key] = usedTags[key] - 1;
             }
-
             RemoveWhenZero(usedTags);
         }
     }

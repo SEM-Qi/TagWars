@@ -44,11 +44,6 @@ public class CardHolder : MonoBehaviour {
         card.Init();
     }
 
-    public void CancelAttack()
-    {
-        card.Sync("Cancel");
-    }
-
     // updates the card and tells it if it is valid or not
     public void UpdateCard(string text)
     {
@@ -63,18 +58,20 @@ public class CardHolder : MonoBehaviour {
         card.Launch(name, distribution);
         cardHolderAnim.ResetTrigger("newCardHolder");
         cardHolderAnim.SetTrigger("removeCardHolder");
-        
     }
 
-    public void ReleaseCards()
+    public void HandleAttack()
     {
-        card.Release();
+        card.Attack();
     }
+
+    public bool IsCanceled() { return card.IsCanceled(); }
 
     public int TotalDamage()
     {
         return card.GetDamage();
     }
+
     // Getters & Setters ======================================
     public bool IsInputReady() { return inputReady; }
     public bool IsReleaseReady() { return releaseReady; }

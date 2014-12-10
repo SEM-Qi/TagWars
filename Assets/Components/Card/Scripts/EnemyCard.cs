@@ -38,8 +38,8 @@ public class EnemyCard : MonoBehaviour {
     public void Release()
     {
         randomizer.StopRandomize();
+       // cardAnim.SetTrigger("launch");  // just in case Launch didn't got triggered
         cardAnim.SetTrigger("release");
-        cardAnim.ResetTrigger("launch");
         cardAnim.ResetTrigger("cancel");
     }
 

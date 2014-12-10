@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Card : MonoBehaviour {
+public class Card : MonoBehaviour
+{
 
-    private string enemyName;
-    private string name;
+    private string enemyTag;
+    private string cardTag;
     private int[] distribution;
     private int damage;
     private int chargeTime;
     private int strength;
 
+    /* can't block if the enemy has released 
+     * the attack or if you have already 
+     * released the attack */
+
+    private bool enemyRelease = false;
+    private bool released = false;
+    private bool canceled = false;
     private bool releaseOver = true;
 
     private CardUI cardUI;
@@ -18,14 +26,8 @@ public class Card : MonoBehaviour {
     public GameObject enemyCardObject;
     private EnemyCard enemyCard;
 
-    // will be fixed when the cooldowns are fixed
-    public GameObject scripts;
-    private UiManager ui;
-
     void Start()
     {
-        ui = scripts.GetComponent<UiManager>();
-
         enemyCard = enemyCardObject.GetComponent<EnemyCard>();
         cardUI = GetComponent<CardUI>();
         photonView = GetComponent<PhotonView>();
@@ -33,23 +35,48 @@ public class Card : MonoBehaviour {
 
     public void Init()
     {
+        released = false;
+        canceled = false;
         this.releaseOver = false;
-        this.name = "";
-        this.enemyName = "";
+        this.cardTag = "";
+        this.enemyTag = "";
         this.damage = 0;
         this.chargeTime = 0;
         photonView.RPC("InitEnemyCard", PhotonTargets.Others);
     }
 
-    public void Launch(string name, int[] distribution)
+    public void Launch(string tag, int[] distribution)
     {
-        this.name = name;
+        this.cardTag = tag;
         this.distribution = distribution;
         this.strength = CalculateStrength();
 
         cardUI.Launch();
-        photonView.RPC("EnemyLaunch", PhotonTargets.Others, name);
+        photonView.RPC("EnemyLaunch", PhotonTargets.Others, cardTag);
         InvokeRepeating("UpdateDamage", 0, 1F); // Update Damage every second
+    }
+
+    public void Attack()
+    {   // if the player hasn't released the attack yet
+        if (!released)
+        {
+            if (cardTag != "" && cardTag == enemyTag && !enemyRelease)
+            {   // Cancel Attack if the enemy hasn't released his attack yet
+                Sync("Cancel");
+                Debug.Log("Cancel");
+            }
+            else
+            {
+                if (!Input.GetKey("return"))
+                {   // Release Attack
+                    CancelInvoke();
+                    cardUI.Release();
+                    released = true;
+                    Debug.LogError("RELEASED!!");
+                    photonView.RPC("EnemyRelease", PhotonTargets.Others);
+                }
+            }
+        }
     }
 
     private void UpdateDamage()
@@ -62,7 +89,7 @@ public class Card : MonoBehaviour {
             }
             damage += distribution[chargeTime] * 2;
             chargeTime++;
-            
+
             cardUI.Resize(damage);
             Debug.Log(damage);
         }
@@ -94,56 +121,54 @@ public class Card : MonoBehaviour {
     [RPC]
     private void Cancel()
     {
+        Debug.LogError("CANCELED!!");
         CancelInvoke();
         cardUI.Cancel();
         enemyCard.Cancel();
 
-        // cooldown system needs to be fixed
-        CoolDown.AddCoolDown(name, strength);
-        ui.AddCoolDownBar(name, strength);
-        // -------------------------------
+        CoolDown.AddCoolDown(cardTag, strength);
 
-        name = "";
-        enemyName = "";
+        cardTag = "";
+        enemyTag = "";
         releaseOver = true;
+        canceled = true;
     }
 
     [RPC]
-    private void InitEnemyCard() { enemyCard.Init(); }
+    private void InitEnemyCard()
+    {
+        Debug.Log("enemyReset");
+        enemyCard.Init();
+        enemyRelease = false;
+    }
 
     [RPC]
-    private void EnemyLaunch(string tag) 
+    private void EnemyLaunch(string tag)
     {
         enemyCard.Launch(tag);
-        enemyName = tag;
+        enemyTag = tag;
     }
 
     [RPC]
-    private void EnemyRelease() 
+    private void EnemyRelease()
     {
+        Debug.LogError("RELEASED!!");
+        enemyRelease = true;
         enemyCard.Release();
-        enemyName = "";
-    }
-
-    public void Release()
-    {
-        CancelInvoke();
-        cardUI.Release();
-
-        photonView.RPC("EnemyRelease", PhotonTargets.Others);
+        enemyTag = "";
     }
 
     public void AfterRelease()
     {
         releaseOver = true;
-        CoolDown.AddCoolDown(name, strength);
-        ui.AddCoolDownBar(name, strength);
+        CoolDown.AddCoolDown(cardTag, strength);
     }
 
     // Getters & Setters ======================================
     public int GetDamage() { return damage; }
     public bool ReleaseOver() { return releaseOver; }
-    public string GetAttack() { return name; }
-    public string GetEnemyAttack() { return enemyName; }
+    public string GetAttack() { return cardTag; }
+    public string GetEnemyAttack() { return enemyTag; }
+    public bool IsCanceled() { return canceled; }
     // ========================================================
 }

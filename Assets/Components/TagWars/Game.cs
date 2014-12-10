@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Game : MonoBehaviour
 {
-    private bool queryResponce = false;
-    private bool enterReleased = false;
-
     private UiManager ui;
 
     public GameObject cardHolderObject;
@@ -42,7 +39,7 @@ public class Game : MonoBehaviour
                 GameOver();       
                 if (cardHolder.IsReleaseOver())
                 {   // if the release animation is over
-                    if (!attackCanceled)
+                    if (!cardHolder.IsCanceled())
                     {   // & attack is not canceled: deal damage
                         int damage = cardHolder.TotalDamage();
                         opponent.UpdateHealth(damage);
@@ -66,21 +63,8 @@ public class Game : MonoBehaviour
                     }
                 }
                 else
-                {   // the following piece of code should be moved to cardHolder
-                    // cancel attack
-                    if (cardHolder.GetAttack() != "" && cardHolder.GetAttack() == cardHolder.GetEnemyAttack())
-                    {
-                        cardHolder.CancelAttack();
-                        attackCanceled = true;
-                    }
-                    else
-                    {
-                        if (!Input.GetKey("return")) 
-                        {   // repeats unecessarly
-                            cardHolder.ReleaseCards();
-                            attackCanceled = false;
-                        }
-                    }
+                {   // Cancel or Release attack
+                    cardHolder.HandleAttack();
                 }
             }
         }

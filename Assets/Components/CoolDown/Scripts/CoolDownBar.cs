@@ -10,10 +10,9 @@ public class CoolDownBar : MonoBehaviour
     public Text label;
 
     private float width = 1F;
-    private bool done = false;
     private float normalizedPercentage;
 
-    private int coolDownID;
+    private int coolDownID; // position ID
 
     public void Init(int id, string tag, int strength)
     {
@@ -24,6 +23,7 @@ public class CoolDownBar : MonoBehaviour
         InvokeRepeating("UpdateWidth", 0, 0.0125F); // 80X per sec
     }
 
+    // to do replace with quaternion animation
     private void UpdateWidth()
     {
         if (width > 0F)
@@ -32,8 +32,8 @@ public class CoolDownBar : MonoBehaviour
             width = width - normalizedPercentage;
         }
         else
-        {
-            done = true;
+        {   // remove the cooldown
+            Destroy(gameObject); 
         }
     }
 
@@ -44,6 +44,5 @@ public class CoolDownBar : MonoBehaviour
     }
 
     // Getters & Setters
-    public bool IsDone() { return done; }
     public int GetID() { return coolDownID; }
 }
