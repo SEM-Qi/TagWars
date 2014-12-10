@@ -15,7 +15,9 @@ public class InputListener : MonoBehaviour
     private List<char> input = new List<char>();
 
     private char[] forbidenChars = { ' ', '#', '!', '?', '$', '%', '^', '&', '*', '+', '.' };
-    private string inputText = "";      // curent input
+    private static string inputText = "";      // curent input
+
+    private static bool listen = false; 
 
     void Start()
     {
@@ -25,12 +27,13 @@ public class InputListener : MonoBehaviour
     // Input Loop -----------------------------
     void Update()
     {
-        if (cardHolder.IsResetReady())
+        if (cardHolder.IsReleaseOver())
         {
             input.Clear();
             inputText = "";
+            
         }
-        if (cardHolder.IsInputReady())
+        if (listen)
         {
             foreach (char c in Input.inputString)
             {   // if the char is valid
@@ -53,31 +56,6 @@ public class InputListener : MonoBehaviour
         }
     }
 
-    // Helper Methods ----------------------------
-    // checks validity & update the input field Text & color
-    //public void IsValid(string input)
-    //{
-    //    if (input.Length > 1)
-    //    {
-    //        if (queryManager.GetValidTags().Contains(input.Substring(1))
-    //            && !coolDown.GetUsedTags().Contains(input))
-    //        {   // valid 
-    //            uiManager.SetInputColorValid();
-    //            isValid = true;
-    //        }
-    //        else
-    //        {   // not valid
-    //            uiManager.SetInputColorFail();
-    //            isValid = false;
-    //        }
-    //    }
-    //    else
-    //    {   // just '#'
-    //        uiManager.ResetInputColor();
-    //        isValid = false;
-    //    }
-    //}
-
     public void ResetInput()
     {
         input.Clear();
@@ -96,19 +74,7 @@ public class InputListener : MonoBehaviour
         return string.Join("", stringArray);
     }
 
-    private static string MakeString(int[] a)
-    {
-        string[] stringArray = new string[a.Length];
-
-        for (int i = 0; i < a.Length; i++)
-        {
-            stringArray[i] = a[i].ToString();
-        }
-        return string.Join(",", stringArray);
-    }
-
     // Getters & Setters ----------------------------
-    public string GetInput() { return inputText; }
-
-   // public bool IsValid() { return isValid; }
+    public static string GetInput() { return inputText; }
+    public static void Listen(bool b) { listen = b; }
 }

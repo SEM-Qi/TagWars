@@ -1,113 +1,122 @@
-﻿using System.Collections;
-using UnityEngine;
-
-/* Game Class contains the main loop */
+﻿using UnityEngine;
+using System.Collections;
 
 public class Game : MonoBehaviour
 {
-    public GameObject queryManagerObject;
-    private QueryManager queryManager;
+    private bool queryResponce = false;
+    private bool enterReleased = false;
 
-    public GameObject coolDownManagerObject;
-    private CoolDown coolDown;
+    private UiManager ui;
 
-    private InputListener inputListener;
-    
-    private Attack attack;
+    public GameObject cardHolderObject;
+    private CardHolder cardHolder;
+
     private PhotonView photonView;
-    private UiManager uiManager;
 
     // no MonoBehaviour
     private Player player;
     private Player opponent;
 
-    // loop control values
-    private bool gameOver = false;
-    private bool inputField = false;
-    private bool attackLaunched = false;
+    private bool attackCanceled;
 
     void Start()
     {
-        uiManager = GetComponent<UiManager>();
-        inputListener = GetComponent<InputListener>();
-        queryManager = queryManagerObject.GetComponent<QueryManager>();
-        attack = GetComponent<Attack>();
         photonView = GetComponent<PhotonView>();
-        coolDown = coolDownManagerObject.GetComponent<CoolDown>();
+        cardHolder = cardHolderObject.GetComponent<CardHolder>();
+        ui = GetComponent<UiManager>();
 
         // init players
         player = new Player("@aure", 100);
         opponent = new Player("@evil_aure", 100);
 
         // Updates the player name on UI
-        uiManager.InitPlayerNames(player.GetName(), opponent.GetName());
+        ui.InitPlayerNames(player.GetName(), opponent.GetName());
     }
 
     void Update()
     {
-        if (!gameOver)
-        {
-            if (uiManager.TimerOver())
-            {   // if the timer is done
-                CheckGameOver();
-                if (!inputField)
-                {   // if there is no inputfield
-                    uiManager.InitOpponentCard();
-                    uiManager.NewCardHolder();
-                    uiManager.NewTagCloud();
-                    inputField = true;
+        if (!GameOver())
+        {   // if there is no CountDown
+            if (!ui.CountDown())
+            {     // checks game over
+                GameOver();       
+                if (cardHolder.IsReleaseOver())
+                {   // if the release animation is over
+                    if (!attackCanceled)
+                    {   // & attack is not canceled: deal damage
+                        int damage = cardHolder.TotalDamage();
+                        opponent.UpdateHealth(damage);
+                        photonView.RPC("UpdateHealth", PhotonTargets.Others, damage);
+                        ui.UpdateOpponentHealthBar(opponent.GetHealth());
+                    }
+                    // init cardholder with a card
+                    cardHolder.Init();  
+                    ui.NewTagCloud();
+                }
+
+                // if some card is active
+                if (cardHolder.IsInputReady())
+                {   // listen to input
+                    InputListener.Listen(true);
+                    if (Input.GetKeyDown("return") && cardHolder.IsReleaseReady())
+                    {
+                        InputListener.Listen(false);
+                        StartCoroutine(QueryManager.QueryDamageDistribution(InputListener.GetInput(), OnResponce));
+                        ui.RemoveTagCloud();
+                    }
                 }
                 else
-                {
-                    if (Input.GetKeyDown("return") && !attackLaunched)
+                {   // the following piece of code should be moved to cardHolder
+                    // cancel attack
+                    if (cardHolder.GetAttack() != "" && cardHolder.GetAttack() == cardHolder.GetEnemyAttack())
                     {
-                        if (uiManager.IsReleaseReady())
-                        {   // compare the current attacks
-                            uiManager.RemoveTagCloud();
-                            NewAttack();
-                        }
+                        cardHolder.CancelAttack();
+                        attackCanceled = true;
                     }
-                    else if (!Input.GetKey("return") && attackLaunched)
+                    else
                     {
-                        if (player.GetAttack() != "" && player.GetAttack() == opponent.GetAttack())
-                        {
-                            SynchronizeCancelAttack();
-                        }
-                        else
-                        {
-                            ReleaseAttack();
+                        if (!Input.GetKey("return")) 
+                        {   // repeats unecessarly
+                            cardHolder.ReleaseCards();
+                            attackCanceled = false;
                         }
                     }
                 }
             }
         }
+        else
+        {
+            if (ui.ExitGame())
+            {
+                NetworkManager.Disconnect();
+                Application.LoadLevel("MainMenu");
+            }
+        }
     }
 
-    private void CheckGameOver()
+    private bool GameOver()
     {
         if (player.GetHealth() <= 0)
         {
-            gameOver = true;
-            uiManager.DisplayGameOver("defeat");
+            ui.DisplayGameOver("defeat");
+            return true;
         }
         else if (opponent.GetHealth() <= 0)
         {
-            gameOver = true;
-            uiManager.DisplayGameOver("victory");
+            ui.DisplayGameOver("victory");
+            return true;
         }
         else
         {
-            gameOver = false;
+            return false;
         }
     }
 
-    private void NewAttack()
+    [RPC]
+    private void UpdateHealth(int damage)
     {
-        uiManager.LaunchAttack();
-        SynchronizeNewAttackAnim();         // Synchronization
-        player.SetAttack(inputListener.GetInput());
-        StartCoroutine(queryManager.QueryDamageDistribution(inputListener.GetInput(), OnResponce));
-        Debug.Log("LAUNCH ATTACK");
+        player.UpdateHealth(damage);
+        ui.UpdatePlayerHealthBar(player.GetHealth());
     }
 
     // ================================================================================
@@ -115,95 +124,9 @@ public class Game : MonoBehaviour
      * it gets executed when we get a responce */
     private void OnResponce()
     {
-        attack.Init(queryManager.GetDistribution());
-        attack.UpdateDamage();
-        attackLaunched = true;
-        Debug.Log("CHARGE ATTACK");
+        cardHolder.LaunchCard(InputListener.GetInput(), QueryManager.GetDistribution());
+        // cardholder is no longer input ready
+        Debug.Log("CHARGING ATTACK");
     }
     // ================================================================================
-
-    private void ReleaseAttack()
-    {
-        attack.CancelDamageUpdate();
-        SynchronizeAttackReleaseAnim();     // Synchronization
-        attackLaunched = false;
-        Debug.Log("RELEASE ATTACK");
-    }
-
-    // when the release animation ends
-    public void AfterRelease()
-    {
-        SynchronizeDamage();                // Synchronization
-        inputField = false;
-       
-        // ui update
-        uiManager.UpdateOpponentHealthBar(opponent.GetHealth());
-
-        // we should make sure we got a responce first:
-        coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
-    }
-
-    [RPC]
-    public void CancelAttack()
-    {
-        // Add damage reflection code 
-        uiManager.CancelAttackAnim();
-        inputField = false;
-        attackLaunched = false;
-        Debug.Log("CANCEL ATTACK");
-        attack.CancelDamageUpdate();
-        player.SetAttack("");
-        opponent.SetAttack("");
-
-        coolDown.AddCoolDown(inputListener.GetInput(), attack.GetStrength());
-        uiManager.AddCoolDownBar(inputListener.GetInput(), attack.GetStrength());
-    }
-
-    // Synchronization =================================================================
-    public void SynchronizeNewAttackAnim()
-    {
-        photonView.RPC("PlayEnemyAttack", PhotonTargets.Others, inputListener.GetInput());
-    }
-
-    public void SynchronizeAttackReleaseAnim()
-    {
-        uiManager.ReleaseAttack();
-        photonView.RPC("ReleaseEnemyAttack", PhotonTargets.Others);
-    }
-
-    public void SynchronizeDamage()
-    {
-        int damage = attack.GetDamage();
-        attack.DealDamage(opponent, damage);
-        photonView.RPC("DealDamage", PhotonTargets.Others, damage);
-    }
-
-    public void SynchronizeCancelAttack()
-    {
-        photonView.RPC("CancelAttack", PhotonTargets.All);
-    }
-
-    [RPC]
-    public void PlayEnemyAttack(string input)
-    {
-        uiManager.PlayEnemyAttackAnim(input);
-        opponent.SetAttack(input); // Cancel Attack functionality
-    }
-
-    [RPC]
-    public void ReleaseEnemyAttack()
-    {
-        uiManager.ReleaseEnemyAttackAnim();
-        opponent.SetAttack("");
-    }
-
-    [RPC]
-    public void DealDamage(int damage)
-    {
-        attack.DealDamage(player, damage);
-        uiManager.UpdatePlayerHealthBar(player.GetHealth());
-    }
-
-    // ==================================================================================
 }

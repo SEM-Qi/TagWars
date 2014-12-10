@@ -54,14 +54,13 @@ public class UiManager : MonoBehaviour {
 	}
 
     // CountDown =======================================================
-    public bool TimerOver() { return countDown.TimerOver(); }
+    public bool CountDown() { return !countDown.TimerOver(); }
     //==================================================================
 
     // Cards ===========================================================
     public bool IsReleaseReady() { return cardHolder.IsReleaseReady(); }
-    public void NewCardHolder() { cardHolder.NewCardHolder(); }
-    public void LaunchAttack() { cardHolder.RemoveCardHolder(); }
     public void ReleaseAttack() { cardHolder.ReleaseCards(); }
+    public bool IsInputReady() { return cardHolder.IsInputReady(); }
     //==================================================================
 
     // HealthBars ======================================================
@@ -71,6 +70,7 @@ public class UiManager : MonoBehaviour {
 
     // Game Over =======================================================
     public void DisplayGameOver(string victory) { gameOverPanel.Init(victory); }
+    public bool ExitGame() { return gameOverPanel.ExitGame(); }
     //==================================================================
 
     // CoolDown ========================================================

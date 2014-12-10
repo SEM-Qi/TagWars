@@ -11,14 +11,8 @@ public class TagWars : MonoBehaviour
 
     void Start()
     {
-        // Initializing UI
         mainMenu = mainMenuObject.GetComponent<MainMenu>();
         networkManager = GetComponent<NetworkManager>();
-        if (networkManager.MultiplayerStarted())
-        {
-            networkManager.Disconnect();
-            
-        }
     }
 
     void Update()

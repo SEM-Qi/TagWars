@@ -8,6 +8,13 @@ public class GameOverPanel : MonoBehaviour {
     public GameObject panel;
     public Text panelLabel;
 
+    private  bool exitGame;
+
+    void Start()
+    {
+        exitGame = false;
+    }
+
 	public void Init (string condition) {
         panel.SetActive(true);
 
@@ -20,11 +27,8 @@ public class GameOverPanel : MonoBehaviour {
             panelLabel.text = "#Defeat!";
         }
 
-        mainMenu.onClick.AddListener(() => { Debug.Log("MAIN_MENU"); Exit(); Application.LoadLevel("MainMenu"); });
+        mainMenu.onClick.AddListener(() => { exitGame = true; });
 	}
 
-    private void Exit()
-    {
-        panel.SetActive(false);
-    }
+    public bool ExitGame() { return exitGame; }
 }

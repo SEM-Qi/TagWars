@@ -20,23 +20,34 @@ public class EnemyCard : MonoBehaviour {
 
     public void Init()
     {
+       animationLabel.text = "";
        cardAnim.SetTrigger("init");
+       cardAnim.ResetTrigger("launch");
+       cardAnim.ResetTrigger("release");
+       cardAnim.ResetTrigger("cancel");
     }
 
     public void Launch(string input)
     {
         randomizer.Randomize(input);
         cardAnim.SetTrigger("launch");
+        cardAnim.ResetTrigger("release");
+        cardAnim.ResetTrigger("cancel");
     }
 
     public void Release()
     {
         randomizer.StopRandomize();
         cardAnim.SetTrigger("release");
+        cardAnim.ResetTrigger("launch");
+        cardAnim.ResetTrigger("cancel");
     }
 
     public void Cancel()
     {
+        animationLabel.text = "";
         cardAnim.SetTrigger("cancel");
+        cardAnim.ResetTrigger("launch");
+        cardAnim.ResetTrigger("release");
     }
 }

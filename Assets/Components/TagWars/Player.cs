@@ -16,6 +16,11 @@ public class Player
         this.health = health;
     }
 
+    public void UpdateHealth(int damage)
+    {
+        health = health - damage;
+    }
+
     // Getters & Setters
     public string GetName() { return name; }
 

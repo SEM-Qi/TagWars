@@ -5,19 +5,19 @@ using System.Collections.Generic;
 public class CoolDown : MonoBehaviour
 {
 
-    private Dictionary<string, int> usedTags = new Dictionary<string, int>();
+    private static Dictionary<string, int> usedTags = new Dictionary<string, int>();
 
     void Start()
     {
         InvokeRepeating("Timer", 0, 1);
     }
 
-    public void AddCoolDown(string tag, int strength)
+    public static void AddCoolDown(string tag, int strength)
     {
         usedTags.Add(tag, strength);
     }
 
-    public bool ContainsTag(string tag)
+    public static bool ContainsTag(string tag)
     {
         return new List<string>(usedTags.Keys).Contains(tag);
     }

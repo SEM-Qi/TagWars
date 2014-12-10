@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 /* The NetworkManager class deals with the multiplayer functionality of TagWars */
 
 public class NetworkManager : MonoBehaviour
 {
+    private PhotonView photonView;
     private RoomOptions roomOptions;
     private Room myRoom;
     private int myRoomPlayers = 0;
@@ -22,6 +24,10 @@ public class NetworkManager : MonoBehaviour
         if (myRoomMaxPlayers == myRoomPlayers)
         {
             multiplayerStarted = true;
+        }
+        else
+        {
+            multiplayerStarted = false;
         }
     }
 
@@ -63,7 +69,12 @@ public class NetworkManager : MonoBehaviour
         PhotonNetwork.CreateRoom(name, roomOptions, null);
     }
 
-    public void Disconnect()
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public static void Disconnect()
     {
         Debug.Log("Disconnected");
         PhotonNetwork.Disconnect();

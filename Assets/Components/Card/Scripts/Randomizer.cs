@@ -23,7 +23,7 @@ public class Randomizer : MonoBehaviour {
 	
 	public void ShowCharacter()
 	{
-		dots = Dotifier(original); // reset?
+		// dots = Dotifier(original); // reset?
 		char[] dotsArray = dots.ToCharArray();
 		float probability = 0.2f;
 		
@@ -34,9 +34,7 @@ public class Randomizer : MonoBehaviour {
 				dotsArray[i] = original[i];
 			}
 		}
-		
 		dots = new string(dotsArray);
-		Debug.Log(dots);
 		inputFieldLabel.text = dots;
 	}
 	

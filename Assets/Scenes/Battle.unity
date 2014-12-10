@@ -605,7 +605,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagPrefab: {fileID: 100000, guid: 7f8c637e01eeb3e4b9839f6ccb41f1cb, type: 2}
-  queryManagerObject: {fileID: 556553139}
 --- !u!1 &136326577
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,12 +800,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 310959034}
-  - 114: {fileID: 310959039}
-  - 114: {fileID: 310959040}
-  - 114: {fileID: 310959036}
   - 114: {fileID: 310959037}
   - 114: {fileID: 310959042}
-  - 114: {fileID: 310959038}
+  - 114: {fileID: 310959035}
+  - 114: {fileID: 310959036}
   m_Layer: 5
   m_Name: TagWars_Battle
   m_TagString: Untagged
@@ -837,6 +834,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &310959035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310959033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd88f6ef03a61c04ea3c73ff03902f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardHolderObject: {fileID: 1010996048}
 --- !u!114 &310959036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,9 +854,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 310959033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74803da111cf47a4691b91c3d79945dc, type: 3}
+  m_Script: {fileID: 11500000, guid: f9b17be2db15f2a49a0a9e68460b775b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardHolderObject: {fileID: 1010996048}
 --- !u!114 &310959037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,42 +878,6 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: 0
---- !u!114 &310959038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310959033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b17be2db15f2a49a0a9e68460b775b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardHolderObject: {fileID: 1010996048}
---- !u!114 &310959039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310959033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af093af3bc330bb43b7031ff0f02199b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  queryManagerObject: {fileID: 556553139}
-  coolDownManagerObject: {fileID: 437353403}
---- !u!114 &310959040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310959033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b536624f7e887fc4590278d4533c5ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &310959042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2263,8 +2237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardObject: {fileID: 2088576871}
-  queryManagerObject: {fileID: 556553139}
-  coolDownObject: {fileID: 437353403}
   cardHolder: {fileID: 1053159182}
 --- !u!95 &1010996052
 Animator:
@@ -4575,6 +4547,8 @@ GameObject:
   - 224: {fileID: 2088576873}
   - 114: {fileID: 2088576872}
   - 95: {fileID: 2088576874}
+  - 114: {fileID: 2088576876}
+  - 114: {fileID: 2088576875}
   m_Layer: 5
   m_Name: TagCard
   m_TagString: Untagged
@@ -4597,7 +4571,6 @@ MonoBehaviour:
   label: {fileID: 1995763727}
   animationLabel: {fileID: 500627484}
   image: {fileID: 866801831}
-  scripts: {fileID: 310959033}
 --- !u!224 &2088576873
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4636,6 +4609,39 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &2088576875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088576871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 2
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
+--- !u!114 &2088576876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088576871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47565cc73bb11ed4e9349aaa8ec9010f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCardObject: {fileID: 1704910622}
+  scripts: {fileID: 310959033}
 --- !u!1 &2090376154
 GameObject:
   m_ObjectHideFlags: 0

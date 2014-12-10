@@ -11,16 +11,16 @@ using System;
 
 public class QueryManager : MonoBehaviour
 {
-    private JSONParser jsonParser = new JSONParser();
+    private static JSONParser jsonParser = new JSONParser();
 
-    private int[] currentDistribution;
-    private List<string> validTags = new List<string>();
+    private static int[] currentDistribution;
+    private static List<string> validTags = new List<string>();
 
     //private string userID;
 
     // URL for Http requests
     private string validTagUrl = "http://picard.skip.chalmers.se/updatelist";
-    private string damageDistributionUrl = "http://picard.skip.chalmers.se/tagattack?tag=";
+    private static string damageDistributionUrl = "http://picard.skip.chalmers.se/tagattack?tag=";
 
     // URL for Auth
     //private string authUrl = "http://picard.skip.chalmers.se/authorize";
@@ -42,7 +42,7 @@ public class QueryManager : MonoBehaviour
         Debug.Log(www.text);
     }
 
-    public IEnumerator QueryDamageDistribution(string value, Action OnResponce)
+    public static IEnumerator QueryDamageDistribution(string value, Action OnResponce)
     {
         WWW www = new WWW(damageDistributionUrl + value);
         yield return www;
@@ -73,9 +73,9 @@ public class QueryManager : MonoBehaviour
     //}
 
     // Getters & Setters =============================
-    public List<string> GetValidTags() { return validTags; }
+    public static List<string> GetValidTags() { return validTags; }
 
-    public bool IsValid(string text)
+    public static bool IsValid(string text)
     {
         if (validTags.Contains(text))
             return true;
@@ -83,5 +83,5 @@ public class QueryManager : MonoBehaviour
             return false;
     }
 
-    public int[] GetDistribution() { return currentDistribution; }
+    public static int[] GetDistribution() { return currentDistribution; }
 }

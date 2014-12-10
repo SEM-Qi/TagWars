@@ -39,4 +39,11 @@ MonoBehaviour:
   - PlayEnemyGameOver
   - CancelEnemyAttack
   - CancelAttack
+  - ReleaseAttack
+  - Wrap
+  - Cancel
+  - EnemyLaunch
+  - EnemyRelease
+  - InitEnemyCard
+  - UpdateHealth
   DisableAutoOpenWizard: 0

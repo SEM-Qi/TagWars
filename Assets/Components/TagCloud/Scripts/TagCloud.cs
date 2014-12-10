@@ -8,19 +8,9 @@ public class TagCloud : MonoBehaviour {
     private List<string> list;
     public GameObject tagPrefab;
 
-    //private string[] animations = { "up", "upright", "upleft", "left", "right", "down", "downright", "downleft" };
-
-    public GameObject queryManagerObject;
-    private QueryManager queryManager;
-
-	// Use this for initialization
-	void Start () {
-        queryManager = queryManagerObject.GetComponent<QueryManager>();
-	}
-
     public void Init()
-    {
-        list = queryManager.GetValidTags(); // not efficient
+    {   // not efficient, updates the valid tags evry time it is initialized
+        list = QueryManager.GetValidTags(); 
         InvokeRepeating("RandomWord", 0, 0.5f);
     }
 
