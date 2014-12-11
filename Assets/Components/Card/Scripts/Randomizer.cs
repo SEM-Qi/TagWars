@@ -23,9 +23,9 @@ public class Randomizer : MonoBehaviour {
 	
 	public void ShowCharacter()
 	{
-		// dots = Dotifier(original); // reset?
+		dots = Dotifier(original); // reset?
 		char[] dotsArray = dots.ToCharArray();
-		float probability = 0.2f;
+		float probability = 0.4f;
 		
 		for (int i = 0; i < dots.Length; i++)
 		{

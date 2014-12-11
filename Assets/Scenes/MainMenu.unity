@@ -1246,7 +1246,6 @@ GameObject:
   - 222: {fileID: 1437887255}
   - 114: {fileID: 1437887254}
   - 114: {fileID: 1437887253}
-  - 114: {fileID: 1437887256}
   m_Layer: 5
   m_Name: ProfileButton
   m_TagString: Untagged
@@ -1344,19 +1343,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1510875866}
   m_GameObject: {fileID: 1437887251}
---- !u!114 &1437887256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: 2e3a3db48777bc941986fcdc84f369ba,
-    type: 2}
-  m_PrefabInternal: {fileID: 1510875866}
-  m_GameObject: {fileID: 1437887251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1dd9ad106e07264d93a90a0bac7d25e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameLabel: {fileID: 449448190}
 --- !u!1001 &1487295292
 Prefab:
   m_ObjectHideFlags: 0
@@ -1575,7 +1561,8 @@ Prefab:
       propertyPath: m_Name
       value: ProfileButton
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2e3a3db48777bc941986fcdc84f369ba, type: 2}
   m_RootGameObject: {fileID: 1437887251}
   m_IsPrefabParent: 0

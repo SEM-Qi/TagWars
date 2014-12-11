@@ -63,7 +63,6 @@ public class Card : MonoBehaviour
             if (cardTag != "" && cardTag == enemyTag && !enemyRelease)
             {   // Cancel Attack if the enemy hasn't released his attack yet
                 Sync("Cancel");
-                Debug.Log("Cancel");
             }
             else
             {
@@ -72,7 +71,6 @@ public class Card : MonoBehaviour
                     CancelInvoke();
                     cardUI.Release();
                     released = true;
-                    Debug.LogError("RELEASED!!");
                     photonView.RPC("EnemyRelease", PhotonTargets.Others);
                 }
             }
@@ -121,7 +119,6 @@ public class Card : MonoBehaviour
     [RPC]
     private void Cancel()
     {
-        Debug.LogError("CANCELED!!");
         CancelInvoke();
         cardUI.Cancel();
         enemyCard.Cancel();
@@ -152,7 +149,6 @@ public class Card : MonoBehaviour
     [RPC]
     private void EnemyRelease()
     {
-        Debug.LogError("RELEASED!!");
         enemyRelease = true;
         enemyCard.Release();
         enemyTag = "";
