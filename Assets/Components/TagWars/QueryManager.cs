@@ -16,6 +16,9 @@ public class QueryManager : MonoBehaviour
     private static int[] currentDistribution;
     private static List<string> validTags = new List<string>();
 
+    private static Texture2D profileImage;
+    private static Texture2D enemyImage;
+
     //private string userID;
 
     // URL for Http requests
@@ -51,26 +54,18 @@ public class QueryManager : MonoBehaviour
         OnResponce();
     }
 
-    //public IEnumerator QueryUserInfo(Action OnResponce)
-    //{
-    //    WWW www = new WWW(userInfoUrl + userID);
-    //    yield return www;
-    //    currentDistribution = jsonParser.GetDistribution(www.text);
-    //    Debug.Log(www.text);
-    //    OnResponce();
-    //}
+    public static IEnumerator QueryImage(bool player, string url, Action SetImages)
+    {
+        WWW www = new WWW(url);
+        yield return www;
 
-    // Player OAuth ==================================
-    //public void OAuthPlayer(string[] OAuth)
-    //{
-    //    Debug.LogError("OAuth Method Called");
-    //    WWWForm form = new WWWForm();
-    //    userID = OAuth[0];
-    //    form.AddField("user_id", OAuth[0]);
-    //    form.AddField("auth_key", OAuth[1]);
-
-    //    WWW www = new WWW(authUrl, form);
-    //}
+        if (player)
+            profileImage = www.texture;
+        else
+            enemyImage = www.texture;
+        
+        SetImages();
+    }
 
     // Getters & Setters =============================
     public static List<string> GetValidTags() { return validTags; }
@@ -84,4 +79,8 @@ public class QueryManager : MonoBehaviour
     }
 
     public static int[] GetDistribution() { return currentDistribution; }
+
+    public static Texture2D GetProfilePic() { return profileImage; }
+
+    public static Texture2D GetEnemyPic() { return enemyImage; }
 }

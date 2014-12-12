@@ -10,7 +10,6 @@ public class Game : MonoBehaviour
 
     private PhotonView photonView;
 
-    // no MonoBehaviour
     private Player player;
     private Player opponent;
 
@@ -22,12 +21,14 @@ public class Game : MonoBehaviour
         cardHolder = cardHolderObject.GetComponent<CardHolder>();
         ui = GetComponent<UiManager>();
 
-        // init players
-        player = new Player("@aure", 100);
-        opponent = new Player("@evil_aure", 100);
+        Application.ExternalCall("OnBattleLoad");
 
-        // Updates the player name on UI
-        ui.InitPlayerNames(player.GetName(), opponent.GetName());
+        // init players ==============================================
+        string name = PlayerPrefs.GetString("playerName");
+        player = new Player(name, 100);
+        opponent = new Player("@QI", 100);
+        photonView.RPC("SetOpponentName", PhotonTargets.Others, name);
+        // ===========================================================
     }
 
     void Update()
@@ -36,7 +37,7 @@ public class Game : MonoBehaviour
         {   // if there is no CountDown
             if (!ui.CountDown())
             {     // checks game over
-                GameOver();       
+                GameOver();
                 if (cardHolder.IsReleaseOver())
                 {   // if the release animation is over
                     if (!cardHolder.IsCanceled())
@@ -47,7 +48,7 @@ public class Game : MonoBehaviour
                         ui.UpdateOpponentHealthBar(opponent.GetHealth());
                     }
                     // init cardholder with a card
-                    cardHolder.Init();  
+                    cardHolder.Init();
                     ui.NewTagCloud();
                 }
 
@@ -103,9 +104,38 @@ public class Game : MonoBehaviour
         ui.UpdatePlayerHealthBar(player.GetHealth());
     }
 
+    [RPC]
+    private void SetOpponentName(string name)
+    {
+        opponent.SetName(name);
+    }
+
     // ================================================================================
     /* this function is passed in QueryDamageDistribution 
      * it gets executed when we get a responce */
+    private void RequestImage(string url)
+    {
+        StartCoroutine(QueryManager.QueryImage(true, url, SetImages));
+        photonView.RPC("RequestEnemyImage", PhotonTargets.Others, url);
+    }
+
+    [RPC]
+    private void RequestEnemyImage(string url)
+    {
+        StartCoroutine(QueryManager.QueryImage(false, url, SetEnemyImage));
+    }
+
+    private void SetImages()
+    {
+        ui.InitPlayerNames(player.GetName(), opponent.GetName());
+        ui.SetProfilePic(QueryManager.GetProfilePic());
+    }
+
+    private void SetEnemyImage()
+    {
+        ui.SetEnemyPic(QueryManager.GetEnemyPic());
+    }
+
     private void OnResponce()
     {
         cardHolder.LaunchCard(InputListener.GetInput(), QueryManager.GetDistribution());

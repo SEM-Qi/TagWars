@@ -46,4 +46,6 @@ MonoBehaviour:
   - EnemyRelease
   - InitEnemyCard
   - UpdateHealth
+  - SetOpponentName
+  - RequestEnemyImage
   DisableAutoOpenWizard: 0

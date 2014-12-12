@@ -31,6 +31,10 @@ public class UiManager : MonoBehaviour {
     private TagCloud tagCloud;
     // =================================================================
 
+    public Image image;
+
+    public Image enemyImage;
+
 	void Start () {
 
         countDown = countDownObject.GetComponent<CountDown>();
@@ -86,4 +90,33 @@ public class UiManager : MonoBehaviour {
     public void NewTagCloud() { tagCloud.Init(); }
     public void RemoveTagCloud() { tagCloud.Cancel(); }
     // =================================================================
+
+    // Profile Image
+    public void SetProfilePic(Texture2D profilePic)
+    {
+        if (!profilePic)
+        {
+            Debug.Log("no Texture");
+        }
+        else 
+        { 
+        image.sprite = Sprite.Create(profilePic, 
+            new Rect(0,0, profilePic.width, profilePic.height),
+            new Vector2(0.5f,0.5f));
+        }
+    }
+
+    public void SetEnemyPic(Texture2D profilePic)
+    {
+        if (!profilePic)
+        {
+            Debug.Log("no Texture");
+        }
+        else
+        {
+            enemyImage.sprite = Sprite.Create(profilePic,
+                new Rect(0, 0, profilePic.width, profilePic.height),
+                new Vector2(0.5f, 0.5f));
+        }
+    }
 }

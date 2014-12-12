@@ -896,6 +896,8 @@ MonoBehaviour:
   coolDownObject: {fileID: 437353403}
   enemyCardObject: {fileID: 1704910622}
   tagCloudObject: {fileID: 125193761}
+  image: {fileID: 1550123775}
+  enemyImage: {fileID: 556038929}
   playerNameLabel: {fileID: 1356283640}
   opponentNameLabel: {fileID: 1478903425}
 --- !u!1 &329041875
