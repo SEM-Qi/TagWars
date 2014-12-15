@@ -31,8 +31,12 @@ public class UiManager : MonoBehaviour {
     private TagCloud tagCloud;
     // =================================================================
 
-    public Image image;
+    // Menu ============================================================
+    public GameObject menuPanelObject;
+    private Menu menu;
+    // =================================================================
 
+    public Image image;
     public Image enemyImage;
 
 	void Start () {
@@ -49,6 +53,8 @@ public class UiManager : MonoBehaviour {
         enemyCard = enemyCardObject.GetComponent<EnemyCard>();
 
         tagCloud = tagCloudObject.GetComponent<TagCloud>();
+
+        menu = menuPanelObject.GetComponent<Menu>();
 	}
 
     // CountDown =======================================================
@@ -90,6 +96,10 @@ public class UiManager : MonoBehaviour {
     public void NewTagCloud() { tagCloud.Init(); }
     public void RemoveTagCloud() { tagCloud.Cancel(); }
     // =================================================================
+
+    // Menu ============================================================
+    public bool Concede() { return menu.Concede(); }
+
 
     // Profile Image
     public void SetProfilePic(Texture2D profilePic)

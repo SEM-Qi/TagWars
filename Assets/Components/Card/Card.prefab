@@ -9,8 +9,9 @@ GameObject:
   m_Component:
   - 224: {fileID: 22400000}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400018}
   - 95: {fileID: 9500000}
+  - 114: {fileID: 11400020}
+  - 114: {fileID: 11400018}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 1008d5d6e055cb84eb0d4aa645357852, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74cd1868477c09842ab0128c8b8a0559, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -251,7 +252,6 @@ MonoBehaviour:
   label: {fileID: 11400010}
   animationLabel: {fileID: 11400012}
   image: {fileID: 11400000}
-  scripts: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 1008d5d6e055cb84eb0d4aa645357852, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 527293b1fb6351e44ab230e39e2cabf5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -285,10 +285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .75, g: .219999999, b: .170000002, a: 1}
+  m_Color: {r: .211764708, g: .211764708, b: .211764708, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 40ac9353fd43352498de59c98848e096, type: 3}
-    m_FontSize: 52
+    m_Font: {fileID: 12800000, guid: 85afc4cda45a3d24e890e786c7a63665, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -298,7 +298,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: love
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,9 +311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .75, g: .219999999, b: .170000002, a: 1}
+  m_Color: {r: .898039222, g: .290196091, b: .0980392173, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 40ac9353fd43352498de59c98848e096, type: 3}
+    m_Font: {fileID: 12800000, guid: 81920bc21ecb74c45a0b7a9191918389, type: 3}
     m_FontSize: 52
     m_FontStyle: 0
     m_BestFit: 0
@@ -412,11 +412,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657a1e8e0480b8f4b9f938ec0f85787e, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  original: 706f6c696365
-  dots: 
+  subId: 0
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47565cc73bb11ed4e9349aaa8ec9010f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCardObject: {fileID: 0}
 --- !u!222 &22200000
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -461,7 +480,7 @@ RectTransform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .952381015, y: .952381015, z: .952381015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22400004}
   - {fileID: 22400012}
@@ -471,7 +490,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 9.53674316e-07}
+  m_AnchoredPosition: {x: 0, y: 151.100006}
   m_SizeDelta: {x: 497, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22400002
@@ -503,10 +522,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22400000}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -.00101852417, y: 0}
-  m_SizeDelta: {x: 473.339996, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: .0360059738, y: -.00109672546}
+  m_SizeDelta: {x: -23.741169, y: -5.00218582}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22400006
 RectTransform:

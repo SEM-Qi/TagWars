@@ -5,12 +5,13 @@ using System.Collections.Generic;
 public class CoolDown : MonoBehaviour
 {
 
-    private static Dictionary<string, int> usedTags = new Dictionary<string, int>();
+    private static Dictionary<string, int> usedTags; 
 
     private static CoolDownManager coolDownManager;
 
     void Start()
     {
+        usedTags = new Dictionary<string, int>();
         coolDownManager = GetComponent<CoolDownManager>();
         InvokeRepeating("Timer", 0, 1);
     }

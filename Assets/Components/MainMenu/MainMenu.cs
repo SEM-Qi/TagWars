@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
             Debug.Log("START");
             startGame = true;
             startButton.interactable = false;
-            startButtonText.text = "Connecting";
+            startButtonText.text = "CONNECTING";
         });
 
         exitButton.onClick.AddListener(() => 

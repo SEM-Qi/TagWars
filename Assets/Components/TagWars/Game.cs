@@ -14,9 +14,13 @@ public class Game : MonoBehaviour
     private Player opponent;
 
     private bool attackCanceled;
+    public static bool gameOver;
+    private bool disconnected;
 
     void Start()
     {
+        gameOver = false;
+        disconnected = false;
         photonView = GetComponent<PhotonView>();
         cardHolder = cardHolderObject.GetComponent<CardHolder>();
         ui = GetComponent<UiManager>();
@@ -33,11 +37,11 @@ public class Game : MonoBehaviour
 
     void Update()
     {
-        if (!GameOver())
+        if (!IsGameOver())
         {   // if there is no CountDown
             if (!ui.CountDown())
             {     // checks game over
-                GameOver();
+                IsGameOver();
                 if (cardHolder.IsReleaseOver())
                 {   // if the release animation is over
                     if (!cardHolder.IsCanceled())
@@ -71,30 +75,65 @@ public class Game : MonoBehaviour
         }
         else
         {
-            if (ui.ExitGame())
+            gameOver = true;
+            if (!disconnected)
             {
-                NetworkManager.Disconnect();
-                Application.LoadLevel("MainMenu");
+                photonView.RPC("GameOver", PhotonTargets.All);
+            }
+            else
+            {
+                if (ui.ExitGame() || ui.Concede())
+                {
+                    Application.LoadLevel("MainMenu");
+                }
             }
         }
     }
 
-    private bool GameOver()
+    public bool IsGameOver()
     {
-        if (player.GetHealth() <= 0)
-        {
-            ui.DisplayGameOver("defeat");
-            return true;
-        }
-        else if (opponent.GetHealth() <= 0)
-        {
-            ui.DisplayGameOver("victory");
-            return true;
+        // forced by other player (concede)
+        if (gameOver) return true;
+
+        if (!ui.Concede())
+        {  
+            if (player.GetHealth() <= 0)
+            {
+                ui.DisplayGameOver("defeat");
+                return true;
+            }
+            else if (opponent.GetHealth() <= 0)
+            {
+                ui.DisplayGameOver("victory");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
-        {
-            return false;
+        {   // if the player concedes, display victory for opponent
+            photonView.RPC("DisplayVictory", PhotonTargets.Others);
+            return true;
         }
+        
+    }
+
+    [RPC]
+    private void DisplayVictory()
+    {
+        ui.DisplayGameOver("victory");
+        disconnected = true;
+        gameOver = true;
+    }
+
+    [RPC]
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(0.1f);
+        NetworkManager.Disconnect();
+        disconnected = true;
     }
 
     [RPC]

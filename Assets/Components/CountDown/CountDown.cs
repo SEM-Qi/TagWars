@@ -23,7 +23,7 @@ public class CountDown : MonoBehaviour
     {
         if (countdown == 0)
         {
-            timerText = "#FIGHT";
+            timerText = "FIGHT";
             countdown -= 1;
         }
         else if (countdown < 0)

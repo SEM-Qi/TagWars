@@ -11,7 +11,7 @@ public class CardUI : MonoBehaviour
     // the animation label is required to display the text during the animation
     public Text animationLabel;
     
-    public Image image;
+    public Image hash;
 
     private Animator cardAnim;
 
@@ -36,7 +36,7 @@ public class CardUI : MonoBehaviour
 
     public void Resize(int damage)
     {
-        float dimension = damage / 150f + 1;
+        float dimension = damage / 80f + 1;
         transform.localScale = new Vector3(dimension, dimension, 0);
     }
 
@@ -71,17 +71,17 @@ public class CardUI : MonoBehaviour
             if (valid)
             {
                 label.color = validColor;
-                image.color = validColor;
+                hash.color = validColor;
             }
             else
             {
                 label.color = failColor;
-                image.color = failColor;
+                hash.color = failColor;
             }
         }
         else
         {
-            image.color = Color.black;
+            hash.color = Color.black;
         }
     }
 }

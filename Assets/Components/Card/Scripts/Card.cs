@@ -134,7 +134,6 @@ public class Card : MonoBehaviour
     [RPC]
     private void InitEnemyCard()
     {
-        Debug.Log("enemyReset");
         enemyCard.Init();
         enemyRelease = false;
     }

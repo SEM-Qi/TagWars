@@ -48,4 +48,6 @@ MonoBehaviour:
   - UpdateHealth
   - SetOpponentName
   - RequestEnemyImage
+  - GameOver
+  - DisplayVictory
   DisableAutoOpenWizard: 0
