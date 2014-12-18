@@ -10,7 +10,7 @@ public class TagCloud : MonoBehaviour {
 
     public void Init()
     {   // not efficient, updates the valid tags evry time it is initialized
-        list = QueryManager.GetValidTags();
+        list = QueryManager.validTags;
         if (list.Count > 1)
         {
             InvokeRepeating("RandomWord", 0, 0.5f);

@@ -16,7 +16,6 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        Application.ExternalCall("OnUnityReady");
 
         startButton.onClick.AddListener(() =>
         {

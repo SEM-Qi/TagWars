@@ -5,32 +5,22 @@ using UnityEngine;
 
 public class Player
 {
-    private int health = 100;
-    private string name = "";
-
-    private string attack = "";
+    public int health { get; set; }
+    public string name { get; set; }
+    public string currentTag { get; set; }
+    public string lastTag { get; set; }
+    public int lastDamage { get; set; }
 
     public Player(string name, int health)
     {
         this.name = name;
         this.health = health;
+        lastTag = "";
+        lastDamage = 0;
     }
 
     public void UpdateHealth(int damage)
     {
         health = health - damage;
     }
-
-    // Getters & Setters
-    public string GetName() { return name; }
-
-    public void SetName(string name) { this.name = name; }
-
-    public int GetHealth() { return health; }
-
-    public void SetHealth(int health) { this.health = health; }
-
-    public string GetAttack() { return attack; }
-
-    public void SetAttack(string attack) { this.attack = attack; }
 }

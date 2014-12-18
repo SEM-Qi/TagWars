@@ -14,25 +14,28 @@ public class Game : MonoBehaviour
     private Player opponent;
 
     private bool attackCanceled;
-    public static bool gameOver;
     private bool disconnected;
+
+    public static bool gameOver { get; private set; }
 
     void Start()
     {
+        Application.ExternalCall("OnBattleLoad");
+
         gameOver = false;
         disconnected = false;
         photonView = GetComponent<PhotonView>();
         cardHolder = cardHolderObject.GetComponent<CardHolder>();
         ui = GetComponent<UiManager>();
 
-        Application.ExternalCall("OnBattleLoad");
-
-        // init players ==============================================
+       // init players ==============================================
         string name = PlayerPrefs.GetString("playerName");
         player = new Player(name, 100);
         opponent = new Player("@QI", 100);
         photonView.RPC("SetOpponentName", PhotonTargets.Others, name);
         // ===========================================================
+
+        StartCoroutine(QueryManager.QueryValidTag());
     }
 
     void Update()
@@ -49,7 +52,8 @@ public class Game : MonoBehaviour
                         int damage = cardHolder.TotalDamage();
                         opponent.UpdateHealth(damage);
                         photonView.RPC("UpdateHealth", PhotonTargets.Others, damage);
-                        ui.UpdateOpponentHealthBar(opponent.GetHealth());
+                        player.lastDamage = damage;
+                        ui.UpdateOpponentHealthBar(opponent.health);
                     }
                     // init cardholder with a card
                     cardHolder.Init();
@@ -63,8 +67,11 @@ public class Game : MonoBehaviour
                     if (Input.GetKeyDown("return") && cardHolder.IsReleaseReady())
                     {
                         InputListener.Listen(false);
-                        StartCoroutine(QueryManager.QueryDamageDistribution(InputListener.GetInput(), OnResponce));
+                        string newTag = InputListener.GetInput();
+                        if (player.lastTag == "") player.lastTag = "nothing_here";
+                        StartCoroutine(QueryManager.QueryDamageDistribution(newTag, player.lastTag, player.lastDamage, OnResponce));
                         ui.RemoveTagCloud();
+                        player.lastTag = newTag;
                     }
                 }
                 else
@@ -82,7 +89,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-                if (ui.ExitGame() || ui.Concede())
+                if (ui.ExitGame() || ui.concede)
                 {
                     Application.LoadLevel("MainMenu");
                 }
@@ -95,14 +102,14 @@ public class Game : MonoBehaviour
         // forced by other player (concede)
         if (gameOver) return true;
 
-        if (!ui.Concede())
+        if (!ui.concede)
         {  
-            if (player.GetHealth() <= 0)
+            if (player.health <= 0)
             {
                 ui.DisplayGameOver("defeat");
                 return true;
             }
-            else if (opponent.GetHealth() <= 0)
+            else if (opponent.health <= 0)
             {
                 ui.DisplayGameOver("victory");
                 return true;
@@ -140,13 +147,13 @@ public class Game : MonoBehaviour
     private void UpdateHealth(int damage)
     {
         player.UpdateHealth(damage);
-        ui.UpdatePlayerHealthBar(player.GetHealth());
+        ui.UpdatePlayerHealthBar(player.health);
     }
 
     [RPC]
     private void SetOpponentName(string name)
     {
-        opponent.SetName(name);
+        opponent.name = name;
     }
 
     // ================================================================================
@@ -166,7 +173,7 @@ public class Game : MonoBehaviour
 
     private void SetImages()
     {
-        ui.InitPlayerNames(player.GetName(), opponent.GetName());
+        ui.InitPlayerNames(player.name, opponent.name);
         ui.SetProfilePic(QueryManager.GetProfilePic());
     }
 

@@ -9,10 +9,15 @@ public class TagWars : MonoBehaviour
     private MainMenu mainMenu;
     private NetworkManager networkManager;
 
+    public static bool validUser { get; set; }
+
     void Start()
     {
         mainMenu = mainMenuObject.GetComponent<MainMenu>();
         networkManager = GetComponent<NetworkManager>();
+
+        Application.ExternalCall("OnUnityAuth");
+        Application.ExternalCall("OnUnityReady");
     }
 
     void Update()
@@ -23,7 +28,7 @@ public class TagWars : MonoBehaviour
             mainMenu.SetStartGame(false);
         }
 
-        if (networkManager.MultiplayerStarted()) { Application.LoadLevel("Battle"); }
+        if (networkManager.MultiplayerStarted() && validUser) { Application.LoadLevel("Battle"); }
 
         if (mainMenu.QuitGame()) { Application.Quit(); }
     }

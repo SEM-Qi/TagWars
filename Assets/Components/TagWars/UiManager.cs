@@ -98,7 +98,7 @@ public class UiManager : MonoBehaviour {
     // =================================================================
 
     // Menu ============================================================
-    public bool Concede() { return menu.Concede(); }
+    public bool concede { get { return menu.concede; } }
 
 
     // Profile Image

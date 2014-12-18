@@ -4,16 +4,17 @@ using System.Collections;
 
 public class Menu : MonoBehaviour
 {
-
     public Button concedeButton;
     public GameObject menuPanel;
 
-    private bool toggled = false;
-    private bool concede = false;
+    private bool toggled;
+    public bool concede { get; private set; }
 
     void Start()
     {
         concede = false;
+        toggled = false;
+
         concedeButton.onClick.AddListener(() =>
         {
             Debug.Log("CONCEDE");
@@ -23,24 +24,29 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (!Game.gameOver)
+        if (Game.gameOver)
         {
-            if (Input.GetKeyUp("escape") && !toggled)
-            {
-                toggled = true;
-                menuPanel.SetActive(true);
-            }
-            else if (Input.GetKeyUp("escape") && toggled)
+            if (toggled)
             {
                 toggled = false;
                 menuPanel.SetActive(false);
             }
         }
-    }
-
-    // Getters 
-    public bool Concede()
-    {
-        return concede;
+        else
+        {
+            if (Input.GetKeyUp("escape"))
+            {
+                if (!toggled)
+                {
+                    toggled = true;
+                    menuPanel.SetActive(true);
+                }
+                else
+                {
+                    toggled = false;
+                    menuPanel.SetActive(false);
+                }
+            }
+        }
     }
 }
