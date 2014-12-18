@@ -27,8 +27,8 @@ public class QueryManager : MonoBehaviour
     private static string damageDistributionUrl = "http://picard.skip.chalmers.se/tagattack?";
 
     // URL for Auth
-    private string updateKeyUrl = "http://garak.skip.chalmers.se/updatekey";
-    private string authUrl = "http://garak.skip.chalmers.se/authorize";
+    private string updateKeyUrl = "http://picard.skip.chalmers.se/updatekey";
+    private string authUrl = "http://picard.skip.chalmers.se/authorize";
 
     void Start()
     {
