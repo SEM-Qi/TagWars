@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* CardHolder Class:
+ * the cardholders spawns new cards and manages them */
+
 public class CardHolder : MonoBehaviour {
 
     public GameObject cardObject;

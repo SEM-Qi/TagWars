@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* CoolDownBar Class:
+ * a coolDown element, with animation */
+
 public class CoolDownBar : MonoBehaviour
 {
 

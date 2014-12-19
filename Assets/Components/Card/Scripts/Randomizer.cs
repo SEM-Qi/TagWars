@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* Randomizer Class:
+ * randomizes a string and displays only parts of it */
+
 public class Randomizer : MonoBehaviour {
 	
 	private string original = "";

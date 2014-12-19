@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* Menu Class:
+ * the player can toggle this menu during the game */
+
 public class Menu : MonoBehaviour
 {
     public Button concedeButton;

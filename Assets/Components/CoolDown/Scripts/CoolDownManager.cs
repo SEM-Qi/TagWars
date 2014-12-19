@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/* Cooldown Class:
+ * view of the cooldown component, manages 
+ * the cooldown elements*/
+
 public class CoolDownManager : MonoBehaviour
 {
     public GameObject coolDownBarPrefab;

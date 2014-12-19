@@ -2,7 +2,9 @@
 using System.Collections;
 using System;
 
-/* The NetworkManager class deals with the multiplayer functionality of TagWars */
+/* NetworkManager Class:
+ * deals with the multiplayer functionality of TagWars 
+ * the and the conncetion to the Photon Cloud */
 
 public class NetworkManager : MonoBehaviour
 {

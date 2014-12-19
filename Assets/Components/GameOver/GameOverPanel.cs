@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* GameOver Class:
+ * displays the GameOver panel with the gameover coonditions */
+
 public class GameOverPanel : MonoBehaviour {
     
     public Button mainMenu;

@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* Card Class:
+ * Main Class of the Card component, the Card Class
+ * is responsible for the logic behind a card, the 
+ * damage it deals as well as when it can be sent or not*/
+
 public class Card : MonoBehaviour
 {
 

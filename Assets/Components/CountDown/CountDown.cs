@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-/* Countdown Animation */
+/* Countdown Class:
+ * view of the countdown animation at the begining of the game */
 
 public class CountDown : MonoBehaviour
 {

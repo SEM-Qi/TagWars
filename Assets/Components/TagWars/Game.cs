@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* Game Class:
+ * the main class of TagWars, contains the main game loop
+ * as well as a few other helper methods */
+
 public class Game : MonoBehaviour
 {
     private UiManager ui;

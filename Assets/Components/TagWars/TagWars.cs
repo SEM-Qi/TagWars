@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/* TagWars: MAIN CLASS */
+/* TagWars Class:
+ * responsible for the higher level code in the main
+ * menu */
 
 public class TagWars : MonoBehaviour
 {

@@ -6,7 +6,8 @@ using System.Text;
 using System;
 using System.Security.Cryptography;
 
-/* The QueryManager makes HTTP requests to query 
+/* QueryManager Class:
+ * makes HTTP requests to query 
    the valid tags as well as the damage distribution,
    it also gets the player ID and info */
 

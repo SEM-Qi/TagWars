@@ -2,6 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* UIManager Class:
+ * works as a facade for the different UI components
+ * in #TagWars */
+
 public class UiManager : MonoBehaviour {
 
     // CountDown =======================================================

@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-/* View of the MainMenu component */
+/* MainMenu Class:
+ * the View of the MainMenu Component */
 
 public class MainMenu : MonoBehaviour
 {

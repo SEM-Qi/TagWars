@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* EnemyCard Class:
+ * view of the enemyCard, animations and text update */
+
 public class EnemyCard : MonoBehaviour {
 
     // the animation label is required to display the text during the animation

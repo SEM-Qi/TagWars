@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/* The PLAYER class contains all values regarding a player */
+/* Player Class:
+ * contains all values regarding a player */
 
 public class Player
 {

@@ -3,13 +3,17 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+/* TagCloud Class:
+ * the tagcloud manages the tagcloud effect visible 
+ * while the player is not charging the attack */
+
 public class TagCloud : MonoBehaviour {
 
     private List<string> list;
     public GameObject tagPrefab;
 
     public void Init()
-    {   // not efficient, updates the valid tags evry time it is initialized
+    {   // not efficient, updates the valid tags every time it is initialized
         list = QueryManager.validTags;
         if (list.Count > 1)
         {

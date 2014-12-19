@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-/* The InputListener class checks for player input */
+/* InputListener Class:
+ * checks for player input and update the cardHolder */
 
 public class InputListener : MonoBehaviour
 {
-    // private QueryManager queryManager;
     public GameObject cardHolderObject;
     private CardHolder cardHolder;
 
-    // private List<string> tags = new List<string>();
     private List<char> input = new List<char>();
 
     private char[] forbidenChars = { ' ', '#', '!', '?', '$', '%', '^', '&', '*', '+', '.' };

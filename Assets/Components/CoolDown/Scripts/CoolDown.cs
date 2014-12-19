@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/* CoolDown Class:
+ * cooldown logic, updates the cooldown manager and makes 
+ * attacks available or not */
+
 public class CoolDown : MonoBehaviour
 {
 
